@@ -25,20 +25,32 @@
   }
 
   .dark {
-    --canvas: #050505;
-    --canvas-muted: #141414;
-    --fg: #ffffff;
-    --fg-muted: #a3a3a3;
-    --border-theme: rgba(255, 255, 255, 0.1);
+    --canvas: #0f0f0f;
+    --canvas-muted: #1a1a1a;
+    --fg: #f5f5f5;
+    --fg-muted: #888888;
+    --border-theme: rgba(255, 255, 255, 0.08);
   }
 
   body {
-    @apply bg-canvas text-fg selection:bg-accent selection:text-white antialiased overflow-x-hidden transition-colors duration-500;
+    @apply bg-canvas text-fg selection:bg-accent/30 selection:text-fg antialiased overflow-x-hidden transition-colors duration-500 font-sans;
   }
 }
 
 @layer utilities {
   .text-shadow-xl {
     text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  }
+  .glass-nav {
+    @apply bg-canvas/60 backdrop-blur-xl border-b border-border-theme;
+  }
+  .section-padding {
+    @apply py-32 md:py-48 px-6;
+  }
+  .container-wide {
+    @apply max-w-7xl mx-auto;
+  }
+  .text-balance {
+    text-wrap: balance;
   }
 }
