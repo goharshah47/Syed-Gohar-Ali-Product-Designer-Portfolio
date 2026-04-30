@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", serif;
+  
+  --color-accent: #f27d26;
+  
+  /* Semantic Colors */
+  --color-canvas: var(--canvas);
+  --color-canvas-muted: var(--canvas-muted);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-border-theme: var(--border-theme);
+}
+
+@layer base {
+  :root {
+    --canvas: #ffffff;
+    --canvas-muted: #f8f8f8;
+    --fg: #050505;
+    --fg-muted: #666666;
+    --border-theme: rgba(0, 0, 0, 0.1);
+  }
+
+  .dark {
+    --canvas: #050505;
+    --canvas-muted: #141414;
+    --fg: #ffffff;
+    --fg-muted: #a3a3a3;
+    --border-theme: rgba(255, 255, 255, 0.1);
+  }
+
+  body {
+    @apply bg-canvas text-fg selection:bg-accent selection:text-white antialiased overflow-x-hidden transition-colors duration-500;
+  }
+}
+
+@layer utilities {
+  .text-shadow-xl {
+    text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  }
+}
