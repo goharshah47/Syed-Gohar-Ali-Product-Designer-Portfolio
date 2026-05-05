@@ -40,7 +40,7 @@ const PROJECTS: Project[] = [
     title: 'LotIQ',
     year: '2024',
     category: 'AI Property Intelligence • Enterprise SaaS',
-    image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/thumbnail.jpg?token=GHSAT0AAAAAADZI47SF6QOZH75GNO3I34HI2PZXALQ',
+    image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/thumbnail.jpg',
     accent: '#10b981',
     description: 'AI-Powered Property Intelligence System simplifying complex physical enforcement workflows.',
     blocks: [
@@ -48,7 +48,7 @@ const PROJECTS: Project[] = [
         type: 'hero', 
         title: 'LotIQ', 
         subtitle: 'A system that automates parking enforcement and physical space monitoring using AI, rules, and human validation.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/inner_Cover.png?token=GHSAT0AAAAAADZI47SFSIWFLUWLP65HAJFG2PZXEPA',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/inner_Cover.png',
         role: 'Product Designer',
         tools: ['Lovable', 'Google AI Studio', 'Vercel']
       },
@@ -62,7 +62,7 @@ const PROJECTS: Project[] = [
         tag: 'The Context',
         title: 'Decision Intelligence',
         content: 'LotIQ isn\'t just a UI product—it\'s a decision-making system. It combines computer vision with a sophisticated rules engine to monitor physical spaces in real-time, reducing the need for manual reporting and high-cost operational overhead.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/Decision.png?token=GHSAT0AAAAAADZI47SFXUFNR62FKBTYER2E2PZXE4A'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/Decision.png'
       },
       {
         type: 'section-header',
@@ -74,7 +74,7 @@ const PROJECTS: Project[] = [
         tag: 'Current State',
         title: 'Friction & Inefficiency',
         content: 'Property managers traditionally rely on manual reporting and phone calls for enforcement. This leads to:\n\n• High operational costs\n• Significant fraud risk\n• Zero real-time visibility into property activity',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/Friction%20%26%20Inefficiency.jpg?token=GHSAT0AAAAAADZI47SEVZVI3W5NXSHHPDUA2PZXFCQ'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/Friction%20%26%20Inefficiency.jpg'
       },
       {
         type: 'section-header',
@@ -113,7 +113,7 @@ const PROJECTS: Project[] = [
         tag: 'System A',
         title: 'Lead Generation Website',
         content: 'Modern landing pages designed to convert property managers through clear value propositions and transparent onboarding flow.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/website.png?token=GHSAT0AAAAAADZI47SFPTUG2DE5EEILU3MO2PZXFLQ'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/website.png'
       },
       {
         type: 'text-split',
@@ -145,7 +145,7 @@ const PROJECTS: Project[] = [
         tag: 'Workflow Design',
         title: 'The Enforcement Lifecycle',
         content: 'Detection → Evaluation → Validation → Action → Logging.\n\nEvery step is traceable and auditable, ensuring that "human-in-the-loop" isn\'t just a buzzword, but a critical safeguard.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/aihumanvalidation.jpg?token=GHSAT0AAAAAADZI47SFBMY5EF7BW222ECOI2PZXFHQ'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/aihumanvalidation.jpg'
       },
       {
         type: 'section-header',
