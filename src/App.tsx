@@ -40,7 +40,7 @@ const PROJECTS: Project[] = [
     title: 'LotIQ',
     year: '2024',
     category: 'AI Property Intelligence • Enterprise SaaS',
-    image: 'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/thumbnail.jpg?token=GHSAT0AAAAAADZI47SF6QOZH75GNO3I34HI2PZXALQ',
     accent: '#10b981',
     description: 'AI-Powered Property Intelligence System simplifying complex physical enforcement workflows.',
     blocks: [
@@ -48,7 +48,7 @@ const PROJECTS: Project[] = [
         type: 'hero', 
         title: 'LotIQ', 
         subtitle: 'A system that automates parking enforcement and physical space monitoring using AI, rules, and human validation.',
-        image: 'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?q=80&w=1200&auto=format&fit=crop',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/inner_Cover.png?token=GHSAT0AAAAAADZI47SFSIWFLUWLP65HAJFG2PZXEPA',
         role: 'Product Designer',
         tools: ['Lovable', 'Google AI Studio', 'Vercel']
       },
@@ -62,7 +62,7 @@ const PROJECTS: Project[] = [
         tag: 'The Context',
         title: 'Decision Intelligence',
         content: 'LotIQ isn\'t just a UI product—it\'s a decision-making system. It combines computer vision with a sophisticated rules engine to monitor physical spaces in real-time, reducing the need for manual reporting and high-cost operational overhead.',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/Decision.png?token=GHSAT0AAAAAADZI47SFXUFNR62FKBTYER2E2PZXE4A'
       },
       {
         type: 'section-header',
@@ -74,7 +74,7 @@ const PROJECTS: Project[] = [
         tag: 'Current State',
         title: 'Friction & Inefficiency',
         content: 'Property managers traditionally rely on manual reporting and phone calls for enforcement. This leads to:\n\n• High operational costs\n• Significant fraud risk\n• Zero real-time visibility into property activity',
-        image: 'https://images.unsplash.com/photo-1454165205744-3b78555e5572?q=80&w=800&auto=format&fit=crop'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/Friction%20%26%20Inefficiency.jpg?token=GHSAT0AAAAAADZI47SEVZVI3W5NXSHHPDUA2PZXFCQ'
       },
       {
         type: 'section-header',
@@ -113,7 +113,7 @@ const PROJECTS: Project[] = [
         tag: 'System A',
         title: 'Lead Generation Website',
         content: 'Modern landing pages designed to convert property managers through clear value propositions and transparent onboarding flow.',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/website.png?token=GHSAT0AAAAAADZI47SFPTUG2DE5EEILU3MO2PZXFLQ'
       },
       {
         type: 'text-split',
@@ -145,7 +145,7 @@ const PROJECTS: Project[] = [
         tag: 'Workflow Design',
         title: 'The Enforcement Lifecycle',
         content: 'Detection → Evaluation → Validation → Action → Logging.\n\nEvery step is traceable and auditable, ensuring that "human-in-the-loop" isn\'t just a buzzword, but a critical safeguard.',
-        image: 'https://images.unsplash.com/photo-1553484771-047a44eee27b?q=80&w=800&auto=format&fit=crop'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/aihumanvalidation.jpg?token=GHSAT0AAAAAADZI47SFBMY5EF7BW222ECOI2PZXFHQ'
       },
       {
         type: 'section-header',
@@ -404,7 +404,7 @@ const PROJECTS: Project[] = [
     title: 'Safco Dental',
     year: '2023',
     category: 'B2B Ecommerce Redesign • Healthcare',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
     accent: '#0d9488',
     description: 'Transforming a legacy dental supply platform into a scalable, modern ecommerce system for procurement teams.',
     blocks: [
@@ -412,7 +412,7 @@ const PROJECTS: Project[] = [
         type: 'hero', 
         title: 'Safco Dental', 
         subtitle: 'Modernizing the B2B ecommerce experience for faster product discovery and repeat ordering across a complex ecosystem.',
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
         role: 'Product/UI Designer',
         tools: ['Ecommerce UX', 'Design System', 'PLP/PDP', 'Search']
       },
@@ -426,7 +426,7 @@ const PROJECTS: Project[] = [
         tag: 'The Context',
         title: 'Legacy to Scalable',
         content: 'Safco Dental is a B2B platform serving dental professionals and procurement teams. The existing Magento-based system had strong infrastructure but a fragmented frontend. This project focused on modernizing the entire digital experience into a scalable, system-driven ecosystem.',
-        image: 'https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=800&auto=format&fit=crop'
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'
       },
       {
         type: 'section-header',
@@ -491,8 +491,8 @@ const PROJECTS: Project[] = [
         type: 'comparison',
         title: 'Unified Design System',
         description: 'We moved from a fragmented, weak hierarchy to a unified structure where promotions, search, and navigation share a consistent language.',
-        before: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=800&auto=format&fit=crop',
-        after: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop'
+        before: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
+        after: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'
       },
       {
         type: 'section-header',
@@ -513,7 +513,7 @@ const PROJECTS: Project[] = [
         tag: 'Ecommerce Core',
         title: 'PLP & PDP Optimization',
         content: 'Improved product scanning, category bubbles, and pricing tiers. PDPs now highlight bulk discounts and bundles clearly, reducing procurement effort.',
-        image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=800&auto=format&fit=crop'
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'
       },
       {
         type: 'text-split',
@@ -1250,7 +1250,7 @@ const Hero = () => {
               transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="text-lg md:text-xl text-fg-muted max-w-[600px] font-light leading-relaxed mb-10 text-balance"
             >
-              Product Designer focused on SaaS, B2B platforms, and scalable design systems—turning complex workflows into simple, intuitive experiences.
+              Product Designer focused on B2B, SaaS, and ecommerce platforms—turning complex workflows into simple, intuitive experiences.
             </motion.p>
  
             <motion.div 
