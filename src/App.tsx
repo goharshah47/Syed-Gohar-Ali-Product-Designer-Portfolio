@@ -22,6 +22,7 @@ interface Project {
 
 type ContentBlock = 
   | { type: 'hero', title: string, subtitle: string, image: string, role?: string, tools?: string[] }
+  | { type: 'phase-intro', title: string, role: string, scope: string, tools: string[], activities: string[] }
   | { type: 'text-split', title: string, content: string, image: string, reversed?: boolean, tag?: string }
   | { type: 'image-full', image: string, caption?: string }
   | { type: 'image-grid', images: string[], columns?: 2 | 3 }
@@ -48,9 +49,20 @@ const PROJECTS: Project[] = [
         type: 'hero', 
         title: 'LotIQ', 
         subtitle: 'A system that automates parking enforcement and physical space monitoring using AI, rules, and human validation.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/inner_Cover.png',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/thumbnail.jpg'
+      },
+      {
+        type: 'phase-intro',
+        title: 'Discovery & Problem Framing',
         role: 'Product Designer',
-        tools: ['Lovable', 'Google AI Studio', 'Vercel']
+        scope: 'End-to-end product design across system',
+        tools: ['Figma', 'Lovable', 'Google AI Studio', 'GitHub', 'Vercel', 'UserTesting'],
+        activities: [
+          'Audited existing product/system',
+          'Identified UX and system-level issues',
+          'Defined problem areas and priorities',
+          'Mapped user and business needs'
+        ]
       },
       {
         type: 'section-header',
@@ -120,7 +132,7 @@ const PROJECTS: Project[] = [
         tag: 'System B',
         title: 'Property Manager App',
         content: 'A control center for landlords to configure rules, define zones, and monitor incidents in real-time across their portfolios.',
-        image: 'https://images.unsplash.com/photo-1583454110551-21f2fa29617f?q=80&w=800&auto=format&fit=crop',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/propertymangerapp.png',
         reversed: true
       },
       {
@@ -169,7 +181,7 @@ const PROJECTS: Project[] = [
         type: 'text-split',
         title: 'Systems Over Screens',
         content: 'Complex products require system thinking. We learned that trust comes from transparency, and that human oversight is essential for real-world AI reliability.',
-        image: 'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=800&auto=format&fit=crop',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/reflections.jpg',
         reversed: true
       }
     ]
@@ -187,9 +199,20 @@ const PROJECTS: Project[] = [
         type: 'hero', 
         title: 'Emotional Fitness', 
         subtitle: 'Elevating health tracking from raw metrics to mindful growth and mental well-being.',
-        image: 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=1200&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        type: 'phase-intro',
+        title: 'Discovery & Understanding',
         role: 'Lead Product Designer',
-        tools: ['Figma', 'Protopie', 'Mirror']
+        scope: 'End-to-end product design and prototyping',
+        tools: ['Figma', 'Protopie', 'Mirror'],
+        activities: [
+          'Conducted user research and interviews',
+          'Defined user personas and behavior patterns',
+          'Developed adaptive interaction flows',
+          'Validated designs through usability testing'
+        ]
       },
       {
         type: 'section-header',
@@ -345,9 +368,20 @@ const PROJECTS: Project[] = [
         type: 'hero', 
         title: 'Spatial Productivity', 
         subtitle: 'Redefining the desktop as a three-dimensional environment for focus and flow.',
-        image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        type: 'phase-intro',
+        title: 'Ideation & Spatial Logic',
         role: 'UX Architect',
-        tools: ['Blender', 'Unity', 'Figma']
+        scope: 'Spatial UX architecture and visual design',
+        tools: ['Blender', 'Unity', 'Figma'],
+        activities: [
+          'Researched spatial productivity paradigms',
+          'Developed 3D desktop interaction models',
+          'Designed spatial memory mapping systems',
+          'Iterated on focus-oriented UI frameworks'
+        ]
       },
       {
         type: 'section-header',
@@ -412,9 +446,20 @@ const PROJECTS: Project[] = [
         type: 'hero', 
         title: 'Safco Dental', 
         subtitle: 'Modernizing the B2B ecommerce experience for faster product discovery and repeat ordering across a complex ecosystem.',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        type: 'phase-intro',
+        title: 'System Modernization',
         role: 'Product/UI Designer',
-        tools: ['Ecommerce UX', 'Design System', 'PLP/PDP', 'Search']
+        scope: 'UX strategy and design system development',
+        tools: ['Figma', 'Magento', 'Design Tokens', 'UserTesting'],
+        activities: [
+          'Audited legacy B2B ecommerce platform',
+          'Developed unified design system componentry',
+          'Optimized complex search and navigation flows',
+          'Modernized B2B procurement workflows'
+        ]
       },
       {
         type: 'section-header',
@@ -584,9 +629,20 @@ const PROJECTS: Project[] = [
         type: 'hero', 
         title: 'Finance for Humans', 
         subtitle: 'Removing the intimidation of markets with narrative data and intuitive risk management.',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        type: 'phase-intro',
+        title: 'Data Visualisation Strategy',
         role: 'Lead UX Designer',
-        tools: ['Figma', 'D3.js', 'React']
+        scope: 'Fintech product design and data viz',
+        tools: ['Figma', 'D3.js', 'React', 'Framer'],
+        activities: [
+          'Visualized complex quantitative finance data',
+          'Designed intuitive risk management interfaces',
+          'Simplified algorithmic trading narratives',
+          'Developed high-performance trading dashboards'
+        ]
       },
       {
         type: 'section-header',
@@ -637,12 +693,12 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
     return () => { document.body.style.overflow = 'auto'; };
   }, [project.id]);
 
-  // Extract navigation items from section headers
+  // Extract navigation items from section headers and phase intros
   const navItems = project.blocks
-    .filter(block => block.type === 'section-header')
+    .filter(block => block.type === 'section-header' || block.type === 'phase-intro')
     .map((block, idx) => ({
       id: `section-${idx}`,
-      // @ts-ignore - we know it's section-header
+      // @ts-ignore
       title: block.title.replace(/^\d+[-.]?\d*\.\s*/, '')
     }));
 
@@ -779,8 +835,8 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/20 to-transparent" />
                   </div>
-                  <div className="relative z-10 container-wide w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-end">
-                    <div className="lg:col-span-8">
+                  <div className="relative z-10 container-wide w-full flex flex-col items-start">
+                    <div className="max-w-4xl">
                       <motion.h1 
                         initial={{ opacity: 0, y: 100 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -800,25 +856,71 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
                         {block.subtitle}
                       </motion.p>
                     </div>
-                    <div className="lg:col-span-4 flex flex-col gap-10 pb-6">
-                      {block.role && (
+                  </div>
+                </section>
+              );
+            case 'phase-intro':
+              return (
+                <section key={idx} id={sectionId} className={`case-study-section section-padding ${bgClass}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="container-wide"
+                  >
+                    <div className="mb-20">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-6 block">Phase 01</span>
+                      <h2 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-4">{block.title}</h2>
+                      <div className="h-1 w-20 bg-accent rounded-full opacity-30" />
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 mb-20">
+                      <div className="space-y-12">
                         <div>
-                          <span className="text-[10px] font-bold uppercase tracking-[0.3em] mb-4 block text-accent">Role</span>
-                          <p className="text-xl font-bold tracking-tight">{block.role}</p>
-                        </div>
-                      )}
-                      {block.tools && (
-                        <div>
-                          <span className="text-[10px] font-bold uppercase tracking-[0.3em] mb-4 block text-accent">Stack</span>
-                          <div className="flex flex-wrap gap-2">
-                            {block.tools.map((tool, i) => (
-                              <span key={i} className="px-4 py-2 rounded-full border border-border-theme text-[10px] font-bold tracking-[0.2em] uppercase">{tool}</span>
-                            ))}
+                          <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-8 text-accent">Context</h4>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <div>
+                              <p className="text-fg-muted text-[10px] font-bold uppercase tracking-widest mb-3 opacity-60">Role</p>
+                              <p className="text-xl md:text-2xl font-bold tracking-tight">{block.role}</p>
+                            </div>
+                            <div>
+                              <p className="text-fg-muted text-[10px] font-bold uppercase tracking-widest mb-3 opacity-60">Scope</p>
+                              <p className="text-xl md:text-2xl font-bold tracking-tight">{block.scope}</p>
+                            </div>
                           </div>
                         </div>
-                      )}
+                      </div>
+
+                      <div>
+                        <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-8 text-accent">Tools & Stack</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {block.tools.map((tool, i) => (
+                            <span key={i} className="px-5 py-2.5 rounded-full border border-border-theme text-[10px] font-bold tracking-[0.2em] uppercase bg-canvas-muted/50">{tool}</span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  </div>
+
+                    <div className="pt-20 border-t border-border-theme/30">
+                      <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-accent">Key Activities</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {block.activities.map((activity, i) => (
+                          <motion.div 
+                            key={i}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            className="p-8 rounded-[2rem] bg-canvas-muted/30 border border-border-theme hover:border-accent/30 transition-all duration-500 group"
+                          >
+                            <div className="w-1.5 h-1.5 rounded-full bg-accent mb-6 opacity-40 group-hover:opacity-100 transition-opacity" />
+                            <p className="text-sm font-medium leading-relaxed text-fg-muted group-hover:text-fg transition-colors">{activity}</p>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
                 </section>
               );
             case 'section-header':
@@ -1199,48 +1301,31 @@ const Navbar = ({ darkMode, toggleTheme }: { darkMode: boolean, toggleTheme: () 
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-canvas section-padding">
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-canvas section-padding">
       {/* Background Visual */}
       <div className="absolute inset-0 opacity-40 dark:opacity-20 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--color-accent)_0%,_transparent_70%)] blur-[140px] scale-50 opacity-20" />
       </div>
 
-      <div className="relative z-10 container-wide">
-        <div className="max-w-[800px]">
+      <div className="relative z-10 container-wide w-full">
+        <div className="max-w-[1200px]">
           <div className="flex flex-col items-start text-left">
-            <motion.span 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="inline-block text-accent text-[10px] font-bold uppercase tracking-[0.5em] mb-8"
-            >
-              PRODUCT DESIGNER
-            </motion.span>
-            
-            <h1 className="text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[1.1] mb-6 text-balance max-w-[750px]">
+            <h1 className="tracking-tight leading-[0.85] mb-12 text-balance max-w-[1150px]">
               <motion.span 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="font-display italic font-medium block md:inline-block md:mr-4 text-accent"
+                transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="font-sans font-bold block text-[3rem] md:text-[5.25rem] lg:text-[6.2rem] text-fg"
               >
-                Simplifying
+                Turning complex ideas
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="font-sans font-extrabold"
+                className="font-sans font-extrabold block text-[4rem] md:text-[7.5rem] lg:text-[8.4rem] mt-1"
               >
-                complex products
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="font-sans font-normal text-fg-muted block mt-2"
-              >
-                with thoughtful design
+                into <span className="text-accent">simple</span>, usable products.
               </motion.span>
             </h1>
             
