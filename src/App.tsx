@@ -39,7 +39,7 @@ const PROJECTS: Project[] = [
   {
     id: 'lotiq',
     title: 'LotIQ',
-    year: '2024',
+    year: '2026',
     category: 'AI Property Intelligence • Enterprise SaaS',
     image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/thumbnail.jpg',
     accent: '#10b981',
@@ -49,7 +49,7 @@ const PROJECTS: Project[] = [
         type: 'hero', 
         title: 'LotIQ', 
         subtitle: 'A system that automates parking enforcement and physical space monitoring using AI, rules, and human validation.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/thumbnail.jpg'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/cover.jpg'
       },
       {
         type: 'phase-intro',
@@ -103,7 +103,7 @@ const PROJECTS: Project[] = [
         tag: 'Hybrid Approach',
         title: 'AI + Human Validation',
         content: 'The solution integrates computer vision detection with a rule-based decision engine. High-confidence violations are processed automatically, while low-confidence edge cases are escalated to human reviewers for final validation.',
-        image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/cover.jpg',
         reversed: true
       },
       {
@@ -114,9 +114,9 @@ const PROJECTS: Project[] = [
       {
         type: 'image-grid',
         images: [
-           'https://images.unsplash.com/photo-1554672408-730436b60dde?q=80&w=800&auto=format&fit=crop',
-           'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
-           'https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=800&auto=format&fit=crop'
+           'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/website.png',
+           'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/propertymangerapp.png',
+           'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/engineroom.png'
         ],
         columns: 3
       },
@@ -140,7 +140,7 @@ const PROJECTS: Project[] = [
         tag: 'System C',
         title: 'The Backoffice System',
         content: 'The "engine room" where operations teams monitor AI accuracy, handle disputes, and validate escalated incidents to ensure system integrity.',
-        image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=800&auto=format&fit=crop'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/engineroom.png'
       },
       {
         type: 'section-header',
@@ -157,7 +157,7 @@ const PROJECTS: Project[] = [
         tag: 'Workflow Design',
         title: 'The Enforcement Lifecycle',
         content: 'Detection → Evaluation → Validation → Action → Logging.\n\nEvery step is traceable and auditable, ensuring that "human-in-the-loop" isn\'t just a buzzword, but a critical safeguard.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/aihumanvalidation.jpg'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/enforcement.png'
       },
       {
         type: 'section-header',
@@ -356,87 +356,9 @@ const PROJECTS: Project[] = [
     ]
   },
   {
-    id: 'nexus-os',
-    title: 'Nexus OS',
-    year: '2023',
-    category: 'Desktop Interface • Productivity',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop',
-    accent: '#3b82f6',
-    description: 'A revolutionary desktop paradigm focused on flow state and focused work.',
-    blocks: [
-      { 
-        type: 'hero', 
-        title: 'Spatial Productivity', 
-        subtitle: 'Redefining the desktop as a three-dimensional environment for focus and flow.',
-        image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop'
-      },
-      {
-        type: 'phase-intro',
-        title: 'Ideation & Spatial Logic',
-        role: 'UX Architect',
-        scope: 'Spatial UX architecture and visual design',
-        tools: ['Blender', 'Unity', 'Figma'],
-        activities: [
-          'Researched spatial productivity paradigms',
-          'Developed 3D desktop interaction models',
-          'Designed spatial memory mapping systems',
-          'Iterated on focus-oriented UI frameworks'
-        ]
-      },
-      {
-        type: 'section-header',
-        title: '01. Overview',
-        subtitle: 'Nexus moves beyond flat windows to create a persistent spatial memory map of your work.'
-      },
-      {
-        type: 'text-split',
-        tag: 'Problem',
-        title: 'Tab Overload',
-        content: 'Users lose 20% of their day just searching for where they left off. Traditional desktops treat every file as a separate island, ignoring the relationships between them.',
-        image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop'
-      },
-      {
-        type: 'section-header',
-        title: '02-05. Exploration',
-        subtitle: 'From 2D stacks to 3D spheres'
-      },
-      {
-        type: 'image-grid',
-        images: [
-          'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'
-        ],
-        columns: 2
-      },
-      {
-        type: 'section-header',
-        title: '06-08. Visual Design & Solution',
-        subtitle: 'The Glass UI System'
-      },
-      {
-        type: 'image-full',
-        image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop',
-        caption: 'The final interface uses depth to prioritize active task "Spheres".'
-      },
-      {
-        type: 'section-header',
-        title: '09-11. Impact & Reflection',
-        subtitle: 'Measurable Focus'
-      },
-      {
-        type: 'outcomes',
-        items: [
-          { label: 'Work Efficiency', value: '+30%' },
-          { label: 'Cognitive Load', value: '-40%' },
-          { label: 'Daily Users', value: '450K+' }
-        ]
-      }
-    ]
-  },
-  {
     id: 'safco-dental',
     title: 'Safco Dental',
-    year: '2023',
+    year: '2025',
     category: 'B2B Ecommerce Redesign • Healthcare',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
     accent: '#0d9488',
@@ -616,67 +538,7 @@ const PROJECTS: Project[] = [
       }
     ]
   },
-  {
-    id: 'velocity-finance',
-    title: 'Velocity Finance',
-    year: '2022',
-    category: 'Fintech • Trading Platform',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
-    accent: '#8b5cf6',
-    description: 'Democratizing algorithmic trading for the everyday long-term investor.',
-    blocks: [
-      { 
-        type: 'hero', 
-        title: 'Finance for Humans', 
-        subtitle: 'Removing the intimidation of markets with narrative data and intuitive risk management.',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop'
-      },
-      {
-        type: 'phase-intro',
-        title: 'Data Visualisation Strategy',
-        role: 'Lead UX Designer',
-        scope: 'Fintech product design and data viz',
-        tools: ['Figma', 'D3.js', 'React', 'Framer'],
-        activities: [
-          'Visualized complex quantitative finance data',
-          'Designed intuitive risk management interfaces',
-          'Simplified algorithmic trading narratives',
-          'Developed high-performance trading dashboards'
-        ]
-      },
-      {
-        type: 'section-header',
-        title: '01. Overview',
-        subtitle: 'Transforming complex quantitative data into actionable visual stories.'
-      },
-      {
-        type: 'text-split',
-        tag: 'Problem',
-        title: 'Complexity Barrier',
-        content: 'Retail investors feel paralyzed by advanced charting. Velocity interprets these signals into human-readable narratives.',
-        image: 'https://images.unsplash.com/photo-1611974714023-3769c0d1c811?q=80&w=800&auto=format&fit=crop',
-        reversed: true
-      },
-      {
-        type: 'quote',
-        text: "The best trading indicator is the one you actually understand.",
-        author: 'Lead FinTech Analyst'
-      },
-      {
-        type: 'section-header',
-        title: '02-11. The Design System',
-        subtitle: 'A full case study on risk visualization and user education.'
-      },
-      {
-        type: 'outcomes',
-        items: [
-          { label: 'Trust Increase', value: '+45%' },
-          { label: 'User Education', value: 'High' },
-          { label: 'AUM Growth', value: '$2.5B' }
-        ]
-      }
-    ]
-  },
+
 ];
 
 const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onBack: () => void, onSelect: (p: Project) => void }) => {
@@ -1452,79 +1314,212 @@ const WorkGrid = ({ onSelect }: { onSelect: (project: Project) => void }) => {
 };
 
 const About = () => {
-  const tags = ["SaaS", "B2B Platforms", "UX Strategy", "Design Systems", "Product Identity"];
+  const skills = [
+    "Product Design",
+    "UX Research",
+    "Design Systems",
+    "Rapid Prototyping",
+    "User Flows",
+    "User Journey Mapping",
+    "UX Architecture",
+    "Team Management",
+    "HTML/CSS"
+  ];
+
+  const tools = [
+    "Figma",
+    "Sketch",
+    "Adobe XD",
+    "Adobe Creative Suite",
+    "Hotjar",
+    "Fullstory",
+    "Intercom"
+  ];
+
+  const experience = [
+    {
+      company: "Soft Code Labs",
+      period: "Sept 2022 – Present",
+      role: "Product Designer",
+      location: "Islamabad, PK",
+      bullets: [
+        "Designed user-centred interfaces in Figma, improving UX and customer satisfaction.",
+        "Developed and optimized AI tools to enhance functionality and personalize experiences.",
+        "Conducted user research and data analysis to inform design decisions.",
+        "Led design reviews and user testing, integrating AI solutions based on feedback.",
+        "Collaborated with developers to ensure design accuracy and accessibility."
+      ]
+    },
+    {
+      company: "Fiverr.com",
+      period: "Nov 2015 – Present",
+      role: "Freelance Graphic Designer",
+      location: "Remote",
+      bullets: [
+        "Successfully completed 9,000+ orders globally with 6,000+ positive reviews.",
+        "Designed multiple eye-catching logos, business cards, brochures, newsletter and magazine for social media sites.",
+        "Working closely with clients throughout projects to create vision and conceive design.",
+        "Managed multiple projects simultaneously, ensuring timely delivery and client satisfaction."
+      ]
+    },
+    {
+      company: "Soft Code Labs",
+      period: "Mar 2020 – Sept 2022",
+      role: "Graphic Designer",
+      location: "Islamabad, PK",
+      bullets: [
+        "Led a team of of three designers to develop graphic and production materials.",
+        "Developed innovative visual solutions to complex design problems.",
+        "Managed the design and development of multiple websites and applications."
+      ]
+    },
+    {
+      company: "Shutterstock",
+      period: "Ongoing",
+      role: "Stock Contributor",
+      location: "Remote",
+      bullets: [
+        "Created high-quality vector graphics and illustrations for various purposes.",
+        "Produced scalable vector artwork suitable for print and digital platforms.",
+        "Utilised Adobe Illustrator for design creation and editing."
+      ]
+    }
+  ];
+
+  const certifications = [
+    { title: "UX Design Professional", issuer: "Google" },
+    { title: "Introduction to Artificial Intelligence", issuer: "IBM" }
+  ];
 
   return (
-    <section id="about" className="section-padding bg-canvas-muted/30 transition-colors duration-500 border-y border-border-theme">
-      <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 relative group"
-        >
-          <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl">
-            <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop"
-              alt="Syed Gohar Ali"
-              className="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 bg-accent/10 mix-blend-color" />
-          </div>
-          {/* Decorative element */}
-          <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent opacity-10 rounded-full blur-3xl" />
-        </motion.div>
-
+    <section id="about" className="section-padding bg-canvas-muted/20 transition-colors duration-500 border-y border-border-theme">
+      <div className="container-wide max-w-7xl mx-auto flex flex-col gap-16">
+        
+        {/* About Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-7 flex flex-col gap-10"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col gap-6"
         >
-          <div className="flex flex-col gap-6">
-            <h2 className="text-accent text-[10px] font-bold uppercase tracking-[0.5em]">About Me</h2>
-            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter leading-tight text-balance">
-              Solving complex UX challenges with clarity and intent.
-            </h3>
-          </div>
+          <span className="text-accent text-[11px] font-bold uppercase tracking-[0.5em]">About Me</span>
+          <h2 className="font-sans font-extrabold text-[2.5rem] md:text-[4rem] lg:text-[5rem] tracking-tighter leading-[0.95] text-balance text-fg">
+            Solving complex UX challenges with <span className="text-accent underline decoration-accent/20">clarity</span> and intent.
+          </h2>
+          <p className="mt-4 text-xl text-fg-muted font-light leading-relaxed max-w-3xl">
+            I am a fundamental UI/UX thinker with a solid foundation in computer science, bridging the gap between engineering systems and intuitive user layouts. Deeply responsive to client ambitions, I specialize in simplifying intricate product workflows and developing scalable design patterns.
+          </p>
+        </motion.div>
 
-          <div className="flex flex-col gap-8 text-xl text-fg-muted font-light leading-relaxed max-w-2xl">
-            <p>
-              I’m a Product Designer focused on solving complex UX challenges in SaaS and B2B platforms. 
-              I enjoy breaking down complicated workflows and transforming them into clear, 
-              intuitive experiences that are easy to use and scale.
-            </p>
-            <p>
-              My approach combines user research, structured thinking, and visual clarity to design 
-              solutions that not only look good but also improve usability and business outcomes.
-            </p>
-            <p>
-              I work across the full design process—from understanding problems and defining user 
-              needs to creating wireframes, refining interactions, and delivering polished UI systems.
-            </p>
-            <p>
-              I’m particularly interested in designing systems that handle complexity while 
-              maintaining simplicity, consistency, and performance.
-            </p>
-          </div>
-
-          <div className="pt-10 border-t border-border-theme">
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent mb-6 block">Expertise</span>
-            <div className="flex flex-wrap gap-4">
-              {tags.map((tag) => (
-                <span 
-                  key={tag} 
-                  className="px-6 py-2.5 rounded-full border border-border-theme text-[11px] font-bold tracking-[0.1em] uppercase transition-all duration-300 hover:border-accent hover:text-fg"
-                >
-                  {tag}
-                </span>
-              ))}
+        {/* Dynamic Bento & Columns Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* LEFT: Experience Timeline */}
+          <div className="lg:col-span-7 flex flex-col gap-12">
+            <div>
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-8">Work Experience</span>
+              <div className="flex flex-col gap-10 border-l border-border-theme pl-6 md:pl-8 ml-2">
+                {experience.map((job, idx) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: idx * 0.1 }}
+                    className="relative"
+                  >
+                    {/* Circle timeline point */}
+                    <div className="absolute -left-[31px] md:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full border-2 border-accent bg-canvas transition-all duration-300 group-hover:scale-125" />
+                    
+                    <div className="flex flex-wrap justify-between items-baseline gap-2 mb-3">
+                      <div>
+                        <h3 className="text-lg font-bold text-fg leading-none">{job.role}</h3>
+                        <span className="text-sm text-accent/80 font-semibold">{job.company}</span>
+                      </div>
+                      <div className="text-xs text-fg-muted bg-canvas-muted px-2 py-1 rounded border border-border-theme">
+                        {job.period} <span className="mx-1">•</span> {job.location}
+                      </div>
+                    </div>
+                    
+                    <ul className="list-none space-y-2 text-sm text-fg-muted/90 leading-relaxed font-light">
+                      {job.bullets.map((bullet, bIdx) => (
+                        <li key={bIdx} className="flex gap-2">
+                          <span className="text-accent select-none mt-1">↳</span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
-        </motion.div>
+
+          {/* RIGHT: Skills, Tools, Education, Certifications */}
+          <div className="lg:col-span-5 flex flex-col gap-12">
+            
+            {/* Skills Division */}
+            <div className="p-6 md:p-8 rounded-[2rem] bg-canvas border border-border-theme/65 shadow-sm">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-5">Professional Skills</span>
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill, idx) => (
+                  <span 
+                    key={idx}
+                    className="px-4 py-2 rounded-full bg-canvas-muted border border-border-theme/80 text-[11px] font-semibold text-fg-muted tracking-wide hover:border-accent hover:text-fg transition-all duration-300"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Tools Division */}
+            <div className="p-6 md:p-8 rounded-[2rem] bg-canvas border border-border-theme/65 shadow-sm">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-5">Design Tools</span>
+              <div className="flex flex-wrap gap-2">
+                {tools.map((tool, idx) => (
+                  <span 
+                    key={idx}
+                    className="px-4 py-2 rounded-full bg-canvas-muted border border-border-theme/80 text-[11px] font-semibold text-fg-muted tracking-wide hover:border-accent hover:text-fg transition-all duration-300"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Education & Certs */}
+            <div className="p-6 md:p-8 rounded-[2rem] bg-canvas border border-border-theme/65 shadow-sm flex flex-col gap-6">
+              
+              <div>
+                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-3">Education</span>
+                <div className="text-sm font-bold text-fg">Bachelor of Computer Science</div>
+                <div className="text-xs text-fg-muted mt-1">Comsats University Islamabad, Pakistan</div>
+                <div className="text-xs text-accent mt-0.5">Sept 2015</div>
+              </div>
+
+              <div className="pt-4 border-t border-border-theme/50">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-3">Industry Credentials</span>
+                <div className="flex flex-col gap-3">
+                  {certifications.map((cert, idx) => (
+                    <div key={idx} className="flex gap-2.5 items-start">
+                      <span className="text-xs text-accent mt-0.5">✔</span>
+                      <div>
+                        <div className="text-xs font-bold text-fg leading-tight">{cert.title}</div>
+                        <div className="text-[11px] text-fg-muted">{cert.issuer}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
     </section>
   );
@@ -1545,18 +1540,18 @@ const Contact = () => {
           </p>
 
           <a
-            href="mailto:hello@goharali.com"
+            href="mailto:goharshah3@gmail.com"
             className="inline-block text-2xl md:text-4xl font-bold text-fg hover:text-accent transition-colors pb-2 border-b-2 border-accent"
           >
-            hello@goharali.com
+            goharshah3@gmail.com
           </a>
 
           <div className="mt-24 pt-12 border-t border-border-theme flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-fg-muted text-sm">© 2026 Syed Gohar Ali. All rights reserved.</p>
             <div className="flex gap-8 text-fg-muted text-sm uppercase tracking-widest font-semibold">
+              <a href="https://linkedin.com/in/syedgohar" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition-colors">LinkedIn</a>
               <a href="#" className="hover:text-fg transition-colors">Behance</a>
               <a href="#" className="hover:text-white dark:hover:text-white transition-colors">Dribbble</a>
-              <a href="#" className="hover:text-white dark:hover:text-white transition-colors">Instagram</a>
             </div>
           </div>
         </motion.div>
