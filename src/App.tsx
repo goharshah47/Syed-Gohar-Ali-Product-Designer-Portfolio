@@ -360,7 +360,7 @@ const PROJECTS: Project[] = [
     title: 'Safco Dental',
     year: '2025',
     category: 'B2B Ecommerce Redesign • Healthcare',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/thumbnail.png',
     accent: '#0d9488',
     description: 'Transforming a legacy dental supply platform into a scalable, modern ecommerce system for procurement teams.',
     blocks: [
@@ -368,7 +368,7 @@ const PROJECTS: Project[] = [
         type: 'hero', 
         title: 'Safco Dental', 
         subtitle: 'Modernizing the B2B ecommerce experience for faster product discovery and repeat ordering across a complex ecosystem.',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/inner_Cover.png'
       },
       {
         type: 'phase-intro',
@@ -507,8 +507,8 @@ const PROJECTS: Project[] = [
         title: 'Forecast IQ',
         content: 'A conceptual tool for predictive procurement intelligence, helping offices manage inventory before it runs out.',
         images: [
-          'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'
+          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/forecastback.jpg',
+          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/forecastfront.jpg'
         ]
       },
       {
