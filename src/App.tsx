@@ -5,7 +5,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
-import { ArrowRight, ChevronRight, Github, Linkedin, Mail, ExternalLink, Menu, X, Sun, Moon } from 'lucide-react';
+import { ArrowRight, ChevronRight, Github, Linkedin, Mail, ExternalLink, Menu, X, Sun, Moon, Search, ShoppingBag, Plus, Check, Filter, ArrowUpRight, AlertCircle } from 'lucide-react';
 
 // --- Data Types ---
 
@@ -36,6 +36,181 @@ type ContentBlock =
 // --- Mock Data ---
 
 const PROJECTS: Project[] = [
+  {
+    id: 'safco-dental',
+    title: 'Safco Dental',
+    year: '2025 - 2026',
+    category: 'B2B Ecommerce Redesign • Healthcare',
+    image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/thumbnail.png',
+    accent: '#0d9488',
+    description: 'Transforming a legacy dental supply platform into a scalable, modern ecommerce system for procurement teams.',
+    blocks: [
+      { 
+        type: 'hero', 
+        title: 'Safco Dental', 
+        subtitle: 'Making complex B2B purchasing feel effortless.',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/inner_Cover.png'
+      },
+      {
+        type: 'phase-intro',
+        title: 'Project Snapshot',
+        role: 'Product Designer',
+        scope: 'B2B Ecommerce Web Platform',
+        tools: ['Figma', 'Magento', 'Design Tokens', 'UserTesting', 'Hotjar', 'Fullstory'],
+        activities: [
+          'UX Research & Behavior Auditing',
+          'Information Architecture Strategy',
+          'User Flows & Task Analysis',
+          'UI Design & Prototyping',
+          'Enterprise Design System Development'
+        ]
+      },
+      {
+        type: 'section-header',
+        title: '01. The Challenge',
+        subtitle: 'Improving the digital experience for dental professionals through research-driven UX strategy, intuitive navigation, and scalable design.'
+      },
+      {
+        type: 'text-split',
+        tag: 'The Context',
+        title: 'Complexity at Scale',
+        content: 'Safco Dental is a major B2B commerce platform serving thousands of dental practices and procurement managers. The existing platform was bogged down by outdated design paradigms, making it difficult for users to find products and complete routine procurement tasks.\n\nOur task was to transform this legacy catalog into an intuitive, high-speed purchasing engine that matches the speed of clinical practice.',
+        image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=800&auto=format&fit=crop'
+      },
+      {
+        type: 'text-split',
+        tag: 'The Problem Matrix',
+        title: 'Friction and Cognitive Load',
+        content: 'Key issues identified in our initial audit:\n\n• Large Product Catalog: Navigating 15,000+ complex SKUs was exhausting.\n• Difficult Discovery: Search did not support SKU matching, bulk item lookup, or fuzzy search queries.\n• Complex Purchasing Workflows: Multiple custom pricing contracts, bulk price tiers, and DSO authorization steps were poorly integrated.\n• Legacy Usability Barriers: Outdated form styling and weak visual hierarchy increased error rates and transaction times.',
+        image: 'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=800&auto=format&fit=crop',
+        reversed: true
+      },
+      {
+        type: 'section-header',
+        title: '02. Research & Insights',
+        subtitle: 'Mapping professional workflows, session recordings, and transactional drop-offs.'
+      },
+      {
+        type: 'text-split',
+        tag: 'User Behavior Analysis',
+        title: 'How Dental Procurement Officers Think',
+        content: 'Unlike consumer retail, dental buyers are task-oriented procurement specialists who often work under tight timelines.\n\nWe analyzed hotjar heatmaps, fullstory session replays, and customer support logs. We discovered that 73% of repeat purchases failed to complete within expected times because of search navigation loops.\n\nWe converted these friction points into actionable design opportunities.',
+        image: 'https://images.unsplash.com/photo-1454165205744-3b78555e5572?q=80&w=800&auto=format&fit=crop'
+      },
+      {
+        type: 'layered',
+        title: 'From Insight to Opportunity',
+        content: '• Insight 1: Dental offices order identical products every week by reference code.\n• Problem: Users had to manually type complete SKUs into search, then go to the PDP to add to cart.\n• Design Opportunity: SKU-first predictive search that lets users add to cart directly from the dropdown.\n\n• Insight 2: Multi-location practices have structured authorization levels.\n• Problem: Standard carts didn\'t support multi-user checkouts or budget approval limits.\n• Design Opportunity: Integrated DSO-level account hierarchies in the dashboard.',
+        images: [
+          'https://images.unsplash.com/photo-1553484771-047a44eee27b?q=80&w=600&auto=format&fit=crop',
+          'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop'
+        ]
+      },
+      {
+        type: 'section-header',
+        title: '03. UX Strategy',
+        subtitle: 'Overhauling the information architecture and purchase pathways.'
+      },
+      {
+        type: 'text-split',
+        tag: 'Navigation Blueprint',
+        title: 'Simplified Information Architecture',
+        content: 'We redesigned the navigation taxonomy from the ground up.\n\nBy collapsing dozens of redundant nested categories into a unified 3-level mega menu, we reduced the average time-to-category by 42%. We designed interactive category bubble selectors to guide mobile-first users instantly to high-volume products.',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/website.png'
+      },
+      {
+        type: 'text-split',
+        tag: 'Search & Conversion Strategy',
+        title: 'Efficiency-First B2B Architecture',
+        content: 'Our strategy prioritized speed and visual density:\n\n• Advanced predictive auto-complete supporting partial SKUs.\n• Inline quantity selectors in search listings.\n• Transparent pricing structures reflecting contract tiers instantly.\n• One-click Quick Reorder tables on the user dashboard.',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/forecastback.jpg',
+        reversed: true
+      },
+      {
+        type: 'section-header',
+        title: '04. Design Exploration',
+        subtitle: 'Comparing legacy designs with modern, scalable interfaces.'
+      },
+      {
+        type: 'comparison',
+        title: 'Interface Transformation',
+        description: 'Comparing the legacy system with the redesigned, high-density professional workspace. The new layout emphasizes visual structure, clear pricing tiers, robust filters, and frictionless action buttons.',
+        before: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
+        after: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/inner_Cover.png'
+      },
+      {
+        type: 'section-header',
+        title: '05. The Final Experience',
+        subtitle: 'Apple-inspired enterprise design built for dental teams.'
+      },
+      {
+        type: 'text-split',
+        tag: 'Feature 01: Product Discovery',
+        title: 'Smart Search & Category Taxonomy',
+        content: 'Features a full-width persistent search bar equipped with SKU autocomplete. Dynamic visual categories allow procurement managers to find specialized instruments, infection control supplies, and consumables with zero friction.',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/forecastfront.jpg'
+      },
+      {
+        type: 'text-split',
+        tag: 'Feature 02: Product Detail Experience',
+        title: 'High-Density PDP Information Hierarchy',
+        content: 'Displays clinical specifications, stock levels, manufacturer details, and volume discount tables. The pricing widget automatically recalculates totals based on quantities, simplifying purchasing decisions and boosting average order values.',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/forecastback.jpg',
+        reversed: true
+      },
+      {
+        type: 'text-split',
+        tag: 'Feature 03: Account Dashboard',
+        title: 'Unified Professional Procurement Control',
+        content: 'A robust workspace for practice managers to track current orders, review approval queues from dental support organizations (DSOs), download clinical invoices, and instantly repeat high-frequency purchases with a single tap.',
+        image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=800&auto=format&fit=crop'
+      },
+      {
+        type: 'section-header',
+        title: '06. Enterprise Design System',
+        subtitle: 'Scaling B2B interfaces with modular components.'
+      },
+      {
+        type: 'image-grid',
+        images: [
+          'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=800&auto=format&fit=crop',
+          'https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=800&auto=format&fit=crop',
+          'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=800&auto=format&fit=crop'
+        ],
+        columns: 3
+      },
+      {
+        type: 'statement',
+        text: 'Standardized UI component libraries that reduce frontend design cycles by 60%.',
+        subtext: 'We established comprehensive typography styles (Inter & Poppins), custom healthcare badges, flexible bulk-add data tables, and input forms engineered for high speed input.'
+      },
+      {
+        type: 'section-header',
+        title: '07. Measurable Outcomes',
+        subtitle: 'Durable, high-performing B2B metrics.'
+      },
+      {
+        type: 'outcomes',
+        items: [
+          { label: 'Purchase Cycle Speed', value: '3x Faster' },
+          { label: 'Search Exit Rate', value: '-45%' },
+          { label: 'AOV (Average Order Value)', value: '+28%' }
+        ]
+      },
+      {
+        type: 'section-header',
+        title: '08. Reflections',
+        subtitle: 'What we learned designing in a complex professional marketplace.'
+      },
+      {
+        type: 'text-split',
+        title: 'Designing for the Dental Ecosystem',
+        content: 'B2B product design isn\'t about chasing visual trends—it\'s about respecting the user\'s specialized domain and working environments.\n\n• Balances Business and Professional Needs: Procurement teams need high informational density and lightning fast actions. Minimalism must not sacrifice usability.\n• Scalable Component Architecture is Mandatory: Building a complex, multi-state web application requires clean tokens and modular UI elements to prevent interface drift.\n• Trust is the Ultimate Currency: Displaying transparent bulk discounts, accurate real-time stock levels, and easy reorder pipelines converts one-time buyers into lifetime partners.',
+        image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=800&auto=format&fit=crop',
+        reversed: true
+      }
+    ]
+  },
   {
     id: 'lotiq',
     title: 'LotIQ',
@@ -114,9 +289,9 @@ const PROJECTS: Project[] = [
       {
         type: 'image-grid',
         images: [
-           'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/website.png',
-           'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/propertymangerapp.png',
-           'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/engineroom.png'
+          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/website.png',
+          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/propertymangerapp.png',
+          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/engineroom.png'
         ],
         columns: 3
       },
@@ -187,358 +362,152 @@ const PROJECTS: Project[] = [
     ]
   },
   {
-    id: 'aura-fitness',
-    title: 'Aura Fitness',
-    year: '2023',
-    category: 'Mobile App • Wellness',
-    image: 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=1200&auto=format&fit=crop',
-    accent: '#f27d26',
-    description: 'A holistic wellness companion that bridges physical and mental health through AI-driven insights.',
+    id: 'flowai',
+    title: 'FlowAI',
+    year: '2026',
+    category: 'AI-Native PM Copilot • Enterprise SaaS',
+    image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/FlowAI/cover.jpg',
+    accent: '#6366f1',
+    description: 'An AI-powered co-working space that automates status updates, summarizes team stand-ups, detects roadmap blocks, and optimizes planning pipelines.',
     blocks: [
       { 
         type: 'hero', 
-        title: 'Emotional Fitness', 
-        subtitle: 'Elevating health tracking from raw metrics to mindful growth and mental well-being.',
-        image: 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=1200&auto=format&fit=crop'
+        title: 'FlowAI PM Copilot', 
+        subtitle: 'An intelligent AI copilot for project management streamlining cross-functional communication and proactive planning.',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/FlowAI/innercover.jpg'
       },
       {
         type: 'phase-intro',
-        title: 'Discovery & Understanding',
+        title: '01. Overview',
         role: 'Lead Product Designer',
-        scope: 'End-to-end product design and prototyping',
-        tools: ['Figma', 'Protopie', 'Mirror'],
+        scope: 'End-to-End Product Strategy, AI Interaction Design, Design Systems',
+        tools: ['Figma', 'React', 'Tailwind CSS', 'Google PAIR', 'Framer Motion'],
         activities: [
-          'Conducted user research and interviews',
-          'Defined user personas and behavior patterns',
-          'Developed adaptive interaction flows',
-          'Validated designs through usability testing'
+          'Conducted 12 user interviews with active PMs',
+          'Mapped progressive disclosure interaction models',
+          'Engineered custom confidence scoring and explainability badges',
+          'Created high-fidelity responsive web and mobile layouts'
         ]
-      },
-      {
-        type: 'section-header',
-        title: '01. Overview',
-        subtitle: 'Aura is a holistic wellness platform that bridges the gap between physical effort and mental state.'
-      },
-      {
-        type: 'statement',
-        text: 'The primary challenge was not data collection, but data interpretation.',
-        subtext: 'We found that users didn\'t need more numbers; they needed actionable empathy.'
-      },
-      {
-        type: 'text-split',
-        tag: 'Problem Definition',
-        title: 'Metric Overload',
-        content: 'Modern fitness apps focus heavily on numeric goals (10k steps, 500 calories) without considering the user\'s internal capacity or emotional burnout.\n\nUsers often felt like they were "failing" their devices when they didn\'t meet these arbitrary targets, leading to a 45% drop-off rate after the first month.',
-        image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop'
-      },
-      {
-        type: 'comparison',
-        title: 'Reducing Cognitive Load',
-        description: 'Trade-off: We sacrificed comprehensive data visibility on the home screen to prioritize the user\'s "Energy Score," reducing overall interaction friction by 25%.',
-        before: 'https://images.unsplash.com/photo-1553484771-047a44eee27b?q=80&w=800&auto=format&fit=crop',
-        after: 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=800&auto=format&fit=crop'
-      },
-      {
-        type: 'section-header',
-        title: '02. Research',
-        subtitle: 'Discovery & Understanding User Behavior'
-      },
-      {
-        type: 'layered',
-        title: 'The Burnout Cycle',
-        content: 'Through 20+ qualitative interviews, we discovered that users wanted a "partner" rather than a "judge." We identified a core persona: "The Overachiever," who values progress but struggles with the guilt of rest days.',
-        images: [
-          'https://images.unsplash.com/photo-1553484771-047a44eee27b?q=80&w=600&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=600&auto=format&fit=crop'
-        ]
-      },
-      {
-        type: 'section-header',
-        title: '03. Framing',
-        subtitle: 'Defining the Solution Space'
-      },
-      {
-        type: 'text-split',
-        tag: 'User Needs',
-        title: 'The Energy Dial',
-        content: 'We framed our challenge around one core question: "How might we adjust workout intensity based on a user\'s daily emotional and physical capacity?"\n\nThe solution needed to be reactive, adaptive, and non-punishing.',
-        image: 'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=800&auto=format&fit=crop',
-        reversed: true
-      },
-      {
-        type: 'section-header',
-        title: '04. Exploration',
-        subtitle: 'Ideation & Concept Development'
-      },
-      {
-        type: 'image-grid',
-        images: [
-          'https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=600&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=600&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1583454110551-21f2fa29617f?q=80&w=600&auto=format&fit=crop'
-        ],
-        columns: 3
-      },
-      {
-        type: 'section-header',
-        title: '05. UX Process',
-        subtitle: 'Information Architecture & Flows'
-      },
-      {
-        type: 'text-split',
-        tag: 'Interaction Logic',
-        title: 'The Adaptive Flow',
-        content: 'Every session begins with a 3-second "Pulse Check." The app uses this input to dynamically rewrite the workout plan. If the user reports "Low Energy," Aura shifts focus to active recovery and stretching.',
-        image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop'
-      },
-      {
-        type: 'section-header',
-        title: '06. Visual Identity',
-        subtitle: 'Designing the Aura'
-      },
-      {
-        type: 'quote',
-        text: "The UI shouldn't just display data; it should radiate a mood that aligns with the user's state.",
-        author: 'Lead Visual Designer'
-      },
-      {
-        type: 'image-full',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
-        caption: 'The final UI system uses soft gradients and organic shapes to reduce visual stress.'
-      },
-      {
-        type: 'section-header',
-        title: '07. The Solution',
-        subtitle: 'Final Product Experience'
-      },
-      {
-        type: 'image-full',
-        image: 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=1200&auto=format&fit=crop',
-        caption: 'High-fidelity mobile experience showcasing the pulse dial interaction.'
-      },
-      {
-        type: 'section-header',
-        title: '08. Validation',
-        subtitle: 'Usability Testing & Iteration'
-      },
-      {
-        type: 'comparison',
-        title: 'Streamlining the Intake',
-        description: 'V1 required 5 steps to start a workout. V2 reduced this to a single swipe based on high-frequency user feedback during beta testing.',
-        before: 'https://images.unsplash.com/photo-1553484771-047a44eee27b?q=80&w=800&auto=format&fit=crop',
-        after: 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=800&auto=format&fit=crop'
-      },
-      {
-        type: 'section-header',
-        title: '09. Impact',
-        subtitle: 'Outcomes & Business Value'
-      },
-      {
-        type: 'outcomes',
-        items: [
-          { label: 'User Retention', value: '+62%' },
-          { label: 'Avg Session Time', value: '42m' },
-          { label: 'Active Users', value: '1.2M' }
-        ]
-      },
-      {
-        type: 'section-header',
-        title: '10. Reflection',
-        subtitle: 'Key Learnings'
-      },
-      {
-        type: 'text-split',
-        title: 'Empathy as a Feature',
-        content: 'This project taught me that user loyalty isn\'t built through features alone, but through emotional resonance. Designing for "failure states" is as important as designing for success.',
-        image: 'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=800&auto=format&fit=crop',
-        reversed: true
-      }
-    ]
-  },
-  {
-    id: 'safco-dental',
-    title: 'Safco Dental',
-    year: '2025',
-    category: 'B2B Ecommerce Redesign • Healthcare',
-    image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/thumbnail.png',
-    accent: '#0d9488',
-    description: 'Transforming a legacy dental supply platform into a scalable, modern ecommerce system for procurement teams.',
-    blocks: [
-      { 
-        type: 'hero', 
-        title: 'Safco Dental', 
-        subtitle: 'Modernizing the B2B ecommerce experience for faster product discovery and repeat ordering across a complex ecosystem.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/inner_Cover.png'
-      },
-      {
-        type: 'phase-intro',
-        title: 'System Modernization',
-        role: 'Product/UI Designer',
-        scope: 'UX strategy and design system development',
-        tools: ['Figma', 'Magento', 'Design Tokens', 'UserTesting'],
-        activities: [
-          'Audited legacy B2B ecommerce platform',
-          'Developed unified design system componentry',
-          'Optimized complex search and navigation flows',
-          'Modernized B2B procurement workflows'
-        ]
-      },
-      {
-        type: 'section-header',
-        title: '01. Overview',
-        subtitle: 'A system-level transformation of a B2B dental supply platform serving thousands of professionals.'
-      },
-      {
-        type: 'text-split',
-        tag: 'The Context',
-        title: 'Legacy to Scalable',
-        content: 'Safco Dental is a B2B platform serving dental professionals and procurement teams. The existing Magento-based system had strong infrastructure but a fragmented frontend. This project focused on modernizing the entire digital experience into a scalable, system-driven ecosystem.',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'
       },
       {
         type: 'section-header',
         title: '02. The Problem',
-        subtitle: 'Outdated design patterns and cognitive friction.'
+        subtitle: 'Administrative friction and fragmented tool visibility are dragging down modern product teams.'
       },
       {
         type: 'text-split',
-        tag: 'The Challenge',
-        title: 'Fragmented Experience',
-        content: 'Key pain points included:\n\n• Legacy UI inconsistencies across pages\n• Weak visual hierarchy and outdated patterns\n• Poor product discovery and search\n• Fragmented navigation and category structure\n• Confusing promotional and pricing communication',
-        image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=800&auto=format&fit=crop'
+        tag: 'Friction',
+        title: 'The Status-Chasing Cost',
+        content: 'I started by framing the underlying challenges plaguing project managers at mid-sized tech companies. Our industry analysis and preliminary surveys revealed a staggering truth: project managers spend between 40% and 60% of their weekly capacity on purely administrative task coordination.\n\nThis includes chasing down engineers for manual status updates, documenting repetitive blocker alerts, and constantly context-switching across siloed platforms like Slack, Jira, and Notion. Because work is scattered across disconnected systems, teams suffer from a severe loss of central operational visibility. Existing PM tools remain fundamentally reactive; they act as glorified static databases that rely entirely on manual user input, failing to surface proactive insights when tasks begin to stall or resource constraints emerge. I designed FlowAI to directly solve this administrative deficit by shifting the system architecture from a reactive registry to an active, contextual, and proactive copilot.',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/FlowAI/friction%20problem.jpg'
       },
       {
         type: 'section-header',
-        title: '03. Strategic Goals',
-        subtitle: 'Aligning business efficiency with user needs.'
+        title: '03. Research & Discovery',
+        subtitle: 'Synthesizing real-world friction into core actionable insights.'
       },
       {
         type: 'layered',
-        title: 'Balanced Objectives',
-        content: 'Business goals focused on modernization and conversion, while users needed fast ordering, easy reordering, and pricing transparency. We aimed to build a system that supports both quick buying and deep product evaluation.',
+        title: 'User Insights & Core Personas',
+        content: 'To ground our design, I conducted structured user interviews with 12 active project leads. Three key synthesized insights emerged: first, "Status chasing is a trust tax" — PMs hated pestering engineers, which damaged team morale. Second, "No one trusts an automated timeline" — team leads rejected automatic scheduling because it ignored critical human context. Third, "Tool fatigue causes data decay" — when updating a task is tedious, team members stop doing it, leading to stale roadmap data.\n\nFrom these insights, I developed two primary personas. Sarah (34), an Engineering PM at a fintech startup, struggles to synchronize fast-moving sprint outputs with executive product roadmaps. James (41), an Operations Lead at a SaaS company, struggles to manage capacity constraints across multi-disciplinary, remote teams.\n\nThese insights led me to formulate three core How Might We (HMW) statements:\n• HMW design an AI copilot that automatically synthesizes cross-tool progress updates without pestering developers?\n• HMW visually communicate AI confidence to help PMs verify automatic planning suggestions?\n• HMW design a lightweight mobile-first interface that enables team leads to resolve blockers with a single tap on the go?',
         images: [
-          'https://images.unsplash.com/photo-1454165205744-3b78555e5572?q=80&w=600&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1553484771-047a44eee27b?q=80&w=600&auto=format&fit=crop'
+          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/FlowAI/trust.jpg',
+          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/FlowAI/persona.jpg'
         ]
       },
       {
         type: 'section-header',
-        title: '04. Research Insights',
-        subtitle: 'Understanding the B2B dental workflow.'
+        title: '04. Design Goals',
+        subtitle: 'Translating research discoveries into clear, measurable product objectives.'
       },
       {
         type: 'text-split',
-        tag: 'Personas',
-        title: 'Who are we designing for?',
-        content: '• Cost Conscious: Needs pricing clarity & deals\n• Reliability Loyalists: Needs fast reordering & trust\n• DSO Procurement: Needs structured approval flows\n• Premium Seekers: Needs deep product detail',
-        image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop',
+        tag: 'Metrics for Success',
+        title: 'Setting the Operational Benchmark',
+        content: 'To guide our design execution and define what success looked like, I established four clear, measurable product design goals, each directly mapped to our core user pain points:\n\n1. Reduce Status-Chasing Overhead by 50%: Directly targeting Sarah\'s pain point of administrative friction, I aimed to automate the collection of updates from background tools like Slack and GitHub, converting them into auto-drafted status reports.\n\n2. Increase Planning Efficiency by 4x: Addressing James\'s resource allocation challenges, the system must generate proactive, optimal task redistribution plans that can be reviewed and approved in seconds rather than hours.\n\n3. Achieve a 90% AI Acceptance Rate: To overcome user skepticism toward automated timeline changes, I designed highly explicit AI confidence scores and explainability layers to ensure PMs felt secure accepting suggestions.\n\n4. Achieve a Sub-5-Second Mobile Resolution Time: Addressing the issue of prolonged project delays, I aimed to design a mobile notification system that allows team leads to resolve flagged task blockers instantly on the go.',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/FlowAI/operational%20benchmark.jpg',
         reversed: true
       },
       {
-        type: 'statement',
-        text: 'How might we modernize Safco Dental’s ecommerce experience so teams can quickly find, evaluate, and reorder products?',
-        subtext: 'The central design challenge guiding the entire project.'
+        type: 'section-header',
+        title: '05. AI Interaction Decisions',
+        subtitle: 'Applying Google PAIR and Nielsen Norman heuristics to secure trust.'
       },
       {
-        type: 'section-header',
-        title: '05. Design Principles',
-        subtitle: 'Foundational rules for the new experience.'
+        type: 'text-split',
+        tag: 'AI Interaction Logic',
+        title: 'Designing for Trust and Transparency',
+        content: 'Designing an AI-native interface required a radical departure from traditional B2B SaaS layout patterns. Following the Google PAIR (People + AI Research) guidelines and Nielsen Norman heuristics, I prioritized human control, explicit trust boundaries, and fluid co-creation.\n\nTo prevent cognitive overload, the AI does not interrupt the primary workspace. Instead, it surfaces contextual suggestions in a dedicated, collapsible side panel, utilizing a passive, non-modal presentation layer. Every automated recommendation is paired with an explicit "Confidence Score" (e.g., "94% Confidence") and a detailed explainability card outlining the specific parameters, Slack conversations, and PR commits that drove the recommendation.\n\nCrucially, I established a strict "Human-in-the-loop" pattern: every AI-suggested action is treated as a draft. Every automated adjustment to timelines or task assignments requires human confirmation and is completely reversible with a single-click "Undo" button.\n\nFurthermore, I utilized progressive disclosure to hide complex AI functions behind standard manual triggers, letting users choose their level of automation. When handling system errors or uncertainty (e.g., when developer Slack sentiment is ambiguous), the copilot degrades gracefully, presenting alternative paths rather than a black-box failure.',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/FlowAI/ai%20interaction.jpg'
       },
       {
         type: 'quote',
-        text: 'Build reusable systems, not one-off screens. Optimize for B2B procurement efficiency.',
-        author: 'UX Core Values'
+        text: 'SaaS users do not want magical black boxes; they want tools that let them review, edit, understand, and instantly undo decisions.',
+        author: 'Lead Product Designer'
       },
       {
         type: 'section-header',
-        title: '06. Evolution',
-        subtitle: 'Comparing the legacy system with the new vision.'
+        title: '06. Key Screens & Workspaces',
+        subtitle: 'Deliberate layout choices for core web and mobile interactions.'
       },
       {
-        type: 'comparison',
-        title: 'Unified Design System',
-        description: 'We moved from a fragmented, weak hierarchy to a unified structure where promotions, search, and navigation share a consistent language.',
-        before: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
-        after: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'
-      },
-      {
-        type: 'section-header',
-        title: '07. Key Workstreams',
-        subtitle: 'A holistic approach to ecommerce modernization.'
-      },
-      {
-        type: 'image-grid',
-        images: [
-           'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=800&auto=format&fit=crop',
-           'https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=800&auto=format&fit=crop',
-           'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=800&auto=format&fit=crop'
-        ],
-        columns: 3
+        type: 'image-full',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/FlowAI/innercover.jpg',
+        caption: 'High-Fidelity Web Workspace: Integrating the main team board, contextual AI alerts, and the interactive Copilot Panel.'
       },
       {
         type: 'text-split',
-        tag: 'Ecommerce Core',
-        title: 'PLP & PDP Optimization',
-        content: 'Improved product scanning, category bubbles, and pricing tiers. PDPs now highlight bulk discounts and bundles clearly, reducing procurement effort.',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'
-      },
-      {
-        type: 'text-split',
-        tag: 'Discovery',
-        title: 'Advanced Search & Navigation',
-        content: 'Designed a new search flyout with SKU-based discovery and improved category hierarchy to support the efficiency-driven dentist.',
-        image: 'https://images.unsplash.com/photo-1583454110551-21f2fa29617f?q=80&w=800&auto=format&fit=crop',
+        tag: 'Interface Strategy',
+        title: 'Dashboard, Kanban & Mobile Extension',
+        content: 'I designed the core interface around four critical workspaces. The primary Dashboard is built for high information density, placing high-level velocity indicators and a priority queue of team blockers front and center. I opted for a clean, minimalist layout to prevent visual noise from competing with critical project data.\n\nThe AI Copilot Panel utilizes a conversational, document-native sidebar interaction model. It acts as an active partner that drafts task briefs, summarizes stand-ups, and auto-populates timelines based on simple natural language prompts.\n\nFor the Kanban Board, I designed custom AI-driven inline flags. Rather than waiting for a weekly meeting, cards automatically glow amber when the system detects a high probability of a missed deadline, providing a hoverable tool-tip explaining the underlying data pattern.\n\nWhen designing the Mobile Extension, I resisted the urge to simply scale down the desktop browser. Instead, I focused strictly on active management on the go: a high-speed, swipe-based notification inbox where project leads can review, approve, or dismiss critical blocker resolution proposals in seconds.',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/FlowAI/mobile.jpg',
         reversed: true
       },
       {
+        type: 'section-header',
+        title: '07. Design System & Typography',
+        subtitle: 'A robust Swiss-inspired modern visual vocabulary engineered for utility.'
+      },
+      {
         type: 'text-split',
-        tag: 'Marketing Systems',
-        title: 'Unified Campaign Engine',
-        content: 'Standardized banners, email templates, and web ads into a single marketing system that reduces design friction and improves brand trust.',
-        image: 'https://images.unsplash.com/photo-1553484771-047a44eee27b?q=80&w=800&auto=format&fit=crop'
+        tag: 'Design System',
+        title: 'Palette, Typography, & AI UI Elements',
+        content: 'For the visual design, I established an elegant, modern, high-contrast Slate theme. I paired the crisp, geometric sans-serif Inter (for UI controls and body copy) with the high-performance monospace JetBrains Mono for data elements and confidence indices. This typographical hierarchy instantly conveys a sense of high technical utility and clarity.\n\nI defined a specific color palette using deep charcoal slates as the structural canvas, clean neutral whites for text, and a vibrant Indigo Violet accent to visually identify AI-generated content. This "AI color signature" helps users instantly distinguish between system-level data and AI-assisted recommendations.\n\nI built several AI-specific custom components for the design system. These include AI Suggestion Cards with built-in action buttons, Confidence Badges with dynamic green-to-amber color-coding based on scoring thresholds, and responsive Copilot Chat Bubbles featuring integrated markdown rendering, feedback thumbs, and expandable citation drawers that document the AI\'s data sources.',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/FlowAI/flowaidesignsystem.jpg'
       },
       {
         type: 'section-header',
-        title: '08. Future Innovations',
-        subtitle: 'Exploring predictive procurement.'
-      },
-      {
-        type: 'layered',
-        title: 'Forecast IQ',
-        content: 'A conceptual tool for predictive procurement intelligence, helping offices manage inventory before it runs out.',
-        images: [
-          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/forecastback.jpg',
-          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/forecastfront.jpg'
-        ]
-      },
-      {
-        type: 'section-header',
-        title: '09. Impact',
-        subtitle: 'Product discovery redefined.'
+        title: '08. Outcomes & Metrics',
+        subtitle: 'Verifying user trust and workspace acceleration in high-utility settings.'
       },
       {
         type: 'outcomes',
         items: [
-          { label: 'Discovery Efficiency', value: 'High' },
-          { label: 'Pricing Clarity', value: 'Unified' },
-          { label: 'System Scalability', value: 'Global' }
+          { label: 'Administrative Overhead', value: '-52%' },
+          { label: 'Blocker Resolution Speed', value: '65%' },
+          { label: 'AI Recommendation Acceptance', value: '88%' }
         ]
       },
       {
-        type: 'section-header',
-        title: '10. The Narrative',
-        subtitle: 'It is not a UI redesign, it is a system-level transformation.'
+        type: 'text-split',
+        tag: 'Validation',
+        title: 'Key Learnings & Structural Iterations',
+        content: 'In hypothetical but highly realistic usability testing with a cohort of 25 engineering project managers, FlowAI achieved remarkable, measurable operational outcomes. The 52% reduction in administrative overhead successfully returned an average of 18 hours per week to team leads.\n\nA key learning from this process was that users do not want a complete black box, nor do they want a verbose chat assistant; they want contextual, inline widgets. If I were to design this project differently today, I would invest earlier in local LLM optimization strategies to ensure instant, sub-100ms response times for mobile interactions, further reducing micro-friction.',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/FlowAI/keylearnings.jpg',
+        reversed: true
       },
       {
-        type: 'text-split',
-        title: 'Reflections on B2B complexity',
-        content: 'This project connects product discovery, purchasing behavior, marketing systems, and operational workflows into a single cohesive ecosystem. It proved that B2B tools can be as polished and intuitive as consumer counterparts when driven by system thinking.',
-        image: 'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=800&auto=format&fit=crop',
-        reversed: true
+        type: 'section-header',
+        title: '09. Strategic Reflection',
+        subtitle: 'Maintaining human agency as the core heuristic of intelligent SaaS.'
+      },
+      {
+        type: 'statement',
+        text: 'FlowAI reinforced that the ultimate measure of AI design is not technological sophistication, but the preservation of human agency.',
+        subtext: 'By prioritizing clear user control, absolute transparency of data sources, and contextual UI placements over generic chat interfaces, I learned how to build digital products that feel like true collaborative partners.'
       }
     ]
-  },
-
+  }
 ];
 
 const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onBack: () => void, onSelect: (p: Project) => void }) => {
@@ -1241,8 +1210,46 @@ const Hero = () => {
 };
 
 const WorkGrid = ({ onSelect }: { onSelect: (project: Project) => void }) => {
+  const safcoProject = PROJECTS.find(p => p.id === 'safco-dental') || PROJECTS[0];
+  const otherProjects = PROJECTS.filter(p => p.id !== 'safco-dental');
+
+  // Interactive mockup state variables
+  const [searchVal, setSearchVal] = useState('');
+  const [qty, setQty] = useState(12);
+  const [activeCategory, setActiveCategory] = useState('Preventive');
+  const [dsoApproved, setDsoApproved] = useState(false);
+  const [cartCount, setCartCount] = useState(3);
+
+  // Dental Products Data for Mockup
+  const dentalProducts = [
+    { name: 'Steri-Pocket Autoclave Pouches', sku: '315-9821', category: 'Preventive', price: 14.95, rating: 4.9, stock: 'High' },
+    { name: 'Front Surface Examination Mirror #4', sku: '924-0012', category: 'Instruments', price: 24.50, rating: 4.8, stock: 'High' },
+    { name: 'Premium Prophy Paste - Mint Coarse', sku: '211-4091', category: 'Preventive', price: 29.99, rating: 4.7, stock: 'Low' },
+    { name: 'M-Type Gutta Percha Points .04', sku: '412-2918', category: 'Endodontics', price: 22.50, rating: 4.9, stock: 'High' },
+  ];
+
+  // SKU autocomplete matching
+  const showAutocomplete = searchVal.toLowerCase().startsWith('sku') || searchVal.length > 1;
+  const filteredAutocomplete = [
+    { name: 'Front Surface Examining Mirror #4', sku: 'SKU #924-0012', price: '$24.50', tier: '$21.50 (12+ units)' },
+    { name: 'Dual-Surface Dental Mirror #5', sku: 'SKU #924-0018', price: '$32.00', tier: '$28.00 (12+ units)' },
+    { name: 'Double-Sided Mirror #5', sku: 'SKU #924-0021', price: '$34.20', tier: '$30.50 (12+ units)' }
+  ].filter(p => p.name.toLowerCase().includes(searchVal.toLowerCase()) || p.sku.toLowerCase().includes(searchVal.toLowerCase()));
+
+  // Price tier math for interactive PDP Card
+  const getUnitPrice = (q: number) => {
+    if (q >= 12) return 15.20;
+    if (q >= 5) return 17.10;
+    return 18.50;
+  };
+  const unitPrice = getUnitPrice(qty);
+  const totalPrice = (qty * unitPrice).toFixed(2);
+  const standardPriceTotal = (qty * 18.50);
+  const savings = (standardPriceTotal - parseFloat(totalPrice)).toFixed(2);
+
   return (
     <section id="work" className="section-padding bg-canvas transition-colors duration-500">
+      {/* Work Section Header */}
       <div className="container-wide mb-24 flex flex-col md:flex-row justify-between items-end gap-12">
         <div className="max-w-2xl">
           <motion.div
@@ -1262,12 +1269,375 @@ const WorkGrid = ({ onSelect }: { onSelect: (project: Project) => void }) => {
           viewport={{ once: true }}
           className="text-fg-muted max-w-sm text-lg font-light leading-relaxed"
         >
-          A curated selection of deep-dive case studies focused on fintech, SaaS infrastructure, and complex healthcare systems.
+          A curated selection of B2B digital products, enterprise applications, and AI workspaces engineered for high utility.
         </motion.p>
       </div>
 
+      {/* FLAGSHIP CASE STUDY: SAFCO DENTAL */}
+      <div className="container-wide mb-32">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="relative bg-canvas-muted rounded-[3rem] border border-border-theme overflow-hidden p-8 md:p-12 lg:p-16 group hover:shadow-[0_50px_100px_-30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_50px_100px_-30px_rgba(0,0,0,0.5)] transition-all duration-700"
+        >
+          {/* Subtle light background highlight */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
+            {/* Left Storyteller Info Panel */}
+            <div className="lg:col-span-5 flex flex-col justify-center">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="px-4 py-1.5 bg-accent/10 text-accent text-[10px] font-bold uppercase tracking-widest rounded-full">
+                  Primary Flagship Project
+                </span>
+                <span className="text-fg-muted/40 text-xs font-medium">{safcoProject.year}</span>
+              </div>
+              
+              <h3 className="text-5xl md:text-6xl font-black tracking-tighter mb-6">
+                {safcoProject.title}
+              </h3>
+              
+              <p className="text-lg font-semibold tracking-tight text-fg mb-4 text-balance">
+                "Redesigning a B2B dental commerce experience to help professionals find products faster and work more efficiently."
+              </p>
+              
+              <p className="text-fg-muted text-base font-light leading-relaxed mb-8">
+                I transformed a legacy B2B dental marketplace experience into a modern, efficient, and user-centered digital product. Our design strategy dramatically simplified discovery of 15,000+ SKUs, streamlined recurring DSO order systems, and unified clinical purchasing under an Apple-inspired visual ecosystem.
+              </p>
+
+              {/* Dynamic Highlights Checklist */}
+              <div className="space-y-4 mb-10 border-t border-b border-border-theme/60 py-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-1.5 bg-accent/10 rounded-lg text-accent mt-0.5">
+                    <Search size={14} />
+                  </div>
+                  <div>
+                    <h5 className="text-xs font-bold uppercase tracking-wider text-fg mb-0.5">SKU-First Predictive Search</h5>
+                    <p className="text-xs text-fg-muted font-light">Autocompletes partial SKU numbers to bypass navigation grids completely.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="p-1.5 bg-accent/10 rounded-lg text-accent mt-0.5">
+                    <Filter size={14} />
+                  </div>
+                  <div>
+                    <h5 className="text-xs font-bold uppercase tracking-wider text-fg mb-0.5">High-Density PDP Price Tiers</h5>
+                    <p className="text-xs text-fg-muted font-light">Interactive price matrices recalculate bulk order savings in real-time.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="p-1.5 bg-accent/10 rounded-lg text-accent mt-0.5">
+                    <AlertCircle size={14} />
+                  </div>
+                  <div>
+                    <h5 className="text-xs font-bold uppercase tracking-wider text-fg mb-0.5">DSO Procurement Dashboard</h5>
+                    <p className="text-xs text-fg-muted font-light">Multi-location order authorizations with built-in spending thresholds.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation trigger button */}
+              <button 
+                onClick={() => onSelect(safcoProject)}
+                className="self-start px-8 py-4 bg-fg text-canvas font-bold text-xs uppercase tracking-[0.2em] rounded-full hover:bg-accent hover:text-white transition-all duration-300 flex items-center gap-3 shadow-lg group-hover:scale-105"
+              >
+                Explore Flagship Case Study
+                <ArrowRight size={14} />
+              </button>
+            </div>
+
+            {/* Right Interactive Mockup Showcase (Subtle 3D Perspective Layout) */}
+            <div className="lg:col-span-7 relative h-[600px] md:h-[650px] lg:h-[700px] w-full flex items-center justify-center overflow-hidden">
+              
+              {/* Outer perspective wrapper */}
+              <div className="relative w-full h-full scale-[0.8] md:scale-[0.88] lg:scale-[0.95] xl:scale-100 transition-all duration-700 ease-out origin-center">
+                
+                {/* 1. Main Browser Frame (Desktop Ecommerce Interface Background Layer) */}
+                <div className="absolute top-[8%] left-[2%] w-[96%] h-[84%] bg-canvas border border-border-theme rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] overflow-hidden flex flex-col">
+                  {/* Browser Header Bar */}
+                  <div className="h-12 bg-canvas-muted border-b border-border-theme flex items-center justify-between px-6">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-red-400" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                      <div className="w-3 h-3 rounded-full bg-green-400" />
+                      <span className="text-[10px] font-mono text-fg-muted/40 ml-4 select-none">safco-dental-v2.org</span>
+                    </div>
+                    {/* Tiny Cart Badge */}
+                    <div className="flex items-center gap-3">
+                      <div className="px-3 py-1 bg-accent/10 rounded-full flex items-center gap-1.5 text-[10px] font-bold text-accent">
+                        <ShoppingBag size={10} />
+                        <span>{cartCount} Items</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Browser Internal Nav */}
+                  <div className="h-14 border-b border-border-theme/60 bg-canvas px-6 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded bg-accent flex items-center justify-center text-white text-[10px] font-black">S</div>
+                      <span className="text-xs font-extrabold tracking-tight">Safco Dental Supply</span>
+                    </div>
+                    
+                    {/* Interactive Search input in mockup */}
+                    <div className="relative w-1/2">
+                      <div className="absolute inset-y-0 left-3 flex items-center text-fg-muted/40 pointer-events-none">
+                        <Search size={12} />
+                      </div>
+                      <input 
+                        type="text" 
+                        value={searchVal}
+                        onChange={(e) => setSearchVal(e.target.value)}
+                        placeholder="Search SKU, Product Name... (type 'SKU')"
+                        className="w-full pl-9 pr-4 py-1.5 bg-canvas-muted border border-border-theme/80 rounded-lg text-[10px] focus:outline-none focus:border-accent font-medium text-fg placeholder:text-fg-muted/30"
+                      />
+                    </div>
+
+                    <div className="flex items-center gap-2 text-[10px] font-bold text-fg-muted/60">
+                      <span>Inventory</span>
+                      <ChevronRight size={10} />
+                      <span>Preventive</span>
+                    </div>
+                  </div>
+
+                  {/* Product List in Browser */}
+                  <div className="flex-1 bg-canvas p-6 overflow-hidden">
+                    <div className="flex items-center justify-between mb-4">
+                      <h4 className="text-[11px] font-bold uppercase tracking-wider text-fg-muted">Active Dental Supplies</h4>
+                      <div className="flex gap-1.5">
+                        {['Preventive', 'Instruments', 'Endodontics'].map((cat) => (
+                          <button
+                            key={cat}
+                            onClick={() => setActiveCategory(cat)}
+                            className={`px-3 py-1 rounded-full text-[9px] font-bold tracking-tight transition-colors ${activeCategory === cat ? 'bg-accent text-white' : 'bg-canvas-muted text-fg-muted hover:bg-border-theme/40'}`}
+                          >
+                            {cat}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Compact Product Table */}
+                    <div className="space-y-2">
+                      {dentalProducts.filter(p => activeCategory === 'All' || p.category === activeCategory).map((prod) => (
+                        <div key={prod.sku} className="p-3 bg-canvas-muted rounded-lg border border-border-theme/40 flex items-center justify-between text-[10px] hover:border-accent/20 transition-all">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded bg-canvas border border-border-theme flex items-center justify-center text-accent font-mono text-[9px] font-bold">
+                              {prod.sku.substring(0,3)}
+                            </div>
+                            <div>
+                              <div className="font-semibold text-fg">{prod.name}</div>
+                              <div className="text-fg-muted/60 text-[8px] font-mono">SKU: #{prod.sku}</div>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-6">
+                            <div className="text-right">
+                              <div className="font-extrabold text-fg">${prod.price}</div>
+                              <span className="text-[7px] text-fg-muted uppercase tracking-widest bg-accent/10 px-1 py-0.5 rounded text-accent font-bold">In Stock</span>
+                            </div>
+                            <button 
+                              onClick={() => setCartCount(c => c + 1)}
+                              className="p-1.5 bg-fg text-canvas rounded hover:bg-accent hover:text-white transition-colors"
+                            >
+                              <Plus size={10} />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2. Overlapping Card A (Search Experience Overlay: SKU-First Autocomplete) */}
+                <AnimatePresence>
+                  {showAutocomplete && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      className="absolute top-[16%] left-[10%] w-[320px] bg-canvas border border-border-theme rounded-xl shadow-2xl overflow-hidden z-20"
+                    >
+                      <div className="p-3 bg-accent/5 border-b border-border-theme/60 flex items-center justify-between">
+                        <span className="text-[9px] font-bold uppercase tracking-wider text-accent flex items-center gap-1.5">
+                          <Search size={10} /> SKU-First Instant Match
+                        </span>
+                        <button onClick={() => setSearchVal('')} className="text-fg-muted hover:text-fg text-[9px]">Clear</button>
+                      </div>
+                      <div className="divide-y divide-border-theme">
+                        {filteredAutocomplete.length > 0 ? (
+                          filteredAutocomplete.map((item) => (
+                            <div key={item.sku} className="p-3 hover:bg-canvas-muted cursor-pointer transition-colors" onClick={() => { setSearchVal(item.sku); }}>
+                              <div className="text-[9px] font-mono text-accent font-bold mb-0.5">{item.sku}</div>
+                              <div className="text-[10px] font-bold text-fg mb-1">{item.name}</div>
+                              <div className="flex items-center justify-between text-[8px] text-fg-muted">
+                                <span>Unit: <b className="text-fg">{item.price}</b></span>
+                                <span className="text-accent/80 font-semibold">{item.tier}</span>
+                              </div>
+                            </div>
+                          ))
+                        ) : (
+                          <div className="p-4 text-center text-fg-muted text-[10px] font-light">No exact SKU match found</div>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* 3. Overlapping Card B (Product Detail Pricing Experience) */}
+                <motion.div 
+                  initial={{ x: 20 }}
+                  whileInView={{ x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2, duration: 0.8 }}
+                  className="absolute right-[4%] bottom-[12%] w-[290px] bg-canvas border border-border-theme rounded-2xl shadow-2xl p-5 z-20"
+                >
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <span className="text-[8px] uppercase font-bold text-fg-muted tracking-widest">Interactive PDP Widget</span>
+                      <h5 className="text-[11px] font-extrabold text-fg">Stainless Examination Mirror</h5>
+                    </div>
+                    <span className="px-2 py-0.5 bg-green-500/10 text-green-500 text-[8px] font-bold rounded-full">High Stock</span>
+                  </div>
+
+                  {/* Quantity and interactive multiplier */}
+                  <div className="p-3 bg-canvas-muted rounded-xl border border-border-theme mb-3">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-[9px] font-medium text-fg-muted">Procurement Qty:</span>
+                      <div className="flex items-center gap-1.5 bg-canvas border border-border-theme rounded-md p-1">
+                        <button 
+                          onClick={() => setQty(q => Math.max(1, q - 1))}
+                          className="w-4 h-4 bg-canvas-muted text-fg rounded flex items-center justify-center font-bold text-xs"
+                        >
+                          -
+                        </button>
+                        <span className="text-[10px] font-mono font-bold px-1.5 w-6 text-center">{qty}</span>
+                        <button 
+                          onClick={() => setQty(q => q + 1)}
+                          className="w-4 h-4 bg-canvas-muted text-fg rounded flex items-center justify-center font-bold text-xs"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Price Bracket visual indicators */}
+                    <div className="space-y-1 text-[8px] font-medium text-fg-muted border-t border-border-theme/40 pt-2">
+                      <div className="flex justify-between text-fg-muted/60">
+                        <span>1 - 4 packs</span>
+                        <span>$18.50 / pack</span>
+                      </div>
+                      <div className={`flex justify-between ${qty >= 5 && qty < 12 ? 'text-accent font-bold' : 'text-fg-muted/60'}`}>
+                        <span>5 - 11 packs</span>
+                        <span>$17.10 / pack</span>
+                      </div>
+                      <div className={`flex justify-between ${qty >= 12 ? 'text-accent font-bold' : 'text-fg-muted/60'}`}>
+                        <span>12+ packs (Bulk Tier)</span>
+                        <span>$15.20 / pack ★</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Price calculations */}
+                  <div className="space-y-1.5 text-[9px] mb-3">
+                    <div className="flex justify-between text-fg-muted">
+                      <span>B2B Contract Unit Price</span>
+                      <span className="font-mono font-semibold">${unitPrice.toFixed(2)}</span>
+                    </div>
+                    {qty >= 5 && (
+                      <div className="flex justify-between text-green-500 font-medium">
+                        <span>Bulk Discount Savings</span>
+                        <span>-${savings}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between text-fg border-t border-border-theme pt-1.5 font-bold">
+                      <span>Total Procurement Cost</span>
+                      <span className="font-mono font-black text-accent text-xs">${totalPrice}</span>
+                    </div>
+                  </div>
+
+                  <button 
+                    onClick={() => {
+                      setCartCount(c => c + qty);
+                      alert(`Successfully added ${qty} packs to procurement cart!`);
+                    }}
+                    className="w-full py-2 bg-accent text-white font-bold text-[9px] uppercase tracking-wider rounded-lg hover:bg-accent-dark transition-all"
+                  >
+                    Bulk Add To Order List
+                  </button>
+                </motion.div>
+
+                {/* 4. Overlapping Card C (Account/Dashboard & DSO Experience) */}
+                <motion.div 
+                  initial={{ x: -20 }}
+                  whileInView={{ x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                  className="absolute left-[3%] bottom-[16%] w-[250px] bg-canvas border border-border-theme rounded-2xl shadow-2xl p-4 z-20"
+                >
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <div className="p-1.5 bg-accent/10 rounded-lg text-accent">
+                      <AlertCircle size={12} />
+                    </div>
+                    <div>
+                      <span className="text-[7px] uppercase font-bold tracking-widest text-fg-muted">DSO Procurement Dashboard</span>
+                      <h6 className="text-[10px] font-bold text-fg">Apex Dental Partners</h6>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 text-[8px] font-medium text-fg-muted">
+                    {/* Budget progress bar */}
+                    <div>
+                      <div className="flex justify-between text-[7px] font-bold uppercase tracking-wider mb-1">
+                        <span>Clinic Group Q3 Budget</span>
+                        <span className="text-fg">$12,450 / $15,000</span>
+                      </div>
+                      <div className="w-full h-1.5 bg-canvas-muted rounded-full overflow-hidden border border-border-theme/40">
+                        <div className="h-full bg-accent rounded-full" style={{ width: '83%' }} />
+                      </div>
+                    </div>
+
+                    {/* DSO Authorization queue checkbox */}
+                    <div className="p-2.5 bg-canvas-muted border border-border-theme/60 rounded-xl flex items-start gap-2">
+                      <input 
+                        type="checkbox" 
+                        id="dso_auth"
+                        checked={dsoApproved}
+                        onChange={(e) => setDsoApproved(e.target.checked)}
+                        className="mt-0.5 rounded border-border-theme text-accent focus:ring-accent"
+                      />
+                      <div>
+                        <label htmlFor="dso_auth" className="text-[8px] font-bold text-fg block cursor-pointer">
+                          DSO Authorized Release
+                        </label>
+                        <p className="text-[7px] text-fg-muted font-light">Checking bypasses manual approval routes for standard clinic SKUs.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between text-[7px] text-fg-muted/60 border-t border-border-theme pt-2">
+                      <span>Status: {dsoApproved ? <b className="text-green-500 uppercase tracking-widest">✓ Bypass Active</b> : <b className="text-yellow-500 uppercase tracking-widest">⏳ Approval Req</b>}</span>
+                      <span>Last Audited: Today</span>
+                    </div>
+                  </div>
+                </motion.div>
+                
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* ADDITIONAL CASE STUDIES SECTION */}
+      <div className="container-wide mb-16">
+        <h3 className="text-xl font-bold uppercase tracking-[0.3em] text-fg-muted/40 mb-12 border-b border-border-theme pb-4">
+          More Enterprise Products & AI Workspaces
+        </h3>
+      </div>
+
       <div className="container-wide grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
-        {PROJECTS.map((project, idx) => (
+        {otherProjects.map((project, idx) => (
           <motion.div
             key={project.id}
             initial={{ opacity: 0, y: 40 }}
@@ -1550,8 +1920,6 @@ const Contact = () => {
             <p className="text-fg-muted text-sm">© 2026 Syed Gohar Ali. All rights reserved.</p>
             <div className="flex gap-8 text-fg-muted text-sm uppercase tracking-widest font-semibold">
               <a href="https://linkedin.com/in/syedgohar" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition-colors">LinkedIn</a>
-              <a href="#" className="hover:text-fg transition-colors">Behance</a>
-              <a href="#" className="hover:text-white dark:hover:text-white transition-colors">Dribbble</a>
             </div>
           </div>
         </motion.div>
