@@ -542,10 +542,13 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
           }
         });
       },
-      { threshold: 0.2, rootMargin: '-20% 0px -60% 0px' }
+      { 
+        threshold: 0.1, 
+        rootMargin: '-140px 0px -65% 0px' 
+      }
     );
 
-    const elements = document.querySelectorAll('.case-study-section');
+    const elements = document.querySelectorAll('.case-study-nav-target');
     elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
@@ -553,8 +556,17 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const container = containerRef.current;
+    if (element && container) {
+      const containerRect = container.getBoundingClientRect();
+      const elementRect = element.getBoundingClientRect();
+      const relativeTop = elementRect.top - containerRect.top + container.scrollTop;
+      
+      const offset = 150;
+      container.scrollTo({
+        top: relativeTop - offset,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -639,11 +651,12 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
 
         <div className="flex-1 w-full overflow-hidden">
           {project.blocks.map((block, idx) => {
-            // Calculate section ID for headers
+            // Calculate section ID for headers and phase intros
             let sectionId = '';
-            if (block.type === 'section-header') {
+            if (block.type === 'section-header' || block.type === 'phase-intro') {
               // @ts-ignore
-              const itemIdx = project.blocks.filter(b => b.type === 'section-header').indexOf(block);
+              const navigableBlocks = project.blocks.filter(b => b.type === 'section-header' || b.type === 'phase-intro');
+              const itemIdx = navigableBlocks.indexOf(block);
               sectionId = `section-${itemIdx}`;
             }
 
@@ -692,7 +705,7 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
               );
             case 'phase-intro':
               return (
-                <section key={idx} id={sectionId} className={`case-study-section section-padding ${bgClass}`}>
+                <section key={idx} className={`case-study-section section-padding ${bgClass}`}>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -700,7 +713,7 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     className="container-wide"
                   >
-                    <div className="mb-20">
+                    <div className="mb-20 case-study-nav-target" id={sectionId}>
                       <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-6 block">Phase 01</span>
                       <h2 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-4">{block.title}</h2>
                       <div className="h-1 w-20 bg-accent rounded-full opacity-30" />
@@ -756,12 +769,13 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
               );
             case 'section-header':
               return (
-                <section key={idx} id={sectionId} className={`case-study-section section-padding text-center ${bgClass}`}>
+                <section key={idx} className={`case-study-section section-padding text-center ${bgClass}`}>
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="max-w-4xl mx-auto"
+                    className="max-w-4xl mx-auto case-study-nav-target"
+                    id={sectionId}
                   >
                     <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-6 block">Phase</span>
                     <h2 className="text-5xl md:text-8xl font-extrabold tracking-tighter mb-8 underline decoration-accent/10 underline-offset-[12px]">{block.title}</h2>
@@ -1280,7 +1294,16 @@ const WorkGrid = ({ onSelect }: { onSelect: (project: Project) => void }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="relative bg-canvas-muted rounded-[3rem] border border-border-theme overflow-hidden p-8 md:p-12 lg:p-16 group hover:shadow-[0_50px_100px_-30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_50px_100px_-30px_rgba(0,0,0,0.5)] transition-all duration-700"
+          onClick={() => onSelect(safcoProject)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onSelect(safcoProject);
+            }
+          }}
+          role="link"
+          tabIndex={0}
+          className="relative bg-canvas-muted rounded-[3rem] border border-border-theme overflow-hidden p-8 md:p-12 lg:p-16 group hover:shadow-[0_50px_100px_-30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_50px_100px_-30px_rgba(0,0,0,0.5)] hover:-translate-y-1 cursor-pointer transition-all duration-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
           {/* Subtle light background highlight */}
           <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
@@ -1351,10 +1374,13 @@ const WorkGrid = ({ onSelect }: { onSelect: (project: Project) => void }) => {
             </div>
 
             {/* Right Interactive Mockup Showcase (Subtle 3D Perspective Layout) */}
-            <div className="lg:col-span-7 relative h-[600px] md:h-[650px] lg:h-[700px] w-full flex items-center justify-center overflow-hidden">
+            <div 
+              onClick={(e) => e.stopPropagation()} 
+              className="lg:col-span-7 relative h-[600px] md:h-[650px] lg:h-[700px] w-full flex items-center justify-center overflow-hidden"
+            >
               
               {/* Outer perspective wrapper */}
-              <div className="relative w-full h-full scale-[0.8] md:scale-[0.88] lg:scale-[0.95] xl:scale-100 transition-all duration-700 ease-out origin-center">
+              <div className="relative w-full h-full scale-[0.8] md:scale-[0.88] lg:scale-[0.95] xl:scale-100 transition-all duration-700 ease-out origin-center group-hover:scale-[0.81] md:group-hover:scale-[0.89] lg:group-hover:scale-[0.96] xl:group-hover:scale-[1.01]">
                 
                 {/* 1. Main Browser Frame (Desktop Ecommerce Interface Background Layer) */}
                 <div className="absolute top-[8%] left-[2%] w-[96%] h-[84%] bg-canvas border border-border-theme rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] overflow-hidden flex flex-col">
