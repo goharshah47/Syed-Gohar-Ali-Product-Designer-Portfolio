@@ -754,20 +754,35 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
                       </div>
                     </div>
 
-                    <div className="pt-20 border-t border-border-theme/30">
-                      <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-accent">Key Activities</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="pt-24 border-t border-border-theme/10">
+                      <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-16">
+                        <div>
+                          <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-accent mb-2">Scope & Methodology</h4>
+                          <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">Key Activities</h3>
+                        </div>
+                        <span className="font-mono text-xs text-fg-muted/40">{block.activities.length} Core Phases</span>
+                      </div>
+                      
+                      <div className={`grid gap-x-12 gap-y-16 ${
+                        block.activities.length === 5 
+                          ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5' 
+                          : block.activities.length === 4 
+                            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' 
+                            : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+                      }`}>
                         {block.activities.map((activity, i) => (
                           <motion.div 
                             key={i}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                            className="p-8 rounded-[2rem] bg-canvas-muted/30 border border-border-theme hover:border-accent/30 transition-all duration-500 group"
+                            transition={{ delay: i * 0.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                            className="flex flex-col gap-4"
                           >
-                            <div className="w-1.5 h-1.5 rounded-full bg-accent mb-6 opacity-40 group-hover:opacity-100 transition-opacity" />
-                            <p className="text-sm font-medium leading-relaxed text-fg-muted group-hover:text-fg transition-colors">{activity}</p>
+                            <span className="font-mono text-5xl md:text-6xl font-extralight tracking-tighter text-accent">0{i + 1}</span>
+                            <p className="text-base md:text-lg font-medium tracking-tight text-fg leading-relaxed">
+                              {activity}
+                            </p>
                           </motion.div>
                         ))}
                       </div>
