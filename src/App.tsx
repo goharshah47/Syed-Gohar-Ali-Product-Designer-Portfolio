@@ -25,12 +25,12 @@ type ContentBlock =
   | { type: 'phase-intro', title: string, role: string, scope: string, tools: string[], activities: string[] }
   | { type: 'text-split', title: string, content: string, image: string, reversed?: boolean, tag?: string }
   | { type: 'image-full', image: string, caption?: string }
-  | { type: 'image-grid', images: string[], columns?: 2 | 3 }
+  | { type: 'image-grid', images: string[], columns?: 2 | 3, contain?: boolean, padding?: boolean, bgWhite?: boolean, noGrayscale?: boolean, aspect?: string }
   | { type: 'quote', text: string, author?: string }
   | { type: 'layered', images: string[], title: string, content: string }
   | { type: 'outcomes', items: { label: string, value: string }[] }
   | { type: 'statement', text: string, subtext?: string }
-  | { type: 'comparison', before: string, after: string, title?: string, description?: string }
+  | { type: 'comparison', before: string, after: string, title?: string, description?: string, contain?: boolean, padding?: boolean, bgWhite?: boolean, aspect?: string }
   | { type: 'section-header', title: string, subtitle?: string };
 
 // --- Mock Data ---
@@ -41,7 +41,7 @@ const PROJECTS: Project[] = [
     title: 'Safco Dental',
     year: '2025 - 2026',
     category: 'B2B Ecommerce Redesign • Healthcare',
-    image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/thumbnail.png',
+    image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/cover.jpg',
     accent: '#0d9488',
     description: 'Transforming a legacy dental supply platform into a scalable, modern ecommerce system for procurement teams.',
     blocks: [
@@ -75,14 +75,14 @@ const PROJECTS: Project[] = [
         tag: 'The Context',
         title: 'Complexity at Scale',
         content: 'Safco Dental is a major B2B commerce platform serving thousands of dental practices and procurement managers. The existing platform was bogged down by outdated design paradigms, making it difficult for users to find products and complete routine procurement tasks.\n\nOur task was to transform this legacy catalog into an intuitive, high-speed purchasing engine that matches the speed of clinical practice.',
-        image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=800&auto=format&fit=crop'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Complexity%20at%20Scale.jpg'
       },
       {
         type: 'text-split',
         tag: 'The Problem Matrix',
         title: 'Friction and Cognitive Load',
         content: 'Key issues identified in our initial audit:\n\n• Large Product Catalog: Navigating 15,000+ complex SKUs was exhausting.\n• Difficult Discovery: Search did not support SKU matching, bulk item lookup, or fuzzy search queries.\n• Complex Purchasing Workflows: Multiple custom pricing contracts, bulk price tiers, and DSO authorization steps were poorly integrated.\n• Legacy Usability Barriers: Outdated form styling and weak visual hierarchy increased error rates and transaction times.',
-        image: 'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=800&auto=format&fit=crop',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Friction%20and%20Cognitive%20Load.jpg',
         reversed: true
       },
       {
@@ -95,15 +95,15 @@ const PROJECTS: Project[] = [
         tag: 'User Behavior Analysis',
         title: 'How Dental Procurement Officers Think',
         content: 'Unlike consumer retail, dental buyers are task-oriented procurement specialists who often work under tight timelines.\n\nWe analyzed hotjar heatmaps, fullstory session replays, and customer support logs. We discovered that 73% of repeat purchases failed to complete within expected times because of search navigation loops.\n\nWe converted these friction points into actionable design opportunities.',
-        image: 'https://images.unsplash.com/photo-1454165205744-3b78555e5572?q=80&w=800&auto=format&fit=crop'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Procurement%20Officers%20Think.jpg'
       },
       {
         type: 'layered',
         title: 'From Insight to Opportunity',
         content: '• Insight 1: Dental offices order identical products every week by reference code.\n• Problem: Users had to manually type complete SKUs into search, then go to the PDP to add to cart.\n• Design Opportunity: SKU-first predictive search that lets users add to cart directly from the dropdown.\n\n• Insight 2: Multi-location practices have structured authorization levels.\n• Problem: Standard carts didn\'t support multi-user checkouts or budget approval limits.\n• Design Opportunity: Integrated DSO-level account hierarchies in the dashboard.',
         images: [
-          'https://images.unsplash.com/photo-1553484771-047a44eee27b?q=80&w=600&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop'
+          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/insight.jpg',
+          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/insightopportunity.jpg'
         ]
       },
       {
@@ -116,14 +116,14 @@ const PROJECTS: Project[] = [
         tag: 'Navigation Blueprint',
         title: 'Simplified Information Architecture',
         content: 'We redesigned the navigation taxonomy from the ground up.\n\nBy collapsing dozens of redundant nested categories into a unified 3-level mega menu, we reduced the average time-to-category by 42%. We designed interactive category bubble selectors to guide mobile-first users instantly to high-volume products.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/LotIQ/website.png'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Simplified%20Information%20Architecture.jpg'
       },
       {
         type: 'text-split',
         tag: 'Search & Conversion Strategy',
         title: 'Efficiency-First B2B Architecture',
         content: 'Our strategy prioritized speed and visual density:\n\n• Advanced predictive auto-complete supporting partial SKUs.\n• Inline quantity selectors in search listings.\n• Transparent pricing structures reflecting contract tiers instantly.\n• One-click Quick Reorder tables on the user dashboard.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/forecastback.jpg',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Efficiency-First%20B2B%20Architecture.jpg',
         reversed: true
       },
       {
@@ -135,8 +135,11 @@ const PROJECTS: Project[] = [
         type: 'comparison',
         title: 'Interface Transformation',
         description: 'Comparing the legacy system with the redesigned, high-density professional workspace. The new layout emphasizes visual structure, clear pricing tiers, robust filters, and frictionless action buttons.',
-        before: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
-        after: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/inner_Cover.png'
+        before: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/evolution%20before.jpg',
+        after: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/evolution%20after.jpg',
+        contain: true,
+        padding: true,
+        bgWhite: true
       },
       {
         type: 'section-header',
@@ -148,14 +151,14 @@ const PROJECTS: Project[] = [
         tag: 'Feature 01: Product Discovery',
         title: 'Smart Search & Category Taxonomy',
         content: 'Features a full-width persistent search bar equipped with SKU autocomplete. Dynamic visual categories allow procurement managers to find specialized instruments, infection control supplies, and consumables with zero friction.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/forecastfront.jpg'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Smart%20Search%20%26%20Category%20Taxonomy.jpg'
       },
       {
         type: 'text-split',
         tag: 'Feature 02: Product Detail Experience',
         title: 'High-Density PDP Information Hierarchy',
         content: 'Displays clinical specifications, stock levels, manufacturer details, and volume discount tables. The pricing widget automatically recalculates totals based on quantities, simplifying purchasing decisions and boosting average order values.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/forecastback.jpg',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/High-Density%20PDP%20Information%20Hierarchy%20.jpg',
         reversed: true
       },
       {
@@ -163,7 +166,7 @@ const PROJECTS: Project[] = [
         tag: 'Feature 03: Account Dashboard',
         title: 'Unified Professional Procurement Control',
         content: 'A robust workspace for practice managers to track current orders, review approval queues from dental support organizations (DSOs), download clinical invoices, and instantly repeat high-frequency purchases with a single tap.',
-        image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=800&auto=format&fit=crop'
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Unified%20Professional%20Procurement%20Control.jpg'
       },
       {
         type: 'section-header',
@@ -173,11 +176,16 @@ const PROJECTS: Project[] = [
       {
         type: 'image-grid',
         images: [
-          'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=800&auto=format&fit=crop'
+          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/enterprise1.jpg',
+          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/enterprise%202.jpg',
+          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/enterprise%203.jpg'
         ],
-        columns: 3
+        columns: 3,
+        contain: true,
+        padding: true,
+        bgWhite: true,
+        noGrayscale: true,
+        aspect: 'aspect-[4/3]'
       },
       {
         type: 'statement',
@@ -206,7 +214,7 @@ const PROJECTS: Project[] = [
         type: 'text-split',
         title: 'Designing for the Dental Ecosystem',
         content: 'B2B product design isn\'t about chasing visual trends—it\'s about respecting the user\'s specialized domain and working environments.\n\n• Balances Business and Professional Needs: Procurement teams need high informational density and lightning fast actions. Minimalism must not sacrifice usability.\n• Scalable Component Architecture is Mandatory: Building a complex, multi-state web application requires clean tokens and modular UI elements to prevent interface drift.\n• Trust is the Ultimate Currency: Displaying transparent bulk discounts, accurate real-time stock levels, and easy reorder pipelines converts one-time buyers into lifetime partners.',
-        image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=800&auto=format&fit=crop',
+        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Designing%20for%20the%20Dental%20Ecosystem.jpg',
         reversed: true
       }
     ]
@@ -813,17 +821,22 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
               );
             case 'image-grid':
               return (
-                <section key={idx} className={`py-12 px-6 ${bgClass}`}>
-                  <div className={`container-wide grid gap-12 ${block.columns === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-2'}`}>
+                <section key={idx} className={`py-16 md:py-24 px-4 md:px-8 lg:px-12 ${bgClass}`}>
+                  <div className={`max-w-[1600px] mx-auto w-full grid gap-8 md:gap-12 lg:gap-16 ${block.columns === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-2'}`}>
                     {block.images.map((img, i) => (
                       <motion.div
                         key={i}
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.15, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                        className="rounded-3xl overflow-hidden aspect-square shadow-2xl"
+                        className={`rounded-[2rem] md:rounded-[2.5rem] overflow-hidden ${block.aspect || 'aspect-square'} shadow-2xl md:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.12)] dark:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.45)] border border-border-theme/40 flex items-center justify-center ${block.padding ? 'p-3 md:p-4 lg:p-6' : ''} ${block.bgWhite ? 'bg-white dark:bg-zinc-950' : 'bg-canvas-muted'}`}
                       >
-                        <img src={img} className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-1000" alt="" referrerPolicy="no-referrer" />
+                        <img 
+                          src={img} 
+                          className={`w-full h-full transition-all duration-700 ${block.contain ? 'object-contain' : 'object-cover'} ${block.noGrayscale ? 'scale-100 hover:scale-[1.03]' : 'grayscale opacity-80 hover:grayscale-0 hover:opacity-100'}`} 
+                          alt="" 
+                          referrerPolicy="no-referrer" 
+                        />
                       </motion.div>
                     ))}
                   </div>
@@ -842,14 +855,27 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                       <div className="space-y-8">
                         <span className="inline-block px-4 py-2 bg-red-500/10 text-red-500 text-[10px] font-bold uppercase tracking-[0.3em] rounded-full">Evolution A</span>
-                        <div className="rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[16/10]">
-                          <img src={block.before} className="w-full h-full object-cover grayscale opacity-60" alt="Before" referrerPolicy="no-referrer" />
+                        <div className={`rounded-[2.5rem] overflow-hidden shadow-2xl ${block.aspect || 'aspect-[16/10]'} border border-border-theme/40 flex items-center justify-center ${block.padding ? 'p-6 md:p-8 lg:p-10' : ''} ${block.bgWhite ? 'bg-white dark:bg-zinc-950' : 'bg-canvas-muted'}`}>
+                          <img 
+                            src={block.before} 
+                            className={`w-full h-full transition-all duration-700 ${block.contain ? 'object-contain' : 'object-cover'} grayscale opacity-60`} 
+                            alt="Before" 
+                            referrerPolicy="no-referrer" 
+                          />
                         </div>
                       </div>
                       <div className="space-y-8">
                         <span className="inline-block px-4 py-2 bg-green-500/10 text-green-500 text-[10px] font-bold uppercase tracking-[0.3em] rounded-full">Evolution B (Final)</span>
-                        <div className="rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.3)] aspect-[16/10] border-8" style={{ borderColor: project.accent }}>
-                          <img src={block.after} className="w-full h-full object-cover" alt="After" referrerPolicy="no-referrer" />
+                        <div 
+                          className={`rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.08)] dark:shadow-[0_40px_80px_rgba(0,0,0,0.35)] ${block.aspect || 'aspect-[16/10]'} border-4 md:border-8 flex items-center justify-center ${block.padding ? 'p-6 md:p-8 lg:p-10' : ''} ${block.bgWhite ? 'bg-white dark:bg-zinc-950' : 'bg-canvas-muted'}`} 
+                          style={{ borderColor: project.accent }}
+                        >
+                          <img 
+                            src={block.after} 
+                            className={`w-full h-full transition-all duration-700 ${block.contain ? 'object-contain' : 'object-cover'}`} 
+                            alt="After" 
+                            referrerPolicy="no-referrer" 
+                          />
                         </div>
                       </div>
                     </div>
@@ -1289,21 +1315,23 @@ const WorkGrid = ({ onSelect }: { onSelect: (project: Project) => void }) => {
 
       {/* FLAGSHIP CASE STUDY: SAFCO DENTAL */}
       <div className="container-wide mb-32">
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          onClick={() => onSelect(safcoProject)}
+        <motion.a 
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            onSelect(safcoProject);
+          }}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
               onSelect(safcoProject);
             }
           }}
-          role="link"
-          tabIndex={0}
-          className="relative bg-canvas-muted rounded-[3rem] border border-border-theme overflow-hidden p-8 md:p-12 lg:p-16 group hover:shadow-[0_50px_100px_-30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_50px_100px_-30px_rgba(0,0,0,0.5)] hover:-translate-y-1 cursor-pointer transition-all duration-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="block relative bg-canvas-muted rounded-[3rem] border border-border-theme overflow-hidden p-8 md:p-12 lg:p-16 group hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.45)] hover:-translate-y-1 cursor-pointer transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent hover:border-accent/30"
         >
           {/* Subtle light background highlight */}
           <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
@@ -1363,296 +1391,34 @@ const WorkGrid = ({ onSelect }: { onSelect: (project: Project) => void }) => {
                 </div>
               </div>
 
-              {/* Navigation trigger button */}
-              <button 
-                onClick={() => onSelect(safcoProject)}
-                className="self-start px-8 py-4 bg-fg text-canvas font-bold text-xs uppercase tracking-[0.2em] rounded-full hover:bg-accent hover:text-white transition-all duration-300 flex items-center gap-3 shadow-lg group-hover:scale-105"
+              {/* Navigation trigger button (Rendered as div inside anchor for valid HTML markup) */}
+              <div 
+                className="self-start px-8 py-4 bg-[#050505] text-white font-bold text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 ease-in-out flex items-center gap-3 shadow-lg group-hover:bg-accent group-hover:translate-y-[-2px] group-hover:shadow-xl group-hover:shadow-accent/25"
               >
-                Explore Flagship Case Study
-                <ArrowRight size={14} />
-              </button>
-            </div>
-
-            {/* Right Interactive Mockup Showcase (Subtle 3D Perspective Layout) */}
-            <div 
-              onClick={(e) => e.stopPropagation()} 
-              className="lg:col-span-7 relative h-[600px] md:h-[650px] lg:h-[700px] w-full flex items-center justify-center overflow-hidden"
-            >
-              
-              {/* Outer perspective wrapper */}
-              <div className="relative w-full h-full scale-[0.8] md:scale-[0.88] lg:scale-[0.95] xl:scale-100 transition-all duration-700 ease-out origin-center group-hover:scale-[0.81] md:group-hover:scale-[0.89] lg:group-hover:scale-[0.96] xl:group-hover:scale-[1.01]">
-                
-                {/* 1. Main Browser Frame (Desktop Ecommerce Interface Background Layer) */}
-                <div className="absolute top-[8%] left-[2%] w-[96%] h-[84%] bg-canvas border border-border-theme rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] overflow-hidden flex flex-col">
-                  {/* Browser Header Bar */}
-                  <div className="h-12 bg-canvas-muted border-b border-border-theme flex items-center justify-between px-6">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-red-400" />
-                      <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                      <div className="w-3 h-3 rounded-full bg-green-400" />
-                      <span className="text-[10px] font-mono text-fg-muted/40 ml-4 select-none">safco-dental-v2.org</span>
-                    </div>
-                    {/* Tiny Cart Badge */}
-                    <div className="flex items-center gap-3">
-                      <div className="px-3 py-1 bg-accent/10 rounded-full flex items-center gap-1.5 text-[10px] font-bold text-accent">
-                        <ShoppingBag size={10} />
-                        <span>{cartCount} Items</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Browser Internal Nav */}
-                  <div className="h-14 border-b border-border-theme/60 bg-canvas px-6 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded bg-accent flex items-center justify-center text-white text-[10px] font-black">S</div>
-                      <span className="text-xs font-extrabold tracking-tight">Safco Dental Supply</span>
-                    </div>
-                    
-                    {/* Interactive Search input in mockup */}
-                    <div className="relative w-1/2">
-                      <div className="absolute inset-y-0 left-3 flex items-center text-fg-muted/40 pointer-events-none">
-                        <Search size={12} />
-                      </div>
-                      <input 
-                        type="text" 
-                        value={searchVal}
-                        onChange={(e) => setSearchVal(e.target.value)}
-                        placeholder="Search SKU, Product Name... (type 'SKU')"
-                        className="w-full pl-9 pr-4 py-1.5 bg-canvas-muted border border-border-theme/80 rounded-lg text-[10px] focus:outline-none focus:border-accent font-medium text-fg placeholder:text-fg-muted/30"
-                      />
-                    </div>
-
-                    <div className="flex items-center gap-2 text-[10px] font-bold text-fg-muted/60">
-                      <span>Inventory</span>
-                      <ChevronRight size={10} />
-                      <span>Preventive</span>
-                    </div>
-                  </div>
-
-                  {/* Product List in Browser */}
-                  <div className="flex-1 bg-canvas p-6 overflow-hidden">
-                    <div className="flex items-center justify-between mb-4">
-                      <h4 className="text-[11px] font-bold uppercase tracking-wider text-fg-muted">Active Dental Supplies</h4>
-                      <div className="flex gap-1.5">
-                        {['Preventive', 'Instruments', 'Endodontics'].map((cat) => (
-                          <button
-                            key={cat}
-                            onClick={() => setActiveCategory(cat)}
-                            className={`px-3 py-1 rounded-full text-[9px] font-bold tracking-tight transition-colors ${activeCategory === cat ? 'bg-accent text-white' : 'bg-canvas-muted text-fg-muted hover:bg-border-theme/40'}`}
-                          >
-                            {cat}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Compact Product Table */}
-                    <div className="space-y-2">
-                      {dentalProducts.filter(p => activeCategory === 'All' || p.category === activeCategory).map((prod) => (
-                        <div key={prod.sku} className="p-3 bg-canvas-muted rounded-lg border border-border-theme/40 flex items-center justify-between text-[10px] hover:border-accent/20 transition-all">
-                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded bg-canvas border border-border-theme flex items-center justify-center text-accent font-mono text-[9px] font-bold">
-                              {prod.sku.substring(0,3)}
-                            </div>
-                            <div>
-                              <div className="font-semibold text-fg">{prod.name}</div>
-                              <div className="text-fg-muted/60 text-[8px] font-mono">SKU: #{prod.sku}</div>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-6">
-                            <div className="text-right">
-                              <div className="font-extrabold text-fg">${prod.price}</div>
-                              <span className="text-[7px] text-fg-muted uppercase tracking-widest bg-accent/10 px-1 py-0.5 rounded text-accent font-bold">In Stock</span>
-                            </div>
-                            <button 
-                              onClick={() => setCartCount(c => c + 1)}
-                              className="p-1.5 bg-fg text-canvas rounded hover:bg-accent hover:text-white transition-colors"
-                            >
-                              <Plus size={10} />
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* 2. Overlapping Card A (Search Experience Overlay: SKU-First Autocomplete) */}
-                <AnimatePresence>
-                  {showAutocomplete && (
-                    <motion.div 
-                      initial={{ opacity: 0, y: 15, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute top-[16%] left-[10%] w-[320px] bg-canvas border border-border-theme rounded-xl shadow-2xl overflow-hidden z-20"
-                    >
-                      <div className="p-3 bg-accent/5 border-b border-border-theme/60 flex items-center justify-between">
-                        <span className="text-[9px] font-bold uppercase tracking-wider text-accent flex items-center gap-1.5">
-                          <Search size={10} /> SKU-First Instant Match
-                        </span>
-                        <button onClick={() => setSearchVal('')} className="text-fg-muted hover:text-fg text-[9px]">Clear</button>
-                      </div>
-                      <div className="divide-y divide-border-theme">
-                        {filteredAutocomplete.length > 0 ? (
-                          filteredAutocomplete.map((item) => (
-                            <div key={item.sku} className="p-3 hover:bg-canvas-muted cursor-pointer transition-colors" onClick={() => { setSearchVal(item.sku); }}>
-                              <div className="text-[9px] font-mono text-accent font-bold mb-0.5">{item.sku}</div>
-                              <div className="text-[10px] font-bold text-fg mb-1">{item.name}</div>
-                              <div className="flex items-center justify-between text-[8px] text-fg-muted">
-                                <span>Unit: <b className="text-fg">{item.price}</b></span>
-                                <span className="text-accent/80 font-semibold">{item.tier}</span>
-                              </div>
-                            </div>
-                          ))
-                        ) : (
-                          <div className="p-4 text-center text-fg-muted text-[10px] font-light">No exact SKU match found</div>
-                        )}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* 3. Overlapping Card B (Product Detail Pricing Experience) */}
-                <motion.div 
-                  initial={{ x: 20 }}
-                  whileInView={{ x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2, duration: 0.8 }}
-                  className="absolute right-[4%] bottom-[12%] w-[290px] bg-canvas border border-border-theme rounded-2xl shadow-2xl p-5 z-20"
-                >
-                  <div className="flex justify-between items-start mb-3">
-                    <div>
-                      <span className="text-[8px] uppercase font-bold text-fg-muted tracking-widest">Interactive PDP Widget</span>
-                      <h5 className="text-[11px] font-extrabold text-fg">Stainless Examination Mirror</h5>
-                    </div>
-                    <span className="px-2 py-0.5 bg-green-500/10 text-green-500 text-[8px] font-bold rounded-full">High Stock</span>
-                  </div>
-
-                  {/* Quantity and interactive multiplier */}
-                  <div className="p-3 bg-canvas-muted rounded-xl border border-border-theme mb-3">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-[9px] font-medium text-fg-muted">Procurement Qty:</span>
-                      <div className="flex items-center gap-1.5 bg-canvas border border-border-theme rounded-md p-1">
-                        <button 
-                          onClick={() => setQty(q => Math.max(1, q - 1))}
-                          className="w-4 h-4 bg-canvas-muted text-fg rounded flex items-center justify-center font-bold text-xs"
-                        >
-                          -
-                        </button>
-                        <span className="text-[10px] font-mono font-bold px-1.5 w-6 text-center">{qty}</span>
-                        <button 
-                          onClick={() => setQty(q => q + 1)}
-                          className="w-4 h-4 bg-canvas-muted text-fg rounded flex items-center justify-center font-bold text-xs"
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Price Bracket visual indicators */}
-                    <div className="space-y-1 text-[8px] font-medium text-fg-muted border-t border-border-theme/40 pt-2">
-                      <div className="flex justify-between text-fg-muted/60">
-                        <span>1 - 4 packs</span>
-                        <span>$18.50 / pack</span>
-                      </div>
-                      <div className={`flex justify-between ${qty >= 5 && qty < 12 ? 'text-accent font-bold' : 'text-fg-muted/60'}`}>
-                        <span>5 - 11 packs</span>
-                        <span>$17.10 / pack</span>
-                      </div>
-                      <div className={`flex justify-between ${qty >= 12 ? 'text-accent font-bold' : 'text-fg-muted/60'}`}>
-                        <span>12+ packs (Bulk Tier)</span>
-                        <span>$15.20 / pack ★</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Price calculations */}
-                  <div className="space-y-1.5 text-[9px] mb-3">
-                    <div className="flex justify-between text-fg-muted">
-                      <span>B2B Contract Unit Price</span>
-                      <span className="font-mono font-semibold">${unitPrice.toFixed(2)}</span>
-                    </div>
-                    {qty >= 5 && (
-                      <div className="flex justify-between text-green-500 font-medium">
-                        <span>Bulk Discount Savings</span>
-                        <span>-${savings}</span>
-                      </div>
-                    )}
-                    <div className="flex justify-between text-fg border-t border-border-theme pt-1.5 font-bold">
-                      <span>Total Procurement Cost</span>
-                      <span className="font-mono font-black text-accent text-xs">${totalPrice}</span>
-                    </div>
-                  </div>
-
-                  <button 
-                    onClick={() => {
-                      setCartCount(c => c + qty);
-                      alert(`Successfully added ${qty} packs to procurement cart!`);
-                    }}
-                    className="w-full py-2 bg-accent text-white font-bold text-[9px] uppercase tracking-wider rounded-lg hover:bg-accent-dark transition-all"
-                  >
-                    Bulk Add To Order List
-                  </button>
-                </motion.div>
-
-                {/* 4. Overlapping Card C (Account/Dashboard & DSO Experience) */}
-                <motion.div 
-                  initial={{ x: -20 }}
-                  whileInView={{ x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4, duration: 0.8 }}
-                  className="absolute left-[3%] bottom-[16%] w-[250px] bg-canvas border border-border-theme rounded-2xl shadow-2xl p-4 z-20"
-                >
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <div className="p-1.5 bg-accent/10 rounded-lg text-accent">
-                      <AlertCircle size={12} />
-                    </div>
-                    <div>
-                      <span className="text-[7px] uppercase font-bold tracking-widest text-fg-muted">DSO Procurement Dashboard</span>
-                      <h6 className="text-[10px] font-bold text-fg">Apex Dental Partners</h6>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 text-[8px] font-medium text-fg-muted">
-                    {/* Budget progress bar */}
-                    <div>
-                      <div className="flex justify-between text-[7px] font-bold uppercase tracking-wider mb-1">
-                        <span>Clinic Group Q3 Budget</span>
-                        <span className="text-fg">$12,450 / $15,000</span>
-                      </div>
-                      <div className="w-full h-1.5 bg-canvas-muted rounded-full overflow-hidden border border-border-theme/40">
-                        <div className="h-full bg-accent rounded-full" style={{ width: '83%' }} />
-                      </div>
-                    </div>
-
-                    {/* DSO Authorization queue checkbox */}
-                    <div className="p-2.5 bg-canvas-muted border border-border-theme/60 rounded-xl flex items-start gap-2">
-                      <input 
-                        type="checkbox" 
-                        id="dso_auth"
-                        checked={dsoApproved}
-                        onChange={(e) => setDsoApproved(e.target.checked)}
-                        className="mt-0.5 rounded border-border-theme text-accent focus:ring-accent"
-                      />
-                      <div>
-                        <label htmlFor="dso_auth" className="text-[8px] font-bold text-fg block cursor-pointer">
-                          DSO Authorized Release
-                        </label>
-                        <p className="text-[7px] text-fg-muted font-light">Checking bypasses manual approval routes for standard clinic SKUs.</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between text-[7px] text-fg-muted/60 border-t border-border-theme pt-2">
-                      <span>Status: {dsoApproved ? <b className="text-green-500 uppercase tracking-widest">✓ Bypass Active</b> : <b className="text-yellow-500 uppercase tracking-widest">⏳ Approval Req</b>}</span>
-                      <span>Last Audited: Today</span>
-                    </div>
-                  </div>
-                </motion.div>
-                
+                <span>Explore Flagship Case Study</span>
+                <ArrowRight size={14} className="transition-transform duration-300 ease-in-out group-hover:translate-x-[6px]" />
               </div>
             </div>
+
+            {/* Right Interactive Mockup Showcase (Clean, high-fidelity cover image) */}
+            <div 
+              className="lg:col-span-7 relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full flex items-center justify-center overflow-hidden"
+            >
+              <div className="w-full h-full p-4 md:p-6 lg:p-8 flex items-center justify-center">
+                <div className="w-full h-full relative overflow-hidden rounded-[2rem] border border-border-theme/60 bg-canvas-muted flex items-center justify-center">
+                  <img
+                    src={safcoProject.image}
+                    alt={safcoProject.title}
+                    className="w-full h-full object-cover transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:brightness-[1.03]"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-fg/5 dark:bg-black/10 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none" />
+                </div>
+              </div>
+            </div>
+
           </div>
-        </motion.div>
+        </motion.a>
       </div>
 
       {/* ADDITIONAL CASE STUDIES SECTION */}
