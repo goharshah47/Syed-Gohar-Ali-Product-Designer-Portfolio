@@ -45,12 +45,19 @@
     @apply bg-canvas/60 backdrop-blur-xl border-b border-border-theme;
   }
   .section-padding {
-    @apply py-32 md:py-48 px-6;
+    @apply py-16 sm:py-24 md:py-36 lg:py-48 px-4 sm:px-6 md:px-8 lg:px-12;
   }
   .container-wide {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-7xl mx-auto w-full;
   }
   .text-balance {
     text-wrap: balance;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

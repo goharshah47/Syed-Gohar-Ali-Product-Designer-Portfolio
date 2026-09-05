@@ -2,5 +2,5 @@
   "name": "Portfolio v1 | Product Designer",
   "description": "Premium interactive portfolio featuring high-end case studies and minimalist product design.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

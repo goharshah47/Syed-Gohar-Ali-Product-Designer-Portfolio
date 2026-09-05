@@ -570,7 +570,8 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
       const elementRect = element.getBoundingClientRect();
       const relativeTop = elementRect.top - containerRect.top + container.scrollTop;
       
-      const offset = 150;
+      const isMobile = window.innerWidth < 1024;
+      const offset = isMobile ? 100 : 140;
       container.scrollTo({
         top: relativeTop - offset,
         behavior: 'smooth'
@@ -593,21 +594,21 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
         style={{ scaleX, backgroundColor: project.accent }}
       />
 
-      <nav className="fixed top-0 left-0 w-full z-[110] px-6 py-6 flex justify-between items-center mix-blend-difference">
+      <nav className="fixed top-0 left-0 w-full z-[110] px-4 sm:px-6 md:px-8 py-4 sm:py-6 flex justify-between items-center mix-blend-difference pointer-events-auto">
         <button 
           onClick={onBack}
-          className="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white hover:text-[var(--project-accent)] transition-colors"
+          className="group flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white hover:text-[var(--project-accent)] transition-colors shrink-0"
         >
           <motion.div whileHover={{ x: -4 }}><ArrowRight className="rotate-180" size={16} /></motion.div>
           Back to Work
         </button>
-        <div className="text-xs font-bold uppercase tracking-widest text-white/60">
+        <div className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white/60 truncate max-w-[50%] text-right">
           {project.title} • {project.year}
         </div>
       </nav>
 
-      <div className="flex flex-col lg:flex-row relative">
-        {/* Sticky Sidebar Navigation */}
+      <div className="flex flex-col lg:flex-row relative w-full">
+        {/* Sticky Sidebar Navigation - Desktop */}
         <aside className="hidden lg:block lg:w-64 xl:w-80 h-screen sticky top-0 p-8 pt-32 shrink-0 border-r border-border-theme/30 bg-canvas/40 backdrop-blur-sm">
           <div className="flex flex-col gap-6">
             <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-fg-muted/40 mb-2">Project Phase</span>
@@ -639,25 +640,32 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
           </div>
         </aside>
 
-        {/* Mobile Nav */}
-        <div className="lg:hidden sticky top-20 z-[90] w-full px-6 py-4 bg-canvas/80 backdrop-blur-md border-b border-border-theme overflow-x-auto scrollbar-hide">
-          <div className="flex gap-8 whitespace-nowrap">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`text-[10px] uppercase font-bold tracking-widest transition-colors ${
-                  activeId === item.id ? '' : 'text-fg-muted/40'
-                }`}
-                style={{ color: activeId === item.id ? project.accent : undefined }}
-              >
-                {item.title}
-              </button>
-            ))}
+        {/* Mobile Nav - Tablet and Mobile */}
+        <div className="lg:hidden sticky top-14 sm:top-16 z-[90] w-full px-4 sm:px-6 py-3 bg-canvas/90 backdrop-blur-md border-b border-border-theme/40 overflow-x-auto scrollbar-none min-w-0">
+          <div className="flex gap-4 sm:gap-6 whitespace-nowrap min-w-max py-0.5">
+            {navItems.map((item, idx) => {
+              const isActive = activeId === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`text-[10px] sm:text-xs uppercase font-bold tracking-wider sm:tracking-widest transition-all px-3 py-1.5 rounded-full flex items-center gap-1.5 ${
+                    isActive 
+                      ? 'bg-fg text-canvas shadow-sm' 
+                      : 'text-fg-muted/60 hover:text-fg hover:bg-canvas-muted'
+                  }`}
+                >
+                  <span className={`text-[9px] font-mono ${isActive ? 'opacity-90 text-accent' : 'opacity-40'}`}>
+                    0{idx + 1}
+                  </span>
+                  <span>{item.title}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        <div className="flex-1 w-full overflow-hidden">
+        <div className="flex-1 w-full min-w-0 overflow-x-hidden">
           {project.blocks.map((block, idx) => {
             // Calculate section ID for headers and phase intros
             let sectionId = '';
@@ -674,36 +682,36 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
             switch (block.type) {
             case 'hero':
               return (
-                <section key={idx} className="relative h-screen flex items-end pb-32 px-6 overflow-hidden">
+                <section key={idx} className="relative min-h-[85vh] sm:min-h-screen flex items-end pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden w-full">
                   <div className="absolute inset-0 z-0">
                     <motion.img 
-                      initial={{ scale: 1.2, opacity: 0 }}
+                      initial={{ scale: 1.15, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+                      transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
                       src={block.image} 
-                      className="w-full h-full object-cover" 
-                      alt="" 
+                      className="w-full h-full object-cover max-w-full" 
+                      alt={block.title} 
                       referrerPolicy="no-referrer" 
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/30 to-transparent" />
                   </div>
-                  <div className="relative z-10 container-wide w-full flex flex-col items-start">
-                    <div className="max-w-4xl">
+                  <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col items-start">
+                    <div className="max-w-4xl w-full">
                       <motion.h1 
-                        initial={{ opacity: 0, y: 100 }}
+                        initial={{ opacity: 0, y: 60 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-6xl md:text-8xl xl:text-9xl font-extrabold tracking-tighter leading-[0.85] mb-12 text-balance"
+                        className="text-4xl sm:text-6xl md:text-8xl xl:text-9xl font-extrabold tracking-tighter leading-[0.95] sm:leading-[0.85] mb-6 sm:mb-8 md:mb-12 text-balance break-words"
                       >
                         {block.title.split(' ').map((word, i) => (
-                          <span key={i} className="inline-block mr-4">{word}</span>
+                          <span key={i} className="inline-block mr-2 sm:mr-4">{word}</span>
                         ))}
                       </motion.h1>
                       <motion.p 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.6, duration: 1 }}
-                        className="text-xl md:text-2xl font-light text-fg-muted max-w-2xl leading-relaxed"
+                        className="text-base sm:text-lg md:text-xl lg:text-2xl font-light text-fg-muted max-w-2xl leading-relaxed text-balance break-words"
                       >
                         {block.subtitle}
                       </motion.p>
@@ -719,51 +727,53 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="container-wide"
+                    className="max-w-7xl mx-auto w-full"
                   >
-                    <div className="mb-20 case-study-nav-target" id={sectionId}>
-                      <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-6 block">Phase 01</span>
-                      <h2 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-4">{block.title}</h2>
-                      <div className="h-1 w-20 bg-accent rounded-full opacity-30" />
+                    <div className="mb-12 sm:mb-16 md:mb-20 case-study-nav-target" id={sectionId}>
+                      <span className="text-[10px] font-bold uppercase tracking-[0.4em] sm:tracking-[0.5em] text-accent mb-4 sm:mb-6 block">Phase 01</span>
+                      <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-4 break-words">{block.title}</h2>
+                      <div className="h-1 w-16 sm:w-20 bg-accent rounded-full opacity-30" />
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 mb-20">
-                      <div className="space-y-12">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-32 mb-12 sm:mb-16 md:mb-20">
+                      <div className="space-y-8 sm:space-y-12">
                         <div>
-                          <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-8 text-accent">Context</h4>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                          <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 sm:mb-8 text-accent">Context</h4>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                             <div>
-                              <p className="text-fg-muted text-[10px] font-bold uppercase tracking-widest mb-3 opacity-60">Role</p>
-                              <p className="text-xl md:text-2xl font-bold tracking-tight">{block.role}</p>
+                              <p className="text-fg-muted text-[10px] font-bold uppercase tracking-widest mb-2 sm:mb-3 opacity-60">Role</p>
+                              <p className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight break-words">{block.role}</p>
                             </div>
                             <div>
-                              <p className="text-fg-muted text-[10px] font-bold uppercase tracking-widest mb-3 opacity-60">Scope</p>
-                              <p className="text-xl md:text-2xl font-bold tracking-tight">{block.scope}</p>
+                              <p className="text-fg-muted text-[10px] font-bold uppercase tracking-widest mb-2 sm:mb-3 opacity-60">Scope</p>
+                              <p className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight break-words">{block.scope}</p>
                             </div>
                           </div>
                         </div>
                       </div>
 
                       <div>
-                        <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-8 text-accent">Tools & Stack</h4>
+                        <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 sm:mb-8 text-accent">Tools & Stack</h4>
                         <div className="flex flex-wrap gap-2">
                           {block.tools.map((tool, i) => (
-                            <span key={i} className="px-5 py-2.5 rounded-full border border-border-theme text-[10px] font-bold tracking-[0.2em] uppercase bg-canvas-muted/50">{tool}</span>
+                            <span key={i} className="px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full border border-border-theme text-[9px] sm:text-[10px] font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase bg-canvas-muted/50 break-normal max-w-full text-center">
+                              {tool}
+                            </span>
                           ))}
                         </div>
                       </div>
                     </div>
 
-                    <div className="pt-24 border-t border-border-theme/10">
-                      <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-16">
+                    <div className="pt-12 sm:pt-16 md:pt-24 border-t border-border-theme/20">
+                      <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 sm:gap-4 mb-10 sm:mb-16">
                         <div>
                           <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-accent mb-2">Scope & Methodology</h4>
-                          <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">Key Activities</h3>
+                          <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">Key Activities</h3>
                         </div>
                         <span className="font-mono text-xs text-fg-muted/40">{block.activities.length} Core Phases</span>
                       </div>
                       
-                      <div className={`grid gap-x-12 gap-y-16 ${
+                      <div className={`grid gap-x-8 sm:gap-x-10 lg:gap-x-12 gap-y-10 sm:gap-y-12 lg:gap-y-16 ${
                         block.activities.length === 5 
                           ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5' 
                           : block.activities.length === 4 
@@ -777,10 +787,11 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                            className="flex flex-col gap-4"
+                            className="flex flex-col gap-3 sm:gap-4"
                           >
-                            <span className="font-mono text-5xl md:text-6xl font-extralight tracking-tighter text-accent">0{i + 1}</span>
-                            <p className="text-base md:text-lg font-medium tracking-tight text-fg leading-relaxed">
+                            <span className="font-mono text-4xl sm:text-5xl md:text-6xl font-extralight tracking-tighter text-accent">0{i + 1}</span>
+                            <div className="h-px w-full bg-border-theme/40" />
+                            <p className="text-sm sm:text-base md:text-lg font-medium tracking-tight text-fg leading-relaxed break-words">
                               {activity}
                             </p>
                           </motion.div>
@@ -794,61 +805,83 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
               return (
                 <section key={idx} className={`case-study-section section-padding text-center ${bgClass}`}>
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0.96 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="max-w-4xl mx-auto case-study-nav-target"
+                    className="max-w-4xl mx-auto case-study-nav-target w-full"
                     id={sectionId}
                   >
-                    <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-6 block">Phase</span>
-                    <h2 className="text-5xl md:text-8xl font-extrabold tracking-tighter mb-8 underline decoration-accent/10 underline-offset-[12px]">{block.title}</h2>
-                    {block.subtitle && <p className="text-xl md:text-3xl text-fg-muted font-light text-balance leading-relaxed">{block.subtitle}</p>}
+                    <span className="text-[10px] font-bold uppercase tracking-[0.4em] sm:tracking-[0.5em] text-accent mb-4 sm:mb-6 block">Phase</span>
+                    <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-6 sm:mb-8 underline decoration-accent/10 underline-offset-[8px] sm:underline-offset-[12px] break-words">
+                      {block.title}
+                    </h2>
+                    {block.subtitle && (
+                      <p className="text-base sm:text-xl md:text-2xl lg:text-3xl text-fg-muted font-light text-balance leading-relaxed break-words">
+                        {block.subtitle}
+                      </p>
+                    )}
                   </motion.div>
                 </section>
               );
             case 'text-split':
               return (
                 <section key={idx} className={`section-padding ${bgClass}`}>
-                  <div className={`container-wide grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-32 items-center ${block.reversed ? 'lg:flex-row-reverse' : ''}`}>
-                    <div className={`lg:col-span-6 ${block.reversed ? 'lg:order-2' : ''}`}>
+                  <div className={`max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-16 lg:gap-24 xl:gap-32 items-center`}>
+                    <div className={`lg:col-span-6 ${block.reversed ? 'lg:order-2' : 'lg:order-1'}`}>
                       <motion.div
-                        initial={{ opacity: 0, y: 40 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                        viewport={{ once: true, margin: "-60px" }}
+                        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                       >
-                        {block.tag && <span className="text-[10px] font-bold uppercase tracking-[0.4rem] mb-6 block text-accent">{block.tag}</span>}
-                        <h2 className="text-4xl md:text-6xl font-bold mb-10 tracking-tighter leading-tight text-balance">{block.title}</h2>
-                        <div className="text-lg md:text-xl text-fg-muted font-light leading-relaxed whitespace-pre-line">{block.content}</div>
+                        {block.tag && (
+                          <span className="text-[10px] font-bold uppercase tracking-[0.3em] sm:tracking-[0.4rem] mb-4 sm:mb-6 block text-accent break-words">
+                            {block.tag}
+                          </span>
+                        )}
+                        <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 md:mb-10 tracking-tighter leading-tight text-balance break-words">
+                          {block.title}
+                        </h2>
+                        <div className="text-base sm:text-lg md:text-xl text-fg-muted font-light leading-relaxed whitespace-pre-line break-words">
+                          {block.content}
+                        </div>
                       </motion.div>
                     </div>
                     <motion.div 
-                      initial={{ opacity: 0, y: 60 }}
+                      initial={{ opacity: 0, y: 40 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                      className={`lg:col-span-6 relative aspect-[12/10] rounded-[2rem] overflow-hidden ${block.reversed ? 'lg:order-1' : ''}`}
+                      viewport={{ once: true, margin: "-60px" }}
+                      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                      className={`lg:col-span-6 relative w-full aspect-[4/3] sm:aspect-[12/10] rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] ${block.reversed ? 'lg:order-1' : 'lg:order-2'}`}
                     >
-                      <img src={block.image} className="w-full h-full object-cover shadow-[0_50px_100px_rgba(0,0,0,0.2)]" alt="" referrerPolicy="no-referrer" />
+                      <img 
+                        src={block.image} 
+                        className="w-full h-full object-cover max-w-full" 
+                        alt={block.title} 
+                        referrerPolicy="no-referrer" 
+                      />
                     </motion.div>
                   </div>
                 </section>
               );
             case 'image-grid':
               return (
-                <section key={idx} className={`py-16 md:py-24 px-4 md:px-8 lg:px-12 ${bgClass}`}>
-                  <div className={`max-w-[1600px] mx-auto w-full grid gap-8 md:gap-12 lg:gap-16 ${block.columns === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-2'}`}>
+                <section key={idx} className={`py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 ${bgClass}`}>
+                  <div className={`max-w-[1600px] mx-auto w-full grid gap-6 sm:gap-8 md:gap-12 lg:gap-16 ${
+                    block.columns === 3 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2'
+                  }`}>
                     {block.images.map((img, i) => (
                       <motion.div
                         key={i}
-                        initial={{ opacity: 0, y: 40 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.15, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                        className={`rounded-[2rem] md:rounded-[2.5rem] overflow-hidden ${block.aspect || 'aspect-square'} shadow-2xl md:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.12)] dark:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.45)] border border-border-theme/40 flex items-center justify-center ${block.padding ? 'p-3 md:p-4 lg:p-6' : ''} ${block.bgWhite ? 'bg-white dark:bg-zinc-950' : 'bg-canvas-muted'}`}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className={`rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] overflow-hidden ${block.aspect || 'aspect-square'} shadow-xl md:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.12)] dark:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.45)] border border-border-theme/40 flex items-center justify-center ${block.padding ? 'p-3 sm:p-4 md:p-6' : ''} ${block.bgWhite ? 'bg-white dark:bg-zinc-950' : 'bg-canvas-muted'} max-w-full`}
                       >
                         <img 
                           src={img} 
-                          className={`w-full h-full transition-all duration-700 ${block.contain ? 'object-contain' : 'object-cover'} ${block.noGrayscale ? 'scale-100 hover:scale-[1.03]' : 'grayscale opacity-80 hover:grayscale-0 hover:opacity-100'}`} 
+                          className={`w-full h-full max-w-full transition-all duration-700 ${block.contain ? 'object-contain' : 'object-cover'} ${block.noGrayscale ? 'scale-100 hover:scale-[1.02]' : 'grayscale opacity-80 hover:grayscale-0 hover:opacity-100'}`} 
                           alt="" 
                           referrerPolicy="no-referrer" 
                         />
@@ -860,34 +893,34 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
             case 'comparison':
               return (
                 <section key={idx} className={`section-padding ${bgClass}`}>
-                  <div className="container-wide">
+                  <div className="max-w-7xl mx-auto w-full">
                     {(block.title || block.description) && (
-                      <div className="mb-24 text-center">
-                        {block.title && <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tighter">{block.title}</h2>}
-                        {block.description && <p className="text-xl md:text-2xl text-fg-muted font-light max-w-3xl mx-auto leading-relaxed">{block.description}</p>}
+                      <div className="mb-10 sm:mb-16 md:mb-24 text-center">
+                        {block.title && <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 md:mb-8 tracking-tighter break-words">{block.title}</h2>}
+                        {block.description && <p className="text-base sm:text-xl md:text-2xl text-fg-muted font-light max-w-3xl mx-auto leading-relaxed break-words">{block.description}</p>}
                       </div>
                     )}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                      <div className="space-y-8">
-                        <span className="inline-block px-4 py-2 bg-red-500/10 text-red-500 text-[10px] font-bold uppercase tracking-[0.3em] rounded-full">Evolution A</span>
-                        <div className={`rounded-[2.5rem] overflow-hidden shadow-2xl ${block.aspect || 'aspect-[16/10]'} border border-border-theme/40 flex items-center justify-center ${block.padding ? 'p-6 md:p-8 lg:p-10' : ''} ${block.bgWhite ? 'bg-white dark:bg-zinc-950' : 'bg-canvas-muted'}`}>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
+                      <div className="space-y-4 sm:space-y-8">
+                        <span className="inline-block px-3.5 sm:px-4 py-1.5 sm:py-2 bg-red-500/10 text-red-500 text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] rounded-full">Evolution A</span>
+                        <div className={`rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-xl ${block.aspect || 'aspect-[16/10]'} border border-border-theme/40 flex items-center justify-center ${block.padding ? 'p-3 sm:p-6 md:p-8 lg:p-10' : ''} ${block.bgWhite ? 'bg-white dark:bg-zinc-950' : 'bg-canvas-muted'} max-w-full`}>
                           <img 
                             src={block.before} 
-                            className={`w-full h-full transition-all duration-700 ${block.contain ? 'object-contain' : 'object-cover'} grayscale opacity-60`} 
+                            className={`w-full h-full max-w-full transition-all duration-700 ${block.contain ? 'object-contain' : 'object-cover'} grayscale opacity-60`} 
                             alt="Before" 
                             referrerPolicy="no-referrer" 
                           />
                         </div>
                       </div>
-                      <div className="space-y-8">
-                        <span className="inline-block px-4 py-2 bg-green-500/10 text-green-500 text-[10px] font-bold uppercase tracking-[0.3em] rounded-full">Evolution B (Final)</span>
+                      <div className="space-y-4 sm:space-y-8">
+                        <span className="inline-block px-3.5 sm:px-4 py-1.5 sm:py-2 bg-green-500/10 text-green-500 text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] rounded-full">Evolution B (Final)</span>
                         <div 
-                          className={`rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.08)] dark:shadow-[0_40px_80px_rgba(0,0,0,0.35)] ${block.aspect || 'aspect-[16/10]'} border-4 md:border-8 flex items-center justify-center ${block.padding ? 'p-6 md:p-8 lg:p-10' : ''} ${block.bgWhite ? 'bg-white dark:bg-zinc-950' : 'bg-canvas-muted'}`} 
+                          className={`rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-xl md:shadow-[0_40px_80px_rgba(0,0,0,0.08)] dark:shadow-[0_40px_80px_rgba(0,0,0,0.35)] ${block.aspect || 'aspect-[16/10]'} border-2 sm:border-4 md:border-8 flex items-center justify-center ${block.padding ? 'p-3 sm:p-6 md:p-8 lg:p-10' : ''} ${block.bgWhite ? 'bg-white dark:bg-zinc-950' : 'bg-canvas-muted'} max-w-full`} 
                           style={{ borderColor: project.accent }}
                         >
                           <img 
                             src={block.after} 
-                            className={`w-full h-full transition-all duration-700 ${block.contain ? 'object-contain' : 'object-cover'}`} 
+                            className={`w-full h-full max-w-full transition-all duration-700 ${block.contain ? 'object-contain' : 'object-cover'}`} 
                             alt="After" 
                             referrerPolicy="no-referrer" 
                           />
@@ -901,18 +934,18 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
               return (
                 <section key={idx} className={`section-padding ${bgClass}`}>
                   <motion.div 
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0.97 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="container-wide"
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="max-w-7xl mx-auto w-full"
                   >
-                    <div className="aspect-[21/9] rounded-[3rem] overflow-hidden shadow-3xl border border-border-theme">
-                      <img src={block.image} className="w-full h-full object-cover" alt="" referrerPolicy="no-referrer" />
+                    <div className="aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] lg:aspect-[21/9] rounded-2xl sm:rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-border-theme max-w-full">
+                      <img src={block.image} className="w-full h-full object-cover max-w-full" alt="" referrerPolicy="no-referrer" />
                     </div>
                     {block.caption && (
-                      <div className="mt-12 flex justify-center">
-                        <span className="px-6 py-2 rounded-full bg-canvas-muted border border-border-theme text-[10px] font-bold uppercase tracking-[0.4em] text-fg-muted">
+                      <div className="mt-6 sm:mt-8 md:mt-12 flex justify-center text-center px-4">
+                        <span className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-canvas-muted border border-border-theme text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.25em] sm:tracking-[0.4em] text-fg-muted max-w-full break-words">
                           {block.caption}
                         </span>
                       </div>
@@ -922,23 +955,23 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
               );
             case 'quote':
               return (
-                <section key={idx} className="py-64 px-6 bg-canvas-muted relative overflow-hidden">
-                   <div className="absolute top-0 left-0 w-full h-px opacity-30" style={{ background: `linear-gradient(to right, transparent, ${project.accent}, transparent)` }} />
-                  <div className="container-wide text-center relative z-10">
+                <section key={idx} className="py-20 sm:py-32 md:py-48 lg:py-64 px-4 sm:px-6 md:px-8 lg:px-12 bg-canvas-muted relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-px opacity-30" style={{ background: `linear-gradient(to right, transparent, ${project.accent}, transparent)` }} />
+                  <div className="max-w-5xl mx-auto text-center relative z-10 w-full">
                     <motion.h2 
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                      className="text-4xl md:text-8xl font-display italic tracking-tight leading-[1.1] mb-12 text-balance"
+                      className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-display italic tracking-tight leading-[1.2] sm:leading-[1.1] mb-8 sm:mb-12 text-balance break-words"
                     >
                       "{block.text}"
                     </motion.h2>
                     {block.author && (
                       <div className="flex items-center justify-center gap-4">
-                        <div className="w-8 h-[1px] bg-border-theme" />
-                        <p className="text-xs font-bold uppercase tracking-[0.5em]" style={{ color: project.accent }}>{block.author}</p>
-                        <div className="w-8 h-[1px] bg-border-theme" />
+                        <div className="w-8 sm:w-12 h-[1px] bg-border-theme" />
+                        <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.3em] sm:tracking-[0.5em]" style={{ color: project.accent }}>{block.author}</p>
+                        <div className="w-8 sm:w-12 h-[1px] bg-border-theme" />
                       </div>
                     )}
                   </div>
@@ -948,13 +981,13 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
             case 'layered':
               return (
                 <section key={idx} className={`section-padding overflow-hidden ${bgClass}`}>
-                  <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-24 items-center">
+                  <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-16 lg:gap-24 items-center">
                     <div className="lg:col-span-5">
                       <motion.h2 
-                         initial={{ opacity: 0, x: -30 }}
-                         whileInView={{ opacity: 1, x: 0 }}
+                         initial={{ opacity: 0, y: 20 }}
+                         whileInView={{ opacity: 1, y: 0 }}
                          viewport={{ once: true }}
-                         className="text-4xl md:text-7xl font-bold mb-10 tracking-tighter"
+                         className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 sm:mb-8 md:mb-10 tracking-tighter break-words"
                       >
                         {block.title}
                       </motion.h2>
@@ -962,23 +995,28 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.4 }}
-                        className="text-xl md:text-2xl text-fg-muted font-light leading-relaxed"
+                        transition={{ delay: 0.3 }}
+                        className="text-base sm:text-lg md:text-xl lg:text-2xl text-fg-muted font-light leading-relaxed whitespace-pre-line break-words"
                       >
                         {block.content}
                       </motion.p>
                     </div>
-                    <div className="lg:col-span-7 relative h-[600px] md:h-[800px]">
+                    <div className="lg:col-span-7 relative h-[340px] sm:h-[460px] md:h-[600px] lg:h-[750px] xl:h-[800px] w-full max-w-full overflow-hidden">
                       {block.images.map((img, i) => (
                         <motion.div
                           key={i}
-                          initial={{ opacity: 0, x: 100, y: 100, rotate: 5 }}
-                          whileInView={{ opacity: 1, x: i * 80, y: i * 80, rotate: i * -3 }}
+                          initial={{ opacity: 0, y: 40 }}
+                          whileInView={{ 
+                            opacity: 1, 
+                            x: i * (typeof window !== 'undefined' && window.innerWidth < 768 ? 24 : 60), 
+                            y: i * (typeof window !== 'undefined' && window.innerWidth < 768 ? 24 : 60), 
+                            rotate: i * -2 
+                          }}
                           viewport={{ once: true }}
-                          transition={{ duration: 1.5, delay: i * 0.4, ease: [0.16, 1, 0.3, 1] }}
-                          className="absolute top-0 left-0 w-3/4 aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_60px_120px_rgba(0,0,0,0.3)] border-[12px] border-canvas"
+                          transition={{ duration: 1.2, delay: i * 0.3, ease: [0.16, 1, 0.3, 1] }}
+                          className="absolute top-2 left-2 w-[82%] sm:w-3/4 aspect-[4/5] rounded-2xl sm:rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.2)] dark:shadow-[0_30px_70px_rgba(0,0,0,0.5)] border-4 sm:border-8 lg:border-[12px] border-canvas"
                         >
-                          <img src={img} className="w-full h-full object-cover" alt="" referrerPolicy="no-referrer" />
+                          <img src={img} className="w-full h-full object-cover max-w-full" alt="" referrerPolicy="no-referrer" />
                         </motion.div>
                       ))}
                     </div>
@@ -987,18 +1025,26 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
               );
             case 'outcomes':
               return (
-                <section key={idx} className="py-40 px-6 bg-fg text-canvas">
-                  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-24 text-center">
+                <section key={idx} className="py-20 sm:py-28 md:py-40 px-4 sm:px-6 md:px-8 lg:px-12 bg-fg text-canvas">
+                  <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16 md:gap-24 text-center">
                     {block.items.map((item, i) => (
                       <motion.div 
                         key={i}
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: i * 0.2 }}
+                        transition={{ delay: i * 0.15 }}
+                        className="flex flex-col items-center"
                       >
-                        <div className="text-7xl md:text-9xl font-extrabold mb-4 tracking-tighter" style={{ color: project.accent }}>{item.value}</div>
-                        <div className="text-xs font-bold uppercase tracking-[0.5em] opacity-40">{item.label}</div>
+                        <div 
+                          className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold mb-2 sm:mb-4 tracking-tighter break-words" 
+                          style={{ color: project.accent }}
+                        >
+                          {item.value}
+                        </div>
+                        <div className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.3em] sm:tracking-[0.5em] opacity-50 break-words">
+                          {item.label}
+                        </div>
                       </motion.div>
                     ))}
                   </div>
@@ -1006,18 +1052,18 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
               );
             case 'statement':
               return (
-                <section key={idx} className="py-48 px-6 text-center bg-canvas">
+                <section key={idx} className="py-20 sm:py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 text-center bg-canvas">
                   <motion.div
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="max-w-5xl mx-auto"
+                    className="max-w-5xl mx-auto w-full"
                   >
-                    <h3 className="text-4xl md:text-7xl font-bold tracking-tight mb-8 leading-tight">
+                    <h3 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-8 leading-tight break-words text-balance">
                       {block.text}
                     </h3>
                     {block.subtext && (
-                      <p className="text-xl md:text-2xl text-fg-muted font-light max-w-2xl mx-auto leading-relaxed">
+                      <p className="text-base sm:text-xl md:text-2xl text-fg-muted font-light max-w-2xl mx-auto leading-relaxed break-words">
                         {block.subtext}
                       </p>
                     )}
@@ -1037,47 +1083,47 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
         const nextProject = PROJECTS[nextIndex];
         return (
           <section 
-            className="group relative h-[80vh] flex items-center justify-center overflow-hidden cursor-pointer bg-black"
+            className="group relative min-h-[60vh] sm:h-[80vh] flex items-center justify-center overflow-hidden cursor-pointer bg-black py-16 px-4 sm:px-6"
             onClick={() => onSelect(nextProject)}
           >
             <div className="absolute inset-0 z-0">
               <img 
                 src={nextProject.image} 
-                className="w-full h-full object-cover opacity-40 transition-transform duration-1000 group-hover:scale-110" 
+                className="w-full h-full object-cover opacity-40 transition-transform duration-1000 group-hover:scale-105" 
                 alt={nextProject.title}
-                referrerPolicy="no-referrer"
+                referrerPolicy="no-referrer" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
             </div>
             
-            <div className="relative z-10 text-center text-white p-6 max-w-4xl">
+            <div className="relative z-10 text-center text-white p-4 sm:p-6 max-w-4xl w-full">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <span className="text-xs font-bold uppercase tracking-[0.6em] mb-6 block text-white/60">Next Project</span>
-                <h2 className="text-6xl md:text-[10vw] font-extrabold tracking-tighter leading-none mb-8">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.4em] sm:tracking-[0.6em] mb-4 sm:mb-6 block text-white/60">Next Project</span>
+                <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[9vw] font-extrabold tracking-tighter leading-none mb-6 sm:mb-8 break-words">
                   {nextProject.title}
                 </h2>
-                <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-                  <p className="text-xl font-light text-white/80 max-w-md">{nextProject.description}</p>
-                  <div className="h-20 w-[1px] bg-white/20 hidden md:block" />
-                  <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-accent">
-                    View Case Study <ArrowRight size={20} />
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-8">
+                  <p className="text-base sm:text-lg md:text-xl font-light text-white/80 max-w-md break-words">{nextProject.description}</p>
+                  <div className="h-12 md:h-20 w-[1px] bg-white/20 hidden md:block" />
+                  <div className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm font-bold uppercase tracking-widest text-accent">
+                    View Case Study <ArrowRight size={18} />
                   </div>
                 </div>
               </motion.div>
             </div>
 
             {/* Hover Indicator */}
-            <div className="absolute inset-0 border-[0px] group-hover:border-[20px] border-accent/20 transition-all duration-700 pointer-events-none" />
+            <div className="absolute inset-0 border-[0px] group-hover:border-[12px] md:group-hover:border-[20px] border-accent/20 transition-all duration-700 pointer-events-none" />
           </section>
         );
       })()}
 
-      <footer className="py-24 px-6 bg-canvas border-t border-border-theme text-center">
-        <p className="text-fg-muted text-sm uppercase tracking-widest font-bold">End of Project</p>
+      <footer className="py-16 sm:py-24 px-4 sm:px-6 bg-canvas border-t border-border-theme text-center">
+        <p className="text-fg-muted text-xs sm:text-sm uppercase tracking-widest font-bold">End of Project</p>
       </footer>
     </motion.div>
   );
