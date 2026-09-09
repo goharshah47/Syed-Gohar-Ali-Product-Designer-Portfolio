@@ -387,7 +387,7 @@ const PROJECTS: Project[] = [
       {
         type: 'phase-intro',
         title: '01. Overview',
-        role: 'Lead Product Designer',
+        role: 'Product Designer',
         scope: 'End-to-End Product Strategy, AI Interaction Design, Design Systems',
         tools: ['Figma', 'React', 'Tailwind CSS', 'Google PAIR', 'Framer Motion'],
         activities: [
@@ -451,7 +451,7 @@ const PROJECTS: Project[] = [
       {
         type: 'quote',
         text: 'SaaS users do not want magical black boxes; they want tools that let them review, edit, understand, and instantly undo decisions.',
-        author: 'Lead Product Designer'
+        author: 'Product Designer'
       },
       {
         type: 'section-header',
@@ -1272,7 +1272,7 @@ const Hero = () => {
               transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="text-lg md:text-xl text-fg-muted max-w-[600px] font-light leading-relaxed mb-10 text-balance"
             >
-              Product Designer focused on B2B, SaaS, and ecommerce platforms—turning complex workflows into simple, intuitive experiences.
+              Product Designer with 4+ years of experience designing user-centered SaaS, e-commerce, and AI-powered products—turning complex workflows into simple, intuitive experiences.
             </motion.p>
  
             <motion.div 
@@ -1542,63 +1542,89 @@ const WorkGrid = ({ onSelect }: { onSelect: (project: Project) => void }) => {
 };
 
 const About = () => {
-  const skills = [
+  const primarySkills = [
     "Product Design",
+    "UX/UI Design",
     "UX Research",
-    "Design Systems",
-    "Rapid Prototyping",
-    "User Flows",
-    "User Journey Mapping",
-    "UX Architecture",
-    "Team Management",
-    "HTML/CSS"
+    "Interaction Design",
+    "Design Systems & Component Libraries"
   ];
 
-  const tools = [
+  const secondarySkills = [
+    "Information Architecture",
+    "Wireframing & Rapid Prototyping",
+    "Usability Testing & Heuristics",
+    "AI-Powered Product Design",
+    "SaaS & B2B Product Design",
+    "E-commerce UX",
+    "User Flows & Journey Mapping",
+    "Responsive & Mobile-First Design",
+    "Accessibility (WCAG)"
+  ];
+
+  const primaryTools = [
     "Figma",
-    "Sketch",
-    "Adobe XD",
+    "ChatGPT",
+    "Claude",
+    "Jira",
+    "Miro"
+  ];
+
+  const secondaryTools = [
     "Adobe Creative Suite",
+    "Adobe Illustrator",
+    "Adobe Photoshop",
+    "Adobe XD",
+    "Sketch",
+    "InVision",
     "Hotjar",
-    "Fullstory",
-    "Intercom"
+    "FullStory",
+    "Confluence",
+    "Notion",
+    "Zeplin",
+    "HTML/CSS"
   ];
 
   const experience = [
     {
       company: "Soft Code Labs",
-      period: "Sept 2022 – Present",
+      period: "Sep 2022 – Present",
       role: "Product Designer",
-      location: "Islamabad, PK",
+      location: "Islamabad, Pakistan",
+      isCurrent: true,
       bullets: [
-        "Designed user-centred interfaces in Figma, improving UX and customer satisfaction.",
-        "Developed and optimized AI tools to enhance functionality and personalize experiences.",
-        "Conducted user research and data analysis to inform design decisions.",
-        "Led design reviews and user testing, integrating AI solutions based on feedback.",
-        "Collaborated with developers to ensure design accuracy and accessibility."
+        "Design end-to-end UX/UI experiences for web and SaaS products across discovery, user research, wireframes, rapid prototyping, and high-fidelity UI design.",
+        "Design AI-powered product experiences, translating complex, multi-step workflows into intuitive interfaces and clear, actionable user journeys.",
+        "Conduct UX research, usability testing, and competitive product analysis to identify friction points, uncover user needs, and improve task completion and conversion rates.",
+        "Build and maintain scalable design systems and reusable UI component libraries in Figma to ensure visual and interaction consistency across products.",
+        "Partner closely with software engineers, product managers, and stakeholders to translate designs into accurate, accessible, production-ready experiences.",
+        "Apply behavioral analytics and user insights (Hotjar, FullStory) to diagnose usability issues and inform iterative, data-driven design decisions.",
+        "Present design rationale and user research findings to stakeholders to align product strategy with user needs and business goals."
       ]
     },
     {
       company: "Fiverr.com",
       period: "Nov 2015 – Present",
-      role: "Freelance Graphic Designer",
+      role: "Freelance Graphic & Product Designer",
       location: "Remote",
+      isCurrent: false,
       bullets: [
-        "Successfully completed 9,000+ orders globally with 6,000+ positive reviews.",
-        "Designed multiple eye-catching logos, business cards, brochures, newsletter and magazine for social media sites.",
-        "Working closely with clients throughout projects to create vision and conceive design.",
-        "Managed multiple projects simultaneously, ensuring timely delivery and client satisfaction."
+        "Delivered 9,000+ design projects for international clients, earning 6,000+ positive client reviews for quality, communication, and reliability.",
+        "Designed brand identities, marketing collateral, social media assets, and digital product experiences across diverse industries.",
+        "Managed multiple concurrent client engagements end-to-end, maintaining clear communication, quality standards, and on-time delivery.",
+        "Gathered and interpreted client requirements to produce design solutions aligned with brand goals and target audiences."
       ]
     },
     {
       company: "Soft Code Labs",
-      period: "Mar 2020 – Sept 2022",
+      period: "Mar 2020 – Sep 2022",
       role: "Graphic Designer",
-      location: "Islamabad, PK",
+      location: "Islamabad, Pakistan",
+      isCurrent: false,
       bullets: [
-        "Led a team of of three designers to develop graphic and production materials.",
-        "Developed innovative visual solutions to complex design problems.",
-        "Managed the design and development of multiple websites and applications."
+        "Led and mentored a team of 3 designers across multiple concurrent web and application design projects.",
+        "Designed visual assets, UI elements, and page layouts for websites and applications.",
+        "Collaborated with developers throughout implementation to ensure pixel-accurate, on-brand execution."
       ]
     },
     {
@@ -1606,22 +1632,23 @@ const About = () => {
       period: "Ongoing",
       role: "Stock Contributor",
       location: "Remote",
+      isCurrent: false,
+      isCompact: true,
       bullets: [
-        "Created high-quality vector graphics and illustrations for various purposes.",
-        "Produced scalable vector artwork suitable for print and digital platforms.",
-        "Utilised Adobe Illustrator for design creation and editing."
+        "Created and published original vector illustrations and visual assets for digital and commercial use.",
+        "Developed scalable, production-ready vector artwork using Adobe Illustrator."
       ]
     }
   ];
 
   const certifications = [
-    { title: "UX Design Professional", issuer: "Google" },
+    { title: "Google UX Design Professional Certificate", issuer: "Google" },
     { title: "Introduction to Artificial Intelligence", issuer: "IBM" }
   ];
 
   return (
     <section id="about" className="section-padding bg-canvas-muted/20 transition-colors duration-500 border-y border-border-theme">
-      <div className="container-wide max-w-7xl mx-auto flex flex-col gap-16">
+      <div className="container-wide max-w-7xl mx-auto flex flex-col gap-14 md:gap-16">
         
         {/* About Section Header */}
         <motion.div
@@ -1629,22 +1656,22 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col gap-6"
+          className="flex flex-col gap-5 md:gap-6"
         >
           <span className="text-accent text-[11px] font-bold uppercase tracking-[0.5em]">About Me</span>
-          <h2 className="font-sans font-extrabold text-[2.5rem] md:text-[4rem] lg:text-[5rem] tracking-tighter leading-[0.95] text-balance text-fg">
-            Solving complex UX challenges with <span className="text-accent underline decoration-accent/20">clarity</span> and intent.
+          <h2 className="font-sans font-extrabold text-[2.25rem] sm:text-[3.25rem] md:text-[3.85rem] lg:text-[4.5rem] tracking-tight leading-[1.05] text-balance text-fg">
+            Designing user-centered products with <span className="text-accent font-display italic font-normal">clarity</span> and intent.
           </h2>
-          <p className="mt-4 text-xl text-fg-muted font-light leading-relaxed max-w-3xl">
-            I am a fundamental UI/UX thinker with a solid foundation in computer science, bridging the gap between engineering systems and intuitive user layouts. Deeply responsive to client ambitions, I specialize in simplifying intricate product workflows and developing scalable design patterns.
+          <p className="mt-2 text-base sm:text-lg md:text-xl text-fg-muted font-light leading-relaxed max-w-3xl text-balance">
+            Product Designer with 4+ years of experience designing user-centered SaaS, e-commerce, and AI-powered products from discovery through delivery. With a foundational background in Computer Science, I bridge engineering feasibility and human-centered design—translating complex business requirements and multi-step workflows into simple, intuitive, and accessible digital experiences. I collaborate with product managers, engineers, and stakeholders to build scalable design systems, conduct research, and deliver high-fidelity product experiences.
           </p>
         </motion.div>
 
-        {/* Dynamic Bento & Columns Layout */}
+        {/* Two-Column Responsive Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* LEFT: Experience Timeline */}
-          <div className="lg:col-span-7 flex flex-col gap-12">
+          <div className="lg:col-span-7 flex flex-col gap-10">
             <div>
               <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-8">Work Experience</span>
               <div className="flex flex-col gap-10 border-l border-border-theme pl-6 md:pl-8 ml-2">
@@ -1655,25 +1682,44 @@ const About = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className="relative"
+                    className="relative group"
                   >
                     {/* Circle timeline point */}
-                    <div className="absolute -left-[31px] md:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full border-2 border-accent bg-canvas transition-all duration-300 group-hover:scale-125" />
+                    <div 
+                      className={`absolute -left-[31px] md:-left-[39px] top-1.5 rounded-full transition-all duration-300 ${
+                        job.isCurrent 
+                          ? "w-4 h-4 -left-[33px] md:-left-[41px] border-2 border-accent bg-accent ring-4 ring-accent/15" 
+                          : "w-3.5 h-3.5 border-2 border-accent bg-canvas group-hover:scale-125"
+                      }`} 
+                    />
                     
-                    <div className="flex flex-wrap justify-between items-baseline gap-2 mb-3">
+                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5 sm:gap-2 mb-3">
                       <div>
-                        <h3 className="text-lg font-bold text-fg leading-none">{job.role}</h3>
-                        <span className="text-sm text-accent/80 font-semibold">{job.company}</span>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h3 className={`font-bold text-fg leading-snug ${job.isCurrent ? "text-xl" : "text-lg"}`}>
+                            {job.role}
+                          </h3>
+                          {job.isCurrent && (
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-accent/10 text-accent border border-accent/30">
+                              Current Role
+                            </span>
+                          )}
+                        </div>
+                        <span className="text-sm text-accent font-semibold">{job.company}</span>
                       </div>
-                      <div className="text-xs text-fg-muted bg-canvas-muted px-2 py-1 rounded border border-border-theme">
-                        {job.period} <span className="mx-1">•</span> {job.location}
+                      <div className="text-xs text-fg-muted font-medium bg-canvas-muted px-2.5 py-1 rounded-md border border-border-theme inline-flex items-center gap-1.5 self-start sm:self-auto shrink-0">
+                        <span>{job.period}</span>
+                        <span className="text-border-theme font-bold">•</span>
+                        <span>{job.location}</span>
                       </div>
                     </div>
                     
-                    <ul className="list-none space-y-2 text-sm text-fg-muted/90 leading-relaxed font-light">
+                    <ul className={`list-none leading-relaxed font-light ${
+                      job.isCompact ? "space-y-1.5 text-xs text-fg-muted/80" : "space-y-2 text-sm text-fg-muted/90"
+                    }`}>
                       {job.bullets.map((bullet, bIdx) => (
                         <li key={bIdx} className="flex gap-2">
-                          <span className="text-accent select-none mt-1">↳</span>
+                          <span className="text-accent select-none mt-1 shrink-0">↳</span>
                           <span>{bullet}</span>
                         </li>
                       ))}
@@ -1685,16 +1731,32 @@ const About = () => {
           </div>
 
           {/* RIGHT: Skills, Tools, Education, Certifications */}
-          <div className="lg:col-span-5 flex flex-col gap-12">
+          <div className="lg:col-span-5 flex flex-col gap-8 md:gap-10">
             
-            {/* Skills Division */}
-            <div className="p-6 md:p-8 rounded-[2rem] bg-canvas border border-border-theme/65 shadow-sm">
-              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-5">Professional Skills</span>
-              <div className="flex flex-wrap gap-2">
-                {skills.map((skill, idx) => (
+            {/* Core Capabilities & Skills Card */}
+            <div className="p-6 md:px-8 md:pt-8 md:pb-6 pb-5 rounded-[1.75rem] md:rounded-[2rem] bg-canvas border border-border-theme/70 shadow-xs">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-5">
+                Core Capabilities & Skills
+              </span>
+              
+              {/* Primary Product Design Competencies */}
+              <div className="flex flex-wrap gap-2 mb-3">
+                {primarySkills.map((skill, idx) => (
                   <span 
                     key={idx}
-                    className="px-4 py-2 rounded-full bg-canvas-muted border border-border-theme/80 text-[11px] font-semibold text-fg-muted tracking-wide hover:border-accent hover:text-fg transition-all duration-300"
+                    className="px-3.5 py-1.5 rounded-full bg-accent/10 border border-accent/35 text-xs font-semibold text-fg tracking-wide hover:border-accent hover:bg-accent/15 transition-all duration-200"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+
+              {/* Supporting Product & Execution Capabilities */}
+              <div className="flex flex-wrap gap-2 pt-2.5 border-t border-border-theme/50">
+                {secondarySkills.map((skill, idx) => (
+                  <span 
+                    key={idx}
+                    className="px-3 py-1.5 rounded-full bg-canvas-muted border border-border-theme/80 text-[11px] font-medium text-fg-muted tracking-wide hover:border-accent/40 hover:text-fg transition-all duration-200"
                   >
                     {skill}
                   </span>
@@ -1702,14 +1764,30 @@ const About = () => {
               </div>
             </div>
 
-            {/* Tools Division */}
-            <div className="p-6 md:p-8 rounded-[2rem] bg-canvas border border-border-theme/65 shadow-sm">
-              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-5">Design Tools</span>
-              <div className="flex flex-wrap gap-2">
-                {tools.map((tool, idx) => (
+            {/* Tools & Technologies Card */}
+            <div className="p-6 md:px-8 md:pt-8 md:pb-6.5 pb-5 rounded-[1.75rem] md:rounded-[2rem] bg-canvas border border-border-theme/70 shadow-xs">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-5">
+                Tools & Technologies
+              </span>
+
+              {/* Primary / Core Tools */}
+              <div className="flex flex-wrap gap-2 mb-3">
+                {primaryTools.map((tool, idx) => (
                   <span 
                     key={idx}
-                    className="px-4 py-2 rounded-full bg-canvas-muted border border-border-theme/80 text-[11px] font-semibold text-fg-muted tracking-wide hover:border-accent hover:text-fg transition-all duration-300"
+                    className="px-3.5 py-1.5 rounded-full bg-accent/10 border border-accent/35 text-xs font-semibold text-fg tracking-wide hover:border-accent hover:bg-accent/15 transition-all duration-200"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+
+              {/* Secondary / Supporting Tools (Separated by spacing alone) */}
+              <div className="flex flex-wrap gap-2 pt-1">
+                {secondaryTools.map((tool, idx) => (
+                  <span 
+                    key={idx}
+                    className="px-3 py-1.5 rounded-full bg-canvas-muted border border-border-theme/80 text-[11px] font-medium text-fg-muted tracking-wide hover:border-accent/40 hover:text-fg transition-all duration-200"
                   >
                     {tool}
                   </span>
@@ -1717,25 +1795,31 @@ const About = () => {
               </div>
             </div>
 
-            {/* Education & Certs */}
-            <div className="p-6 md:p-8 rounded-[2rem] bg-canvas border border-border-theme/65 shadow-sm flex flex-col gap-6">
+            {/* Education & Certifications Card */}
+            <div className="p-6 md:p-8 rounded-[1.75rem] md:rounded-[2rem] bg-canvas border border-border-theme/70 shadow-xs flex flex-col gap-6">
               
               <div>
-                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-3">Education</span>
-                <div className="text-sm font-bold text-fg">Bachelor of Computer Science</div>
-                <div className="text-xs text-fg-muted mt-1">Comsats University Islamabad, Pakistan</div>
-                <div className="text-xs text-accent mt-0.5">Sept 2015</div>
+                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-3">
+                  Education
+                </span>
+                <div className="text-sm md:text-base font-bold text-fg">Bachelor of Science, Computer Science</div>
+                <div className="text-xs md:text-sm text-fg-muted mt-1">COMSATS University — Islamabad, Pakistan</div>
+                <div className="text-xs text-accent mt-1 font-semibold">Graduated Sept 2015</div>
               </div>
 
-              <div className="pt-4 border-t border-border-theme/50">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-3">Industry Credentials</span>
-                <div className="flex flex-col gap-3">
+              <div className="pt-5 border-t border-border-theme/50">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-accent block mb-3">
+                  Certifications
+                </span>
+                <div className="flex flex-col gap-3.5">
                   {certifications.map((cert, idx) => (
-                    <div key={idx} className="flex gap-2.5 items-start">
-                      <span className="text-xs text-accent mt-0.5">✔</span>
+                    <div key={idx} className="flex gap-3 items-start">
+                      <div className="w-4 h-4 rounded-full bg-accent/15 text-accent flex items-center justify-center text-[10px] font-bold mt-0.5 shrink-0">
+                        ✓
+                      </div>
                       <div>
-                        <div className="text-xs font-bold text-fg leading-tight">{cert.title}</div>
-                        <div className="text-[11px] text-fg-muted">{cert.issuer}</div>
+                        <div className="text-xs md:text-sm font-bold text-fg leading-snug">{cert.title}</div>
+                        <div className="text-[11px] text-fg-muted mt-0.5">{cert.issuer}</div>
                       </div>
                     </div>
                   ))}
@@ -1776,7 +1860,9 @@ const Contact = () => {
 
           <div className="mt-24 pt-12 border-t border-border-theme flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-fg-muted text-sm">© 2026 Syed Gohar Ali. All rights reserved.</p>
-            <div className="flex gap-8 text-fg-muted text-sm uppercase tracking-widest font-semibold">
+            <div className="flex flex-wrap items-center gap-6 text-fg-muted text-sm uppercase tracking-widest font-semibold">
+              <span>Islamabad, Pakistan</span>
+              <span className="hidden sm:inline text-border-theme">•</span>
               <a href="https://linkedin.com/in/syedgohar" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition-colors">LinkedIn</a>
             </div>
           </div>
