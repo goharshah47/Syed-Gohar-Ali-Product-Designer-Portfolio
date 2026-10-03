@@ -5,7 +5,23 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
-import { ArrowRight, ChevronRight, Github, Linkedin, Mail, ExternalLink, Menu, X, Sun, Moon, Search, ShoppingBag, Plus, Check, Filter, ArrowUpRight, AlertCircle } from 'lucide-react';
+import { ArrowRight, ChevronRight, Github, Linkedin, Mail, ExternalLink, Menu, X, Sun, Moon } from 'lucide-react';
+import strydeCoverImage from './assets/images/stryde_cover_1789060511507.jpg';
+import strydeInnerCoverImage from './assets/images/stryde_inner_cover_1789060527914.jpg';
+import {
+  StrydeHeroVisual,
+  StrydeChallengeVisual,
+  StrydeHomeComparison,
+  StrydeCoreFocusFlow,
+  StrydeActiveFocusShowcase,
+  StrydeArchitectureTree,
+  StrydeStatsVsAnalytics,
+  StrydeAdaptiveNavVisual,
+  StrydeThemeAndCalendarVisual,
+  StrydeProVisual,
+  StrydeFinalMontage,
+  StrydeTakeawaysVisual
+} from './components/StrydeSections';
 
 // --- Data Types ---
 
@@ -21,9 +37,9 @@ interface Project {
 }
 
 type ContentBlock = 
-  | { type: 'hero', title: string, subtitle: string, image: string, role?: string, tools?: string[] }
+  | { type: 'hero', title: string, subtitle: string, image?: string, customVisual?: React.ReactNode, role?: string, tools?: string[] }
   | { type: 'phase-intro', title: string, role: string, scope: string, tools: string[], activities: string[] }
-  | { type: 'text-split', title: string, content: string, image: string, reversed?: boolean, tag?: string }
+  | { type: 'text-split', title: string, content: string, image?: string, customVisual?: React.ReactNode, reversed?: boolean, tag?: string }
   | { type: 'image-full', image: string, caption?: string }
   | { type: 'image-grid', images: string[], columns?: 2 | 3, contain?: boolean, padding?: boolean, bgWhite?: boolean, noGrayscale?: boolean, aspect?: string }
   | { type: 'quote', text: string, author?: string }
@@ -31,191 +47,123 @@ type ContentBlock =
   | { type: 'outcomes', items: { label: string, value: string }[] }
   | { type: 'statement', text: string, subtext?: string }
   | { type: 'comparison', before: string, after: string, title?: string, description?: string, contain?: boolean, padding?: boolean, bgWhite?: boolean, aspect?: string }
-  | { type: 'section-header', title: string, subtitle?: string };
+  | { type: 'section-header', title: string, subtitle?: string }
+  | { type: 'custom', render: () => React.ReactNode };
 
 // --- Mock Data ---
 
 const PROJECTS: Project[] = [
   {
-    id: 'safco-dental',
-    title: 'Safco Dental',
-    year: '2025 - 2026',
-    category: 'B2B Ecommerce Redesign • Healthcare',
-    image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/cover.jpg',
-    accent: '#0d9488',
-    description: 'Transforming a legacy dental supply platform into a scalable, modern ecommerce system for procurement teams.',
+    id: 'stryde',
+    title: 'STRYDĒ',
+    year: '2026',
+    category: 'Product Design • Mobile UX • UX/UI',
+    image: strydeCoverImage,
+    accent: '#f97316',
+    description: 'A calmer, smarter focus experience for deep work.',
     blocks: [
-      { 
-        type: 'hero', 
-        title: 'Safco Dental', 
-        subtitle: 'Making complex B2B purchasing feel effortless.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/inner_Cover.png'
+      {
+        type: 'hero',
+        title: 'STRYDĒ',
+        subtitle: 'A calmer, smarter focus experience for deep work.',
+        image: strydeInnerCoverImage,
+        customVisual: <StrydeHeroVisual />
       },
       {
         type: 'phase-intro',
         title: 'Project Snapshot',
         role: 'Product Designer',
-        scope: 'B2B Ecommerce Web Platform',
-        tools: ['Figma', 'Magento', 'Design Tokens', 'UserTesting', 'Hotjar', 'Fullstory'],
+        scope: 'Mobile Productivity App',
+        tools: ['Figma', 'Google AI Studio'],
         activities: [
-          'UX Research & Behavior Auditing',
-          'Information Architecture Strategy',
-          'User Flows & Task Analysis',
-          'UI Design & Prototyping',
-          'Enterprise Design System Development'
+          'UX Strategy',
+          'Information Architecture',
+          'User Flows',
+          'Interaction Design',
+          'UI Design',
+          'Prototyping',
+          'Design Systems'
         ]
       },
       {
         type: 'section-header',
         title: '01. The Challenge',
-        subtitle: 'Improving the digital experience for dental professionals through research-driven UX strategy, intuitive navigation, and scalable design.'
+        subtitle: 'Too much productivity can become a distraction.'
+      },
+      {
+        type: 'custom',
+        render: () => <StrydeChallengeVisual />
       },
       {
         type: 'text-split',
-        tag: 'The Context',
-        title: 'Complexity at Scale',
-        content: 'Safco Dental is a major B2B commerce platform serving thousands of dental practices and procurement managers. The existing platform was bogged down by outdated design paradigms, making it difficult for users to find products and complete routine procurement tasks.\n\nOur task was to transform this legacy catalog into an intuitive, high-speed purchasing engine that matches the speed of clinical practice.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Complexity%20at%20Scale.jpg'
-      },
-      {
-        type: 'text-split',
-        tag: 'The Problem Matrix',
-        title: 'Friction and Cognitive Load',
-        content: 'Key issues identified in our initial audit:\n\n• Large Product Catalog: Navigating 15,000+ complex SKUs was exhausting.\n• Difficult Discovery: Search did not support SKU matching, bulk item lookup, or fuzzy search queries.\n• Complex Purchasing Workflows: Multiple custom pricing contracts, bulk price tiers, and DSO authorization steps were poorly integrated.\n• Legacy Usability Barriers: Outdated form styling and weak visual hierarchy increased error rates and transaction times.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Friction%20and%20Cognitive%20Load.jpg',
-        reversed: true
+        tag: 'How Might We',
+        title: 'How might we create a productivity experience that keeps the user focused on the work instead of the interface?',
+        content: 'Productivity tools can quickly become overloaded with tasks, streaks, recommendations, analytics, settings, and subscription prompts.\n\nThe challenge was addressing the fundamental tension between MORE FUNCTIONALITY and MORE FRICTION. Strydē needed to support focus sessions, contextual task management, stats, analytics, settings, personalization, and a Pro upgrade without allowing secondary functionality to dominate the primary focus experience.'
       },
       {
         type: 'section-header',
-        title: '02. Research & Insights',
-        subtitle: 'Mapping professional workflows, session recordings, and transactional drop-offs.'
+        title: '02. Product Experience',
+        subtitle: 'The core experience was designed around one simple idea: make starting focused work feel effortless.'
       },
       {
-        type: 'text-split',
-        tag: 'User Behavior Analysis',
-        title: 'How Dental Procurement Officers Think',
-        content: 'Unlike consumer retail, dental buyers are task-oriented procurement specialists who often work under tight timelines.\n\nWe analyzed hotjar heatmaps, fullstory session replays, and customer support logs. We discovered that 73% of repeat purchases failed to complete within expected times because of search navigation loops.\n\nWe converted these friction points into actionable design opportunities.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Procurement%20Officers%20Think.jpg'
+        type: 'custom',
+        render: () => <StrydeHomeComparison />
       },
       {
-        type: 'layered',
-        title: 'From Insight to Opportunity',
-        content: '• Insight 1: Dental offices order identical products every week by reference code.\n• Problem: Users had to manually type complete SKUs into search, then go to the PDP to add to cart.\n• Design Opportunity: SKU-first predictive search that lets users add to cart directly from the dropdown.\n\n• Insight 2: Multi-location practices have structured authorization levels.\n• Problem: Standard carts didn\'t support multi-user checkouts or budget approval limits.\n• Design Opportunity: Integrated DSO-level account hierarchies in the dashboard.',
-        images: [
-          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/insight.jpg',
-          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/insightopportunity.jpg'
-        ]
+        type: 'custom',
+        render: () => <StrydeCoreFocusFlow />
+      },
+      {
+        type: 'custom',
+        render: () => <StrydeActiveFocusShowcase />
       },
       {
         type: 'section-header',
-        title: '03. UX Strategy',
-        subtitle: 'Overhauling the information architecture and purchase pathways.'
+        title: '03. Product Architecture',
+        subtitle: 'As the product grows beyond the timer, each capability needs a clear place in the experience.'
       },
       {
-        type: 'text-split',
-        tag: 'Navigation Blueprint',
-        title: 'Simplified Information Architecture',
-        content: 'We redesigned the navigation taxonomy from the ground up.\n\nBy collapsing dozens of redundant nested categories into a unified 3-level mega menu, we reduced the average time-to-category by 42%. We designed interactive category bubble selectors to guide mobile-first users instantly to high-volume products.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Simplified%20Information%20Architecture.jpg'
+        type: 'custom',
+        render: () => <StrydeArchitectureTree />
       },
       {
-        type: 'text-split',
-        tag: 'Search & Conversion Strategy',
-        title: 'Efficiency-First B2B Architecture',
-        content: 'Our strategy prioritized speed and visual density:\n\n• Advanced predictive auto-complete supporting partial SKUs.\n• Inline quantity selectors in search listings.\n• Transparent pricing structures reflecting contract tiers instantly.\n• One-click Quick Reorder tables on the user dashboard.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Efficiency-First%20B2B%20Architecture.jpg',
-        reversed: true
+        type: 'custom',
+        render: () => <StrydeStatsVsAnalytics />
+      },
+      {
+        type: 'custom',
+        render: () => <StrydeAdaptiveNavVisual />
       },
       {
         type: 'section-header',
-        title: '04. Design Exploration',
-        subtitle: 'Comparing legacy designs with modern, scalable interfaces.'
+        title: '04. Personalization & Design System',
+        subtitle: 'Consistency matters most when the interface changes around the user.'
       },
       {
-        type: 'comparison',
-        title: 'Interface Transformation',
-        description: 'Comparing the legacy system with the redesigned, high-density professional workspace. The new layout emphasizes visual structure, clear pricing tiers, robust filters, and frictionless action buttons.',
-        before: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/evolution%20before.jpg',
-        after: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/evolution%20after.jpg',
-        contain: true,
-        padding: true,
-        bgWhite: true
+        type: 'custom',
+        render: () => <StrydeThemeAndCalendarVisual />
       },
       {
         type: 'section-header',
-        title: '05. The Final Experience',
-        subtitle: 'Apple-inspired enterprise design built for dental teams.'
+        title: '05. Strydē Pro',
+        subtitle: 'Monetization should be clear without interrupting the core experience.'
       },
       {
-        type: 'text-split',
-        tag: 'Feature 01: Product Discovery',
-        title: 'Smart Search & Category Taxonomy',
-        content: 'Features a full-width persistent search bar equipped with SKU autocomplete. Dynamic visual categories allow procurement managers to find specialized instruments, infection control supplies, and consumables with zero friction.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Smart%20Search%20%26%20Category%20Taxonomy.jpg'
-      },
-      {
-        type: 'text-split',
-        tag: 'Feature 02: Product Detail Experience',
-        title: 'High-Density PDP Information Hierarchy',
-        content: 'Displays clinical specifications, stock levels, manufacturer details, and volume discount tables. The pricing widget automatically recalculates totals based on quantities, simplifying purchasing decisions and boosting average order values.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/High-Density%20PDP%20Information%20Hierarchy%20.jpg',
-        reversed: true
-      },
-      {
-        type: 'text-split',
-        tag: 'Feature 03: Account Dashboard',
-        title: 'Unified Professional Procurement Control',
-        content: 'A robust workspace for practice managers to track current orders, review approval queues from dental support organizations (DSOs), download clinical invoices, and instantly repeat high-frequency purchases with a single tap.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Unified%20Professional%20Procurement%20Control.jpg'
+        type: 'custom',
+        render: () => <StrydeProVisual />
       },
       {
         type: 'section-header',
-        title: '06. Enterprise Design System',
-        subtitle: 'Scaling B2B interfaces with modular components.'
+        title: '06. Final Experience',
+        subtitle: 'A focused product experience, from starting a session to understanding the work behind it.'
       },
       {
-        type: 'image-grid',
-        images: [
-          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/enterprise1.jpg',
-          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/enterprise%202.jpg',
-          'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/enterprise%203.jpg'
-        ],
-        columns: 3,
-        contain: true,
-        padding: true,
-        bgWhite: true,
-        noGrayscale: true,
-        aspect: 'aspect-[4/3]'
+        type: 'custom',
+        render: () => <StrydeFinalMontage />
       },
       {
-        type: 'statement',
-        text: 'Standardized UI component libraries that reduce frontend design cycles by 60%.',
-        subtext: 'We established comprehensive typography styles (Inter & Poppins), custom healthcare badges, flexible bulk-add data tables, and input forms engineered for high speed input.'
-      },
-      {
-        type: 'section-header',
-        title: '07. Measurable Outcomes',
-        subtitle: 'Durable, high-performing B2B metrics.'
-      },
-      {
-        type: 'outcomes',
-        items: [
-          { label: 'Purchase Cycle Speed', value: '3x Faster' },
-          { label: 'Search Exit Rate', value: '-45%' },
-          { label: 'AOV (Average Order Value)', value: '+28%' }
-        ]
-      },
-      {
-        type: 'section-header',
-        title: '08. Reflections',
-        subtitle: 'What we learned designing in a complex professional marketplace.'
-      },
-      {
-        type: 'text-split',
-        title: 'Designing for the Dental Ecosystem',
-        content: 'B2B product design isn\'t about chasing visual trends—it\'s about respecting the user\'s specialized domain and working environments.\n\n• Balances Business and Professional Needs: Procurement teams need high informational density and lightning fast actions. Minimalism must not sacrifice usability.\n• Scalable Component Architecture is Mandatory: Building a complex, multi-state web application requires clean tokens and modular UI elements to prevent interface drift.\n• Trust is the Ultimate Currency: Displaying transparent bulk discounts, accurate real-time stock levels, and easy reorder pipelines converts one-time buyers into lifetime partners.',
-        image: 'https://raw.githubusercontent.com/goharshah47/Portfolioimages/refs/heads/main/Safco/Designing%20for%20the%20Dental%20Ecosystem.jpg',
-        reversed: true
+        type: 'custom',
+        render: () => <StrydeTakeawaysVisual />
       }
     ]
   },
@@ -542,24 +490,39 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
     }));
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      { 
-        threshold: 0.1, 
-        rootMargin: '-140px 0px -65% 0px' 
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const elements = container.querySelectorAll('.case-study-nav-target');
+      if (elements.length === 0) return;
+
+      const containerRect = container.getBoundingClientRect();
+      const activationOffset = window.innerWidth < 1280 ? 150 : 180;
+      const targetThreshold = containerRect.top + activationOffset;
+
+      let currentActiveId = (elements[0] as HTMLElement).id;
+      for (let i = 0; i < elements.length; i++) {
+        const el = elements[i] as HTMLElement;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= targetThreshold) {
+          currentActiveId = el.id;
+        } else {
+          break;
+        }
       }
-    );
 
-    const elements = document.querySelectorAll('.case-study-nav-target');
-    elements.forEach((el) => observer.observe(el));
+      setActiveId(currentActiveId);
+    };
 
-    return () => observer.disconnect();
+    handleScroll();
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, [project.id, project.blocks]);
 
   const scrollToSection = (id: string) => {
@@ -681,6 +644,57 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
 
             switch (block.type) {
             case 'hero':
+              if (block.customVisual) {
+                return (
+                  <section key={idx} className="relative min-h-screen flex flex-col justify-center pt-24 sm:pt-28 pb-14 sm:pb-20 px-5 sm:px-6 md:px-8 lg:px-12 overflow-hidden w-full bg-canvas">
+                    <div className="max-w-7xl mx-auto w-full min-w-0">
+                      <div className="max-w-4xl mb-8 sm:mb-12 text-left">
+                        <motion.div
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        >
+                          <span className="text-[10px] font-bold uppercase tracking-[0.35em] text-accent block mb-3">
+                            Mobile Product Design Case Study
+                          </span>
+                          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-4 sm:mb-5">
+                            {block.title}
+                          </h1>
+                          <p className="text-xl sm:text-2xl md:text-3xl font-light text-fg mb-4 text-balance">
+                            {block.subtitle}
+                          </p>
+                          <p className="text-sm sm:text-base text-fg-muted font-light max-w-2xl leading-relaxed">
+                            Strydē is a mobile productivity experience designed around focused work sessions, contextual task management, productivity insights, and a distraction-free workflow.
+                          </p>
+                        </motion.div>
+
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-8 pt-6 border-t border-border-theme/60 text-left">
+                          <div>
+                            <span className="text-[9px] font-bold uppercase tracking-widest text-fg-muted/60 block mb-1">ROLE</span>
+                            <span className="text-xs sm:text-sm font-bold text-fg">Product Designer</span>
+                          </div>
+                          <div>
+                            <span className="text-[9px] font-bold uppercase tracking-widest text-fg-muted/60 block mb-1">PRODUCT</span>
+                            <span className="text-xs sm:text-sm font-bold text-fg">Mobile App</span>
+                          </div>
+                          <div>
+                            <span className="text-[9px] font-bold uppercase tracking-widest text-fg-muted/60 block mb-1">FOCUS</span>
+                            <span className="text-xs sm:text-sm font-bold text-fg">Product Design · UX/UI · Interaction Design</span>
+                          </div>
+                          <div>
+                            <span className="text-[9px] font-bold uppercase tracking-widest text-fg-muted/60 block mb-1">TOOLS</span>
+                            <span className="text-xs sm:text-sm font-bold text-fg">Figma · Google AI Studio</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="w-full">
+                        {block.customVisual}
+                      </div>
+                    </div>
+                  </section>
+                );
+              }
               return (
                 <section key={idx} className="relative min-h-[75vh] sm:min-h-[85vh] md:min-h-screen flex items-end pb-12 sm:pb-20 md:pb-28 px-5 sm:px-6 md:px-8 lg:px-12 overflow-hidden w-full">
                   <div className="absolute inset-0 z-0">
@@ -774,11 +788,13 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
                       </div>
                       
                       <div className={`grid gap-x-6 sm:gap-x-8 md:gap-x-10 gap-y-8 sm:gap-y-10 ${
-                        block.activities.length === 5 
-                          ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5' 
-                          : block.activities.length === 4 
-                            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' 
-                            : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+                        block.activities.length === 7
+                          ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7'
+                          : block.activities.length === 5 
+                            ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5' 
+                            : block.activities.length === 4 
+                              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' 
+                              : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
                       }`}>
                         {block.activities.map((activity, i) => (
                           <motion.div 
@@ -854,14 +870,20 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
                       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                       className={`w-full lg:col-span-6 flex items-center justify-center ${block.reversed ? 'md:order-1' : 'md:order-2'}`}
                     >
-                      <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-border-theme/40 bg-canvas-muted">
-                        <img 
-                          src={block.image} 
-                          className="w-full h-auto max-w-full block object-contain" 
-                          alt={block.title} 
-                          referrerPolicy="no-referrer" 
-                        />
-                      </div>
+                      {block.customVisual ? (
+                        <div className="w-full">
+                          {block.customVisual}
+                        </div>
+                      ) : (
+                        <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-border-theme/40 bg-canvas-muted">
+                          <img 
+                            src={block.image} 
+                            className="w-full h-auto max-w-full block object-contain" 
+                            alt={block.title} 
+                            referrerPolicy="no-referrer" 
+                          />
+                        </div>
+                      )}
                     </motion.div>
                   </div>
                 </section>
@@ -1073,6 +1095,14 @@ const CaseStudySection = ({ project, onBack, onSelect }: { project: Project, onB
                       </p>
                     )}
                   </motion.div>
+                </section>
+              );
+            case 'custom':
+              return (
+                <section key={idx} className={`section-padding ${bgClass} overflow-hidden w-full`}>
+                  <div className="max-w-7xl mx-auto w-full min-w-0">
+                    {block.render()}
+                  </div>
                 </section>
               );
             default:
@@ -1316,47 +1346,10 @@ const Hero = () => {
 };
 
 const WorkGrid = ({ onSelect }: { onSelect: (project: Project) => void }) => {
-  const safcoProject = PROJECTS.find(p => p.id === 'safco-dental') || PROJECTS[0];
-  const otherProjects = PROJECTS.filter(p => p.id !== 'safco-dental');
-
-  // Interactive mockup state variables
-  const [searchVal, setSearchVal] = useState('');
-  const [qty, setQty] = useState(12);
-  const [activeCategory, setActiveCategory] = useState('Preventive');
-  const [dsoApproved, setDsoApproved] = useState(false);
-  const [cartCount, setCartCount] = useState(3);
-
-  // Dental Products Data for Mockup
-  const dentalProducts = [
-    { name: 'Steri-Pocket Autoclave Pouches', sku: '315-9821', category: 'Preventive', price: 14.95, rating: 4.9, stock: 'High' },
-    { name: 'Front Surface Examination Mirror #4', sku: '924-0012', category: 'Instruments', price: 24.50, rating: 4.8, stock: 'High' },
-    { name: 'Premium Prophy Paste - Mint Coarse', sku: '211-4091', category: 'Preventive', price: 29.99, rating: 4.7, stock: 'Low' },
-    { name: 'M-Type Gutta Percha Points .04', sku: '412-2918', category: 'Endodontics', price: 22.50, rating: 4.9, stock: 'High' },
-  ];
-
-  // SKU autocomplete matching
-  const showAutocomplete = searchVal.toLowerCase().startsWith('sku') || searchVal.length > 1;
-  const filteredAutocomplete = [
-    { name: 'Front Surface Examining Mirror #4', sku: 'SKU #924-0012', price: '$24.50', tier: '$21.50 (12+ units)' },
-    { name: 'Dual-Surface Dental Mirror #5', sku: 'SKU #924-0018', price: '$32.00', tier: '$28.00 (12+ units)' },
-    { name: 'Double-Sided Mirror #5', sku: 'SKU #924-0021', price: '$34.20', tier: '$30.50 (12+ units)' }
-  ].filter(p => p.name.toLowerCase().includes(searchVal.toLowerCase()) || p.sku.toLowerCase().includes(searchVal.toLowerCase()));
-
-  // Price tier math for interactive PDP Card
-  const getUnitPrice = (q: number) => {
-    if (q >= 12) return 15.20;
-    if (q >= 5) return 17.10;
-    return 18.50;
-  };
-  const unitPrice = getUnitPrice(qty);
-  const totalPrice = (qty * unitPrice).toFixed(2);
-  const standardPriceTotal = (qty * 18.50);
-  const savings = (standardPriceTotal - parseFloat(totalPrice)).toFixed(2);
-
   return (
     <section id="work" className="section-padding bg-canvas transition-colors duration-500">
       {/* Work Section Header */}
-      <div className="container-wide mb-24 flex flex-col md:flex-row justify-between items-end gap-12">
+      <div className="container-wide mb-16 md:mb-20 flex flex-col md:flex-row justify-between items-end gap-12">
         <div className="max-w-2xl">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -1379,130 +1372,15 @@ const WorkGrid = ({ onSelect }: { onSelect: (project: Project) => void }) => {
         </motion.p>
       </div>
 
-      {/* FLAGSHIP CASE STUDY: SAFCO DENTAL */}
-      <div className="container-wide mb-32">
-        <motion.a 
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            onSelect(safcoProject);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              onSelect(safcoProject);
-            }
-          }}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="block relative bg-canvas-muted rounded-[3rem] border border-border-theme overflow-hidden p-8 md:p-12 lg:p-16 group hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.45)] hover:-translate-y-1 cursor-pointer transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent hover:border-accent/30"
-        >
-          {/* Subtle light background highlight */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
-            {/* Left Storyteller Info Panel */}
-            <div className="lg:col-span-5 flex flex-col justify-center">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="px-4 py-1.5 bg-accent/10 text-accent text-[10px] font-bold uppercase tracking-widest rounded-full">
-                  Primary Flagship Project
-                </span>
-                <span className="text-fg-muted/40 text-xs font-medium">{safcoProject.year}</span>
-              </div>
-              
-              <h3 className="text-5xl md:text-6xl font-black tracking-tighter mb-6">
-                {safcoProject.title}
-              </h3>
-              
-              <p className="text-lg font-semibold tracking-tight text-fg mb-4 text-balance">
-                "Redesigning a B2B dental commerce experience to help professionals find products faster and work more efficiently."
-              </p>
-              
-              <p className="text-fg-muted text-base font-light leading-relaxed mb-8">
-                I transformed a legacy B2B dental marketplace experience into a modern, efficient, and user-centered digital product. Our design strategy dramatically simplified discovery of 15,000+ SKUs, streamlined recurring DSO order systems, and unified clinical purchasing under an Apple-inspired visual ecosystem.
-              </p>
-
-              {/* Dynamic Highlights Checklist */}
-              <div className="space-y-4 mb-10 border-t border-b border-border-theme/60 py-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-1.5 bg-accent/10 rounded-lg text-accent mt-0.5">
-                    <Search size={14} />
-                  </div>
-                  <div>
-                    <h5 className="text-xs font-bold uppercase tracking-wider text-fg mb-0.5">SKU-First Predictive Search</h5>
-                    <p className="text-xs text-fg-muted font-light">Autocompletes partial SKU numbers to bypass navigation grids completely.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="p-1.5 bg-accent/10 rounded-lg text-accent mt-0.5">
-                    <Filter size={14} />
-                  </div>
-                  <div>
-                    <h5 className="text-xs font-bold uppercase tracking-wider text-fg mb-0.5">High-Density PDP Price Tiers</h5>
-                    <p className="text-xs text-fg-muted font-light">Interactive price matrices recalculate bulk order savings in real-time.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="p-1.5 bg-accent/10 rounded-lg text-accent mt-0.5">
-                    <AlertCircle size={14} />
-                  </div>
-                  <div>
-                    <h5 className="text-xs font-bold uppercase tracking-wider text-fg mb-0.5">DSO Procurement Dashboard</h5>
-                    <p className="text-xs text-fg-muted font-light">Multi-location order authorizations with built-in spending thresholds.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Navigation trigger button (Rendered as div inside anchor for valid HTML markup) */}
-              <div 
-                className="self-start px-8 py-4 bg-[#050505] text-white font-bold text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 ease-in-out flex items-center gap-3 shadow-lg group-hover:bg-accent group-hover:translate-y-[-2px] group-hover:shadow-xl group-hover:shadow-accent/25"
-              >
-                <span>Explore Flagship Case Study</span>
-                <ArrowRight size={14} className="transition-transform duration-300 ease-in-out group-hover:translate-x-[6px]" />
-              </div>
-            </div>
-
-            {/* Right Interactive Mockup Showcase (Clean, high-fidelity cover image) */}
-            <div 
-              className="lg:col-span-7 relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full flex items-center justify-center overflow-hidden"
-            >
-              <div className="w-full h-full p-4 md:p-6 lg:p-8 flex items-center justify-center">
-                <div className="w-full h-full relative overflow-hidden rounded-[2rem] border border-border-theme/60 bg-canvas-muted flex items-center justify-center">
-                  <img
-                    src={safcoProject.image}
-                    alt={safcoProject.title}
-                    className="w-full h-full object-cover transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:brightness-[1.03]"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-fg/5 dark:bg-black/10 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none" />
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </motion.a>
-      </div>
-
-      {/* ADDITIONAL CASE STUDIES SECTION */}
-      <div className="container-wide mb-16">
-        <h3 className="text-xl font-bold uppercase tracking-[0.3em] text-fg-muted/40 mb-12 border-b border-border-theme pb-4">
-          More Enterprise Products & AI Workspaces
-        </h3>
-      </div>
-
-      <div className="container-wide grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
-        {otherProjects.map((project, idx) => (
+      <div className="container-wide grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
+        {PROJECTS.map((project, idx) => (
           <motion.div
             key={project.id}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="group cursor-pointer"
+            className={`group cursor-pointer ${idx === 2 ? 'md:col-span-2 lg:col-span-1 md:max-w-lg md:mx-auto lg:max-w-none w-full' : ''}`}
             onClick={() => onSelect(project)}
           >
             <div className="relative aspect-[16/10] overflow-hidden rounded-3xl mb-8 bg-canvas-muted border border-border-theme transition-all duration-500 group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] dark:group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)]">
@@ -1529,7 +1407,7 @@ const WorkGrid = ({ onSelect }: { onSelect: (project: Project) => void }) => {
             
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-4 group-hover:gap-6 transition-all duration-500">
-                <h4 className="text-3xl md:text-4xl font-bold tracking-tight">{project.title}</h4>
+                <h4 className="text-2xl md:text-3xl font-bold tracking-tight">{project.title}</h4>
                 <div className="h-[1px] flex-1 bg-border-theme group-hover:bg-accent/40 transition-colors duration-500" />
               </div>
               <p className="text-fg-muted text-sm font-medium uppercase tracking-[0.2em]">{project.category}</p>
@@ -1878,7 +1756,53 @@ export default function App() {
     return saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
   });
 
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const getProjectFromLocation = () => {
+    const pathname = window.location.pathname;
+    const match = pathname.match(/\/case-studies\/([a-zA-Z0-9_-]+)/);
+    if (match && match[1]) {
+      const found = PROJECTS.find(p => p.id.toLowerCase() === match[1].toLowerCase());
+      if (!found) {
+        if (typeof window !== 'undefined' && window.history?.replaceState) {
+          window.history.replaceState(null, '', '/');
+        }
+        return null;
+      }
+      return found;
+    }
+    const hash = window.location.hash;
+    if (hash) {
+      const cleanHash = hash.replace(/^#\/?(case-studies\/)?/, '');
+      const found = PROJECTS.find(p => p.id.toLowerCase() === cleanHash.toLowerCase());
+      if (!found) {
+        if (typeof window !== 'undefined' && window.history?.replaceState) {
+          window.history.replaceState(null, '', '/');
+        }
+        return null;
+      }
+      return found;
+    }
+    return null;
+  };
+
+  const [selectedProject, setSelectedProject] = useState<Project | null>(() => getProjectFromLocation());
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setSelectedProject(getProjectFromLocation());
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleSelectProject = (p: Project) => {
+    setSelectedProject(p);
+    window.history.pushState(null, '', `/case-studies/${p.id}`);
+  };
+
+  const handleBackToWork = () => {
+    setSelectedProject(null);
+    window.history.pushState(null, '', '/');
+  };
 
   useEffect(() => {
     if (darkMode) {
@@ -1896,7 +1820,7 @@ export default function App() {
     <div className="selection:bg-accent selection:text-white">
       <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
       <Hero />
-      <WorkGrid onSelect={setSelectedProject} />
+      <WorkGrid onSelect={handleSelectProject} />
       <About />
       <Contact />
 
@@ -1904,8 +1828,8 @@ export default function App() {
         {selectedProject && (
           <CaseStudySection 
             project={selectedProject} 
-            onBack={() => setSelectedProject(null)} 
-            onSelect={setSelectedProject}
+            onBack={handleBackToWork} 
+            onSelect={handleSelectProject}
           />
         )}
       </AnimatePresence>
